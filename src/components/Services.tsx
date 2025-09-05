@@ -56,8 +56,8 @@ const Services = () => {
             Meine <span className="gradient-text">Leistungen</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Umfassende Unterstützung für deinen erfolgreichen Bewerbungsprozess – 
-            von der CV-Erstellung bis zur modernen Stellensuche
+            Professionelle Bewerbungsunterlagen kostenlos erstellen mit KI-Unterstützung und persönlicher Betreuung. 
+            Umfassende Unterstützung für deinen erfolgreichen Bewerbungsprozess.
           </p>
         </div>
 

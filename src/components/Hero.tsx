@@ -17,14 +17,13 @@ const Hero = () => {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Ich helfe dir bei deinem{" "}
-              <span className="gradient-text">perfekten Lebenslauf</span>
+              Kostenlose <span className="gradient-text">Lebenslauf Hilfe</span> und Bewerbungshilfe online
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-              Menschen mit psychischen Problemen oder Schwierigkeiten im Bewerbungsprozess 
-              erhalten von mir kostenlose Unterstützung beim Erstellen professioneller CVs. 
-              <strong className="text-foreground"> 5 kostenlose Slots pro Monat verfügbar.</strong>
+              <strong className="text-foreground">Professioneller Lebenslauf kostenlos</strong> für Menschen mit psychischen Belastungen, Schwerbehinderung oder anderen Herausforderungen. 
+              CV erstellen lassen mit KI-Unterstützung und persönlicher Betreuung. 
+              <strong className="text-accent"> 5 kostenlose Slots pro Monat verfügbar.</strong>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">

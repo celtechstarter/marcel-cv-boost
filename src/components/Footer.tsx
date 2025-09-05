@@ -11,9 +11,9 @@ const Footer = () => {
           <div className="md:col-span-2">
             <h3 className="text-xl font-semibold mb-4">Marcel</h3>
             <p className="text-background/80 mb-4 leading-relaxed">
-              Kostenlose Bewerbungshilfe für Menschen mit psychischen Problemen 
-              oder Schwierigkeiten im Bewerbungsprozess. Weil jeder eine faire 
-              Chance verdient.
+              Kostenlose Lebenslauf Hilfe und Bewerbungshilfe online für Menschen mit psychischen Belastungen, 
+              Schwerbehinderung oder anderen Herausforderungen. Professioneller Lebenslauf kostenlos mit 
+              KI-Unterstützung. Weil jeder eine faire Chance verdient.
             </p>
             <div className="flex items-center gap-2 text-sm">
               <Heart className="h-4 w-4 text-red-400" />
@@ -30,16 +30,22 @@ const Footer = () => {
               <a href="#home" className="block text-background/80 hover:text-background transition-colors">
                 Start
               </a>
-              <a href="#about" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/#about" className="block text-background/80 hover:text-background transition-colors">
                 Über mich
               </a>
-              <a href="#services" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/#services" className="block text-background/80 hover:text-background transition-colors">
                 Leistungen
               </a>
-              <a href="#ablauf" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/#ablauf" className="block text-background/80 hover:text-background transition-colors">
                 Ablauf
               </a>
-              <a href="#contact" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/faq" className="block text-background/80 hover:text-background transition-colors">
+                FAQ
+              </a>
+              <a href="/blog" className="block text-background/80 hover:text-background transition-colors">
+                Blog
+              </a>
+              <a href="/#contact" className="block text-background/80 hover:text-background transition-colors">
                 Kontakt
               </a>
             </nav>
