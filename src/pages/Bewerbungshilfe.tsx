@@ -42,9 +42,6 @@ const Bewerbungshilfe = () => {
     const formData = new FormData(e.target as HTMLFormElement);
     
     try {
-    const formData = new FormData(e.target as HTMLFormElement);
-    
-    try {
       const requestData = {
         name: formData.get('name') as string,
         email: formData.get('email') as string,
