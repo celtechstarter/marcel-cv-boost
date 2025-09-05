@@ -101,26 +101,16 @@ async function sendMailSafe({ to, subject, text, html }: { to: string | string[]
       return { ok: false as const, reason: 'no_key' as const };
     }
 
-    const payload = {
+    const res = await resend.emails.send({
       from: 'Marcel <onboarding@resend.dev>', // TODO: switch to verified domain when available
       to: Array.isArray(to) ? to : [to],
       subject,
       ...(text ? { text } : {}),
       ...(html ? { html } : {}),
-    };
-
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
     });
 
-    if (!res.ok) {
-      const body = await res.json().catch(() => ({}));
-      return { ok: false as const, reason: 'resend_error' as const, status: res.status, body };
+    if ((res as any)?.error) {
+      return { ok: false as const, reason: 'resend_error' as const, body: (res as any).error };
     }
 
     return { ok: true as const };
@@ -325,7 +315,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   // POST /requests/create - Handle general request submissions
-  if (req.method === 'POST' && url.pathname === '/requests/create') {
+  if (path === '/requests/create' && req.method === 'POST') {
     try {
       const { name, email, discord_name, message, cv_path } = await req.json();
 
