@@ -387,6 +387,16 @@ const Bewerbungshilfe = () => {
                     </p>
                   </div>
 
+                  <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 p-4 rounded-lg">
+                    <div className="flex items-center gap-2 text-sm">
+                      <Mail className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                      <span className="font-medium text-blue-800 dark:text-blue-200">Wichtig:</span>
+                    </div>
+                    <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+                      Bitte keine Dokumente über Discord senden. Nutze für Unterlagen ausschließlich den Upload hier auf der Seite. So bleiben deine Daten geschützt.
+                    </p>
+                  </div>
+
                   <Button 
                     type="submit" 
                     className="w-full text-lg py-3" 

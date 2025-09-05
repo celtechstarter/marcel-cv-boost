@@ -2,9 +2,18 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.0";
 import { Resend } from "npm:resend@2.0.0";
 
+// Security headers for all responses
+const securityHeaders = {
+  'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co https://marcel-cv-boost.lovable.app https://marcel-cv-boost.lovable.dev; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests",
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'X-Content-Type-Options': 'nosniff',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+};
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  ...securityHeaders,
 };
 
 // Secure CORS for GDPR compliance - restrict to authorized domains only
@@ -114,30 +123,19 @@ const handler = async (req: Request): Promise<Response> => {
   // **NEW: POST /uploads/create-signed** - Create secure signed upload URL for PDFs
   if (path === '/uploads/create-signed' && req.method === 'POST') {
     try {
-      const { filename, email } = await req.json();
+      const { filename, size_bytes, content_type } = await req.json();
 
-      if (!filename || !email) {
+      if (!filename || !size_bytes || !content_type) {
         return new Response(JSON.stringify({ 
-          error: 'Dateiname und E-Mail sind erforderlich' 
+          error: 'Dateiname, Dateigröße und Dateityp sind erforderlich' 
         }), {
           status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }
 
-      // Validate email format
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        return new Response(JSON.stringify({ 
-          error: 'Ungültige E-Mail-Adresse' 
-        }), {
-          status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
-      }
-
-      // Validate filename and ensure PDF
-      if (!filename.toLowerCase().endsWith('.pdf')) {
+      // Validate content type must be PDF
+      if (content_type !== 'application/pdf') {
         return new Response(JSON.stringify({ 
           error: 'Nur PDF-Dateien sind erlaubt' 
         }), {
@@ -146,11 +144,20 @@ const handler = async (req: Request): Promise<Response> => {
         });
       }
 
-      // Generate secure path with timestamp and UUID
-      const uploadId = crypto.randomUUID();
-      const timestamp = new Date().getTime();
+      // Validate file size (10MB max)
+      if (size_bytes > 10485760) {
+        return new Response(JSON.stringify({ 
+          error: 'Datei zu groß (maximal 10 MB)' 
+        }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      // Normalize filename to safe ASCII basename
       const sanitizedFilename = sanitizeFilename(filename);
-      const storagePath = `uploads/${timestamp}-${uploadId}/${sanitizedFilename}`;
+      const uploadId = crypto.randomUUID();
+      const storagePath = `requests/${uploadId}/${sanitizedFilename}`;
 
       // Create signed upload URL (10 minutes TTL)
       const { data: uploadData, error: uploadError } = await supabase.storage
@@ -170,21 +177,9 @@ const handler = async (req: Request): Promise<Response> => {
         });
       }
 
-      // Log upload request for audit
-      await supabase.rpc('log_audit_event', {
-        p_event_type: 'file_upload_requested',
-        p_actor_email: email,
-        p_actor_role: 'anonymous',
-        p_actor_ip: clientIP,
-        p_resource_id: uploadId,
-        p_details: { filename: sanitizedFilename, storage_path: storagePath }
-      });
-
       return new Response(JSON.stringify({
-        uploadUrl: uploadData.signedUrl,
-        uploadId: uploadId,
-        storagePath: storagePath,
-        expiresIn: 600
+        path: storagePath,
+        upload_url: uploadData.signedUrl
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -686,6 +681,62 @@ ${message}`
       return new Response(JSON.stringify({ ok: true }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
+    }
+
+    // Route: POST /admin/uploads/delete - Admin delete uploaded file
+    if (path === '/admin/uploads/delete' && req.method === 'POST') {
+      const authHeader = req.headers.get('Authorization');
+      const adminPassword = authHeader?.replace('Bearer ', '');
+
+      // Check admin password
+      const expectedPassword = Deno.env.get('ADMIN_PASS');
+      if (adminPassword !== expectedPassword) {
+        return new Response(JSON.stringify({ error: 'Nicht autorisiert' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      try {
+        const { path: filePath } = await req.json();
+
+        if (!filePath) {
+          return new Response(JSON.stringify({ error: 'Dateipfad ist erforderlich' }), {
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        // Delete from storage
+        const { error: storageError } = await supabase.storage
+          .from('cv_uploads')
+          .remove([filePath]);
+
+        if (storageError) {
+          console.error('Error deleting file from storage:', storageError);
+          return new Response(JSON.stringify({ error: 'Fehler beim Löschen der Datei' }), {
+            status: 500,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        // Delete metadata record if exists
+        await supabase
+          .from('uploads')
+          .delete()
+          .eq('path', filePath);
+
+        return new Response(JSON.stringify({ ok: true }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+
+      } catch (error) {
+        console.error('Error in admin file delete:', error);
+        return new Response(JSON.stringify({ error: 'Interner Serverfehler' }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
     }
 
     // Route: GET /admin/dashboard

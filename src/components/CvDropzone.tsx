@@ -18,10 +18,10 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
 
   const validateFile = (file: File): string | null => {
     if (file.type !== 'application/pdf') {
-      return 'Bitte lade eine PDF-Datei bis maximal 5 MB hoch.';
+      return 'Bitte lade eine PDF-Datei bis maximal 10 MB hoch.';
     }
-    if (file.size > 5 * 1024 * 1024) {
-      return 'Bitte lade eine PDF-Datei bis maximal 5 MB hoch.';
+    if (file.size > 10 * 1024 * 1024) {
+      return 'Bitte lade eine PDF-Datei bis maximal 10 MB hoch.';
     }
     return null;
   };
@@ -37,17 +37,32 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
     setError(null);
 
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-
-      const response = await callEdge('/uploads/cv', {
+      // Step 1: Get signed upload URL
+      const { path, upload_url } = await callEdge('/uploads/create-signed', {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify({
+          filename: file.name,
+          size_bytes: file.size,
+          content_type: file.type
+        }),
       });
 
-      const { path } = response;
+      // Step 2: Upload file directly to storage using signed URL
+      const uploadResponse = await fetch(upload_url, {
+        method: 'PUT',
+        body: file,
+        headers: {
+          'Content-Type': file.type,
+        },
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error('Upload fehlgeschlagen');
+      }
+
       setUploadedFile({ name: file.name, path });
       onFileUploaded(path, file.name);
+      setError(null); // Clear any previous errors
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Fehler beim Hochladen der Datei';
       setError(errorMessage);
@@ -105,9 +120,14 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
         <p className="text-sm text-muted-foreground mb-4">
           Wenn du schon einen Lebenslauf hast, kannst du ihn hier als PDF hochladen. So kann ich mich vorab einlesen und dir schneller helfen.
         </p>
-        <p className="text-xs text-muted-foreground mb-4">
-          PDF bis 5 MB. Keine sensiblen Gesundheitsdaten oder Dokumente Dritter.
-        </p>
+        <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 p-3 rounded-lg mb-4">
+          <p className="text-xs text-yellow-800 dark:text-yellow-200">
+            <strong>Bitte keine Diagnosen oder medizinischen Details in Unterlagen aufnehmen.</strong>
+          </p>
+          <p className="text-xs text-yellow-700 dark:text-yellow-300 mt-1">
+            PDF bis 10 MB. Keine sensiblen Gesundheitsdaten oder Dokumente Dritter.
+          </p>
+        </div>
       </div>
 
       {!uploadedFile ? (
@@ -141,7 +161,7 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
                 <p className="text-sm font-medium mb-1">
                   Ziehe die Datei hierher oder klicke, um zu wählen
                 </p>
-                <p className="text-xs text-muted-foreground">Max. 5 MB</p>
+                <p className="text-xs text-muted-foreground">Max. 10 MB</p>
               </div>
             )}
           </CardContent>
@@ -182,6 +202,16 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
         className="hidden"
         aria-hidden="true"
       />
+
+      {uploadedFile && (
+        <div 
+          className="text-sm text-green-600 dark:text-green-400"
+          role="status"
+          aria-live="polite"
+        >
+          Datei erfolgreich hochgeladen.
+        </div>
+      )}
 
       {error && (
         <div 
