@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="text-xl font-semibold mb-4">Marcel Welk</h3>
+            <h3 className="text-xl font-semibold mb-4">Marcel</h3>
             <p className="text-background/80 mb-4 leading-relaxed">
               Kostenlose Bewerbungshilfe für Menschen mit psychischen Problemen 
               oder Schwierigkeiten im Bewerbungsprozess. Weil jeder eine faire 
@@ -36,6 +36,9 @@ const Footer = () => {
               <a href="#services" className="block text-background/80 hover:text-background transition-colors">
                 Leistungen
               </a>
+              <a href="#ablauf" className="block text-background/80 hover:text-background transition-colors">
+                Ablauf
+              </a>
               <a href="#contact" className="block text-background/80 hover:text-background transition-colors">
                 Kontakt
               </a>
@@ -48,8 +51,8 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-sm">
                 <Mail className="h-4 w-4 text-background/60" />
-                <a href="mailto:marcel@welk.dev" className="text-background/80 hover:text-background transition-colors">
-                  marcel@welk.dev
+                <a href="mailto:marcel.welk87@gmail.com" className="text-background/80 hover:text-background transition-colors">
+                  marcel.welk87@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-2 text-sm">
@@ -69,7 +72,7 @@ const Footer = () => {
         <div className="border-t border-background/20 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-background/60 text-sm">
-              © {currentYear} Marcel Welk. Alle Rechte vorbehalten.
+              © {currentYear} Marcel. Alle Rechte vorbehalten.
             </p>
             <div className="flex gap-6 text-sm">
               <a href="/impressum" className="text-background/60 hover:text-background transition-colors">

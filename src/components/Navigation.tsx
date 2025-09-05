@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,7 @@ const Navigation = () => {
     { href: "#home", label: "Start" },
     { href: "#about", label: "Über mich" },
     { href: "#services", label: "Leistungen" },
+    { href: "#ablauf", label: "Ablauf" },
     { href: "#contact", label: "Kontakt" },
   ];
 
@@ -19,7 +21,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#home" className="text-xl font-semibold gradient-text">
-              Marcel Welk
+              Marcel
             </a>
           </div>
 
@@ -30,11 +32,13 @@ const Navigation = () => {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium"
+                  className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium focus:text-primary focus:outline-none"
+                  aria-label={`Gehe zu ${item.label} Sektion`}
                 >
                   {item.label}
                 </a>
               ))}
+              <ThemeToggle />
               <Button variant="default" className="btn-accent" asChild>
                 <a href="#contact">Jetzt Anfragen</a>
               </Button>
@@ -42,12 +46,14 @@ const Navigation = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              aria-label="Menü öffnen"
+              aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
+              aria-expanded={isOpen}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>

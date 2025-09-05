@@ -16,12 +16,12 @@ const About = () => {
     {
       icon: Users,
       title: "Erfolgreiche Begleitung",
-      description: "Viele Menschen mit ADHS, psychischen Belastungen erfolgreich unterstützt"
+      description: "Ich unterstütze Menschen mit psychischen Belastungen oder Schwerbehinderungen erfolgreich."
     },
     {
       icon: Target,
-      title: "Messbare Erfolge",
-      description: "Zum Beispiel: Sofortige Jobzusage nach meinem Lebenslauf"
+      title: "Gemeinsamer Erfolg",
+      description: "Ich gebe mein Bestes, damit wir gemeinsam erfolgreich sind."
     }
   ];
 
@@ -42,17 +42,15 @@ const About = () => {
           <div className="animate-fade-up">
             <div className="space-y-6 text-lg leading-relaxed">
               <p>
-                <strong className="text-foreground">Ich heiße Marcel Welk</strong> und habe durch meine eigene Geschichte gelernt, 
+                <strong className="text-foreground">Ich heiße Marcel</strong> und habe durch meine eigene Geschichte gelernt, 
                 wie schwer es sein kann, Bewerbungen zu schreiben und den richtigen Weg zu finden. 
                 In einer schwierigen Phase meines Lebens habe ich gemerkt, wie viel es mir bedeutet, 
                 andere zu unterstützen, die vor ähnlichen Herausforderungen stehen.
               </p>
               
               <p>
-                Während eines Kurses habe ich begonnen, für andere Teilnehmer Lebensläufe zu erstellen – 
-                und schnell gemerkt, dass mir das nicht nur leichtfällt, sondern auch richtig Freude macht. 
-                Seitdem habe ich viele Menschen begleitet, die mit psychischen Belastungen, ADHS oder 
-                einer Schwerbehinderung kämpfen.
+                Während eines Kurses begann ich, für andere Lebensläufe zu erstellen – und merkte schnell, 
+                dass mich das erfüllt. Seitdem unterstütze ich Menschen mit psychischen Belastungen oder Schwerbehinderungen.
               </p>
               
               <p className="bg-accent/10 p-4 rounded-lg border-l-4 border-accent">

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Heart, Users, FileText } from "lucide-react";
-import heroImage from "@/assets/hero-image.jpg";
+// Using uploaded portrait directly
 
 const Hero = () => {
   return (
@@ -55,8 +55,8 @@ const Hero = () => {
           <div className="relative animate-scale-in">
             <div className="relative z-10">
               <img
-                src={heroImage}
-                alt="Moderner Arbeitsplatz mit Laptop und Dokumenten für professionelle Bewerbungshilfe"
+                src="/lovable-uploads/b88262de-c305-473a-a997-7014c75c09ae.png"
+                alt="Porträt von Marcel, Bewerbungshelfer"
                 className="rounded-2xl shadow-large w-full h-auto"
                 loading="eager"
               />

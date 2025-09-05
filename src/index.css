@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Modern portfolio color palette */
+    /* Light mode colors */
     --background: 210 20% 98%;
     --foreground: 215 25% 15%;
 
@@ -70,6 +70,7 @@ All colors MUST be HSL.
   }
 
   .dark {
+    /* Dark mode as default */
     --background: 215 25% 8%;
     --foreground: 210 17% 96%;
 
@@ -115,6 +116,17 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Enhanced focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary ring-2 ring-primary/20;
+  }
+
+  /* Ensure buttons have proper focus indicators */
+  button:focus-visible,
+  a:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
   }
 
   html {

@@ -21,7 +21,7 @@ const Contact = () => {
     
     toast({
       title: "Nachricht gesendet! 📨",
-      description: "Ich melde mich innerhalb von 24 Stunden bei dir zurück.",
+      description: "Ich melde mich schnellstmöglich bei dir unter marcel.welk87@gmail.com. Vielen Dank für dein Vertrauen!",
     });
     
     setIsSubmitting(false);
@@ -31,8 +31,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "E-Mail",
-      value: "marcel@welk.dev",
-      link: "mailto:marcel@welk.dev"
+      value: "marcel.welk87@gmail.com",
+      link: "mailto:marcel.welk87@gmail.com"
     },
     {
       icon: Phone,
@@ -119,10 +119,14 @@ const Contact = () => {
                     <Textarea
                       id="situation"
                       name="situation"
-                      placeholder="Erzähl mir kurz von deiner aktuellen Situation. Womit kann ich dir helfen? (z.B. erste Bewerbung, Neuorientierung, spezielle Herausforderungen...)"
+                      placeholder="Schreibe einfach ganz frei, wo du Probleme siehst und ich helfe dir schnell weiter."
                       rows={4}
                       className="mt-1"
+                      aria-describedby="help-description"
                     />
+                    <p id="help-description" className="text-sm text-muted-foreground mt-1">
+                      Teile mit, was dich beschäftigt - ich bin hier, um zu helfen.
+                    </p>
                   </div>
 
                   <div>
