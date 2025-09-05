@@ -16,6 +16,7 @@ const Bewerbungshilfe = () => {
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const [isSubmittingBooking, setIsSubmittingBooking] = useState(false);
   const [cvPath, setCvPath] = useState<string>('');
+  const [mailStatus, setMailStatus] = useState<'sent' | 'not_sent' | null>(null);
   const { toast } = useToast();
 
   const scrollToSection = (section: 'anfrage' | 'termin') => {
@@ -96,10 +97,18 @@ const Bewerbungshilfe = () => {
         duration_minutes: duration,
       };
       
-      await callEdge('/bookings/create', {
+      const res = await callEdge('/bookings/create', {
         method: 'POST',
         body: JSON.stringify(bookingData)
       });
+      
+      if (res?.mail === 'not_sent') {
+        setMailStatus('not_sent');
+      } else if (res?.mail === 'sent') {
+        setMailStatus('sent');
+      } else {
+        setMailStatus(null);
+      }
       
       toast({
         title: "Termin erfolgreich gebucht! 🎉",
@@ -399,6 +408,18 @@ const Bewerbungshilfe = () => {
                       Bitte keine Dokumente über Discord senden. Nutze für Unterlagen ausschließlich den Upload hier auf der Seite. So bleiben deine Daten geschützt.
                     </p>
                   </div>
+
+                  {mailStatus === 'not_sent' && (
+                    <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 p-4 rounded-lg mt-2">
+                      <div className="flex items-center gap-2 text-sm">
+                        <Mail className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+                        <span className="font-medium text-yellow-800 dark:text-yellow-200">Hinweis zum E-Mail-Versand:</span>
+                      </div>
+                      <p className="text-sm text-yellow-700 dark:text-yellow-300 mt-1">
+                        Buchung erfolgreich, aber E-Mail konnte nicht gesendet werden. Bitte prüfe später dein Postfach oder kontaktiere mich direkt unter marcel.welk87@gmail.com.
+                      </p>
+                    </div>
+                  )}
 
                   <Button 
                     type="submit" 

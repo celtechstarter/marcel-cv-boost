@@ -93,6 +93,42 @@ const GDPR_EMAIL_FOOTER = `
 ---
 Hinweis: Verarbeitung gemäß Datenschutzerklärung. Auftragsverarbeiter: Supabase (EU-Region) und Resend (E-Mail).`;
 
+// Mail helper: send via Resend safely without throwing
+async function sendMailSafe({ to, subject, text, html }: { to: string | string[]; subject: string; text?: string; html?: string; }) {
+  try {
+    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
+    if (!RESEND_API_KEY) {
+      return { ok: false as const, reason: 'no_key' as const };
+    }
+
+    const payload = {
+      from: 'Marcel <onboarding@resend.dev>', // TODO: switch to verified domain when available
+      to: Array.isArray(to) ? to : [to],
+      subject,
+      ...(text ? { text } : {}),
+      ...(html ? { html } : {}),
+    };
+
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      return { ok: false as const, reason: 'resend_error' as const, status: res.status, body };
+    }
+
+    return { ok: true as const };
+  } catch (err) {
+    return { ok: false as const, reason: 'unknown_error' as const, message: (err as Error).message };
+  }
+}
+
 const handler = async (req: Request): Promise<Response> => {
   const origin = req.headers.get('Origin');
   
@@ -551,7 +587,20 @@ ${message}`
 
     // Route: POST /bookings/create
     if (path === '/bookings/create' && req.method === 'POST') {
-      const { name, email, discordName, note, startsAt, duration } = await req.json();
+      const body = await req.json();
+      const name = body.name;
+      const email = body.email;
+      const discordName = body.discordName ?? body.discord_name ?? '';
+      const note = body.note ?? '';
+      const startsAt = body.startsAt ?? body.starts_at;
+      const duration = body.duration ?? body.duration_minutes;
+
+      if (!name?.trim() || !email?.trim() || !startsAt || !duration) {
+        return new Response(JSON.stringify({ error: 'Name, E-Mail, Startzeit und Dauer sind erforderlich.' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
 
       // Check available slots first using the safe function
       const currentDate = new Date();
@@ -569,7 +618,7 @@ ${message}`
         });
       }
 
-      if (slotsData <= 0) {
+      if ((slotsData as number) <= 0) {
         return new Response(JSON.stringify({ error: 'Keine freien Slots mehr in diesem Monat.' }), {
           status: 409,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -584,7 +633,7 @@ ${message}`
           p_discord_name: discordName || '',
           p_note: note || '',
           p_starts_at: startsAt,
-          p_duration: duration
+          p_duration: duration,
         });
 
       if (error) {
@@ -595,62 +644,106 @@ ${message}`
         });
       }
 
-      // Note: We no longer apply slot usage here - slots are consumed only on approval
+      const bookingId = Array.isArray(data) ? data[0] : data;
 
-      // Send confirmation emails with German content
-      try {
-        const startDate = new Date(startsAt);
-        const formattedDate = startDate.toLocaleDateString('de-DE');
-        const formattedTime = startDate.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+      // Send confirmation emails (do not throw on failure)
+      const startDate = new Date(startsAt);
+      const formattedDate = startDate.toLocaleDateString('de-DE');
+      const formattedTime = startDate.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
 
-        // Email to user with GDPR footer
-        await resend.emails.send({
-          from: 'Marcel <onboarding@resend.dev>',
-          to: [email],
-          subject: 'Terminbestätigung Bewerbungshilfe',
-          html: `
-            <h1>Terminbestätigung</h1>
-            <p>Hallo ${name},</p>
-            <p>vielen Dank für deine Anfrage.</p>
-            <p>Dein Termin wurde angelegt:</p>
-            <ul>
-              <li><strong>Datum/Uhrzeit:</strong> ${formattedDate} um ${formattedTime}</li>
-              <li><strong>Dauer:</strong> ${duration} Minuten</li>
-              <li><strong>Hinweis:</strong> Wir sprechen über Discord.</li>
-            </ul>
-            ${discordName ? `<p>Dein Discord-Name: ${discordName}</p>` : ''}
-            ${note ? `<p>Deine Notiz: ${note}</p>` : ''}
-            <p>Viele Grüße<br>Marcel</p>
-            <hr>
-            <small>Hinweis: Verarbeitung gemäß Datenschutzerklärung. Auftragsverarbeiter: Supabase (EU-Region) und Resend (E-Mail).</small>
-          `,
-        });
+      const userMail = await sendMailSafe({
+        to: email,
+        subject: 'Terminbestätigung Bewerbungshilfe',
+        html: `
+          <h1>Terminbestätigung</h1>
+          <p>Hallo ${name},</p>
+          <p>vielen Dank für deine Buchung.</p>
+          <p>Dein Termin wurde angelegt:</p>
+          <ul>
+            <li><strong>Datum/Uhrzeit:</strong> ${formattedDate} um ${formattedTime}</li>
+            <li><strong>Dauer:</strong> ${duration} Minuten</li>
+            <li><strong>Hinweis:</strong> Wir sprechen über Discord.</li>
+          </ul>
+          ${discordName ? `<p>Dein Discord-Name: ${discordName}</p>` : ''}
+          ${note ? `<p>Deine Notiz: ${note}</p>` : ''}
+          <p>Viele Grüße<br>Marcel</p>
+          <hr>
+          <small>Hinweis: Verarbeitung gemäß Datenschutzerklärung. Auftragsverarbeiter: Supabase (EU-Region) und Resend (E-Mail).</small>
+        `,
+      });
 
-        // Email to admin
-        await resend.emails.send({
-          from: 'Booking System <onboarding@resend.dev>',
-          to: ['marcel.welk87@gmail.com'],
-          subject: 'Neue Terminbuchung',
-          html: `
-            <h1>Neue Terminbuchung</h1>
-            <p>Neue Buchung von ${name} (${email}):</p>
-            <ul>
-              <li><strong>Datum/Uhrzeit:</strong> ${formattedDate} um ${formattedTime}</li>
-              <li><strong>Dauer:</strong> ${duration} Minuten</li>
-              ${discordName ? `<li><strong>Discord:</strong> ${discordName}</li>` : ''}
-              ${note ? `<li><strong>Notiz:</strong> ${note}</li>` : ''}
-            </ul>
-            <p>Buchungs-ID: ${data}</p>
-          `,
-        });
+      const adminMail = await sendMailSafe({
+        to: 'marcel.welk87@gmail.com',
+        subject: 'Neue Terminbuchung',
+        html: `
+          <h1>Neue Terminbuchung</h1>
+          <p>Neue Buchung von ${name} (${email}):</p>
+          <ul>
+            <li><strong>Datum/Uhrzeit:</strong> ${formattedDate} um ${formattedTime}</li>
+            <li><strong>Dauer:</strong> ${duration} Minuten</li>
+            ${discordName ? `<li><strong>Discord:</strong> ${discordName}</li>` : ''}
+            ${note ? `<li><strong>Notiz:</strong> ${note}</li>` : ''}
+          </ul>
+          <p>Buchungs-ID: ${bookingId}</p>
+        `,
+      });
 
-        console.log('Confirmation emails sent successfully');
-      } catch (emailError) {
-        console.error('Failed to send confirmation emails:', emailError);
-        // Continue without failing the booking
+      const mailStatus = (userMail.ok && adminMail.ok) ? 'sent' : 'not_sent';
+
+      if (mailStatus === 'not_sent') {
+        // Best-effort logging to form_errors (if table exists)
+        try {
+          await supabase.from('form_errors').insert({
+            endpoint: 'bookings/create',
+            status: 'mail_failed',
+            message: JSON.stringify({ user: userMail, admin: adminMail }).slice(0, 1000),
+          });
+        } catch (logErr) {
+          console.warn('form_errors log failed (ignored):', (logErr as Error).message);
+        }
       }
 
-      return new Response(JSON.stringify({ bookingId: data }), {
+      return new Response(JSON.stringify({ ok: true, booking_id: bookingId, mail: mailStatus }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Route: GET /diagnostics/email?to=<address>&key=<ADMIN_PASS>
+    if (path === '/diagnostics/email' && req.method === 'GET') {
+      const urlObj = new URL(req.url);
+      const to = urlObj.searchParams.get('to');
+      const key = urlObj.searchParams.get('key');
+      const authHeader = req.headers.get('Authorization');
+      const bearer = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : undefined;
+
+      if (!ADMIN_PASS || (key !== ADMIN_PASS && bearer !== ADMIN_PASS)) {
+        return new Response(JSON.stringify({ error: 'Nicht autorisiert' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      if (!to) {
+        return new Response(JSON.stringify({ error: 'Parameter "to" fehlt' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      const r = await sendMailSafe({
+        to,
+        subject: 'E-Mail-Diagnose (Testversand)',
+        text: 'Dies ist ein Testversand aus der E-Mail-Diagnose. ' + GDPR_EMAIL_FOOTER,
+      });
+
+      if (!r.ok) {
+        return new Response(JSON.stringify({ ok: false, reason: r.reason || 'unknown' }), {
+          status: 200,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      return new Response(JSON.stringify({ ok: true }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
