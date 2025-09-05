@@ -18,8 +18,19 @@ const Bewerbungshilfe = () => {
 
   const scrollToSection = (section: 'anfrage' | 'termin') => {
     setActiveSection(section);
-    const element = document.getElementById(section === 'anfrage' ? 'anfrage-section' : 'termin-section');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    const sectionId = section === 'anfrage' ? 'anfrage' : 'termin';
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      // Set focus for screen readers with timeout to ensure smooth scroll completes
+      setTimeout(() => {
+        const heading = element.querySelector('h2');
+        if (heading) {
+          heading.setAttribute('tabindex', '-1');
+          heading.focus();
+        }
+      }, 500);
+    }
   };
 
   const handleContactSubmit = async (e: React.FormEvent) => {
@@ -95,14 +106,16 @@ const Bewerbungshilfe = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16">
+      <main id="main" className="container mx-auto px-4 py-16">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-4">Kostenlose Bewerbungshilfe</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
             Wähle den Weg, der am besten zu dir passt: Sende eine kurze Anfrage oder buche direkt einen Termin für persönliche Beratung.
           </p>
-          
+        </div>
+        
+        <div className="flex justify-center mb-8">
           <SlotsBadge />
         </div>
 
@@ -128,12 +141,12 @@ const Bewerbungshilfe = () => {
 
         <div className="max-w-4xl mx-auto space-y-16">
           {/* Section 1: Contact Request */}
-          <section id="anfrage-section" className="scroll-mt-24">
+          <section id="anfrage" className="scroll-mt-24">
             <Card className="card-soft">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Mail className="h-6 w-6 text-primary" />
-                  Kurze Anfrage senden
+                  <h2 className="text-2xl">Kurze Anfrage senden</h2>
                 </CardTitle>
                 <p className="text-muted-foreground">
                   Wenn du erst kurz schildern möchtest, wobei du Unterstützung brauchst, sende mir hier eine Anfrage. 
@@ -243,12 +256,12 @@ const Bewerbungshilfe = () => {
           </section>
 
           {/* Section 2: Direct Booking */}
-          <section id="termin-section" className="scroll-mt-24">
+          <section id="termin" className="scroll-mt-24">
             <Card className="card-soft">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Calendar className="h-6 w-6 text-primary" />
-                  Direkt Termin buchen
+                  <h2 className="text-2xl">Direkt Termin buchen</h2>
                 </CardTitle>
                 <p className="text-muted-foreground">
                   Wenn du direkt loslegen möchtest, buche dir hier sofort einen freien Termin.
@@ -380,7 +393,7 @@ const Bewerbungshilfe = () => {
             </Card>
           </section>
         </div>
-      </div>
+      </main>
     </Layout>
   );
 };
