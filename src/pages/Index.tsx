@@ -6,6 +6,7 @@ import ProcessSection from "@/components/ProcessSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { SupabaseTest } from "@/components/SupabaseTest";
+import { SlotsBadge } from "@/components/SlotsBadge";
 
 const Index = () => {
   return (
@@ -13,6 +14,11 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
+        <div className="py-8">
+          <div className="container mx-auto px-4">
+            <SlotsBadge />
+          </div>
+        </div>
         <About />
         <Services />
         <ProcessSection />
