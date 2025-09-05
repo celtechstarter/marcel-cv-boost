@@ -183,13 +183,6 @@ export type Database = {
             foreignKeyName: "review_verifications_review_id_fkey"
             columns: ["review_id"]
             isOneToOne: true
-            referencedRelation: "public_reviews_safe"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "review_verifications_review_id_fkey"
-            columns: ["review_id"]
-            isOneToOne: true
             referencedRelation: "reviews"
             referencedColumns: ["id"]
           },
@@ -305,33 +298,6 @@ export type Database = {
         }
         Relationships: []
       }
-      public_reviews_safe: {
-        Row: {
-          body: string | null
-          display_name: string | null
-          id: string | null
-          published_at: string | null
-          rating: number | null
-          title: string | null
-        }
-        Insert: {
-          body?: string | null
-          display_name?: never
-          id?: string | null
-          published_at?: string | null
-          rating?: number | null
-          title?: string | null
-        }
-        Update: {
-          body?: string | null
-          display_name?: never
-          id?: string | null
-          published_at?: string | null
-          rating?: number | null
-          title?: string | null
-        }
-        Relationships: []
-      }
     }
     Functions: {
       admin_approve_booking: {
@@ -373,6 +339,17 @@ export type Database = {
       cleanup_expired_uploads: {
         Args: Record<PropertyKey, never>
         Returns: number
+      }
+      get_published_reviews_safe: {
+        Args: { p_limit?: number; p_offset?: number }
+        Returns: {
+          body: string
+          display_name: string
+          id: string
+          published_at: string
+          rating: number
+          title: string
+        }[]
       }
       log_audit_event: {
         Args: {
