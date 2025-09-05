@@ -16,7 +16,6 @@ const AdminResetSlots = () => {
     
     if (!adminPass) {
       setResult({ success: false, error: 'Bitte geben Sie das Admin-Passwort ein.' });
-      // Focus the message for screen readers
       setTimeout(() => messageRef.current?.focus(), 100);
       return;
     }
@@ -29,6 +28,7 @@ const AdminResetSlots = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdycnl4b3RmYXN0Zm1ncnJmcnVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwNjI2MTgsImV4cCI6MjA3MjYzODYxOH0.X7JZd44NkeNbOevZQSGf-EgJyZx9iNKwWz6xH6ftE8M`,
         },
         body: JSON.stringify({ adminPass }),
       });
@@ -36,23 +36,32 @@ const AdminResetSlots = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Unbekannter Fehler');
+        throw new Error(data.error || 'Fehler beim Zurücksetzen der Slots');
       }
 
-      setResult({ 
-        success: true, 
-        message: 'Slots erfolgreich zurückgesetzt' 
-      });
-      
-      setAdminPass('');
+      if (data.ok) {
+        setResult({ 
+          success: true, 
+          message: 'Slots erfolgreich zurückgesetzt' 
+        });
+        setAdminPass('');
+      } else {
+        throw new Error('Unerwartete Antwort vom Server');
+      }
     } catch (error) {
-      setResult({ 
-        success: false, 
-        error: error instanceof Error ? error.message : 'Fehler beim Zurücksetzen der Slots' 
-      });
+      if (error instanceof Error && error.message.includes('Nicht autorisiert')) {
+        setResult({ 
+          success: false, 
+          error: 'Nicht autorisiert' 
+        });
+      } else {
+        setResult({ 
+          success: false, 
+          error: error instanceof Error ? error.message : 'Fehler beim Zurücksetzen der Slots' 
+        });
+      }
     } finally {
       setIsSubmitting(false);
-      // Focus the message for accessibility
       setTimeout(() => messageRef.current?.focus(), 100);
     }
   };
@@ -79,7 +88,7 @@ const AdminResetSlots = () => {
                     className="focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   />
                   <p id="password-help" className="text-sm text-muted-foreground">
-                    Geben Sie das Admin-Passwort ein, um die Slots zurückzusetzen.
+                    Geben Sie das Admin-Passwort ein, um die Monats-Slots zurückzusetzen.
                   </p>
                 </div>
 
@@ -103,13 +112,12 @@ const AdminResetSlots = () => {
                   ref={messageRef}
                   role="status" 
                   aria-live="polite"
-                  aria-atomic="true"
-                  className="min-h-[24px]"
                   tabIndex={-1}
+                  className="min-h-[24px] focus:outline-none"
                 >
                   {result && (
                     <div 
-                      className={`p-4 rounded-lg text-sm font-medium ${
+                      className={`p-4 rounded-lg text-sm ${
                         result.success 
                           ? 'bg-green-50 text-green-800 border border-green-200 dark:bg-green-950 dark:text-green-200 dark:border-green-800' 
                           : 'bg-red-50 text-red-800 border border-red-200 dark:bg-red-950 dark:text-red-200 dark:border-red-800'
@@ -128,20 +136,6 @@ const AdminResetSlots = () => {
           </Card>
         </div>
       </div>
-
-      {/* SEO Meta Tags */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Admin Slots Zurücksetzen - Marcel CV Boost",
-            "description": "Administrationsbereich zum Zurücksetzen der monatlichen Slots",
-            "url": "https://marcel-cv-boost.lovable.dev/admin/reset-slots"
-          })
-        }}
-      />
     </Layout>
   );
 };
