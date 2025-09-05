@@ -14,16 +14,239 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          created_at: string | null
+          discord_name: string | null
+          duration_minutes: number
+          email: string
+          id: string
+          name: string
+          note: string | null
+          starts_at: string
+          status: Database["public"]["Enums"]["booking_status"]
+        }
+        Insert: {
+          created_at?: string | null
+          discord_name?: string | null
+          duration_minutes: number
+          email: string
+          id?: string
+          name: string
+          note?: string | null
+          starts_at: string
+          status?: Database["public"]["Enums"]["booking_status"]
+        }
+        Update: {
+          created_at?: string | null
+          discord_name?: string | null
+          duration_minutes?: number
+          email?: string
+          id?: string
+          name?: string
+          note?: string | null
+          starts_at?: string
+          status?: Database["public"]["Enums"]["booking_status"]
+        }
+        Relationships: []
+      }
+      monthly_free_slots: {
+        Row: {
+          max_slots: number
+          month: number
+          used_slots: number
+          year: number
+        }
+        Insert: {
+          max_slots?: number
+          month: number
+          used_slots?: number
+          year: number
+        }
+        Update: {
+          max_slots?: number
+          month?: number
+          used_slots?: number
+          year?: number
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          full_name: string | null
+          id: string
+        }
+        Insert: {
+          created_at?: string | null
+          full_name?: string | null
+          id: string
+        }
+        Update: {
+          created_at?: string | null
+          full_name?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
+      review_verifications: {
+        Row: {
+          code: string
+          created_at: string | null
+          expires_at: string
+          review_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string | null
+          expires_at?: string
+          review_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string | null
+          expires_at?: string
+          review_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "review_verifications_review_id_fkey"
+            columns: ["review_id"]
+            isOneToOne: true
+            referencedRelation: "public_reviews"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "review_verifications_review_id_fkey"
+            columns: ["review_id"]
+            isOneToOne: true
+            referencedRelation: "reviews"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reviews: {
+        Row: {
+          body: string
+          created_at: string | null
+          email: string
+          id: string
+          name: string
+          published_at: string | null
+          rating: number
+          status: Database["public"]["Enums"]["review_status"]
+          title: string | null
+          verified_at: string | null
+        }
+        Insert: {
+          body: string
+          created_at?: string | null
+          email: string
+          id?: string
+          name: string
+          published_at?: string | null
+          rating: number
+          status?: Database["public"]["Enums"]["review_status"]
+          title?: string | null
+          verified_at?: string | null
+        }
+        Update: {
+          body?: string
+          created_at?: string | null
+          email?: string
+          id?: string
+          name?: string
+          published_at?: string | null
+          rating?: number
+          status?: Database["public"]["Enums"]["review_status"]
+          title?: string | null
+          verified_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
-      [_ in never]: never
+      public_reviews: {
+        Row: {
+          body: string | null
+          date_published: string | null
+          id: string | null
+          name: string | null
+          rating: number | null
+          title: string | null
+        }
+        Insert: {
+          body?: string | null
+          date_published?: string | null
+          id?: string | null
+          name?: string | null
+          rating?: number | null
+          title?: string | null
+        }
+        Update: {
+          body?: string | null
+          date_published?: string | null
+          id?: string | null
+          name?: string | null
+          rating?: number | null
+          title?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      [_ in never]: never
+      admin_publish_review: {
+        Args: { p_review_id: string }
+        Returns: undefined
+      }
+      apply_free_slot: {
+        Args: { p_month: number; p_year: number }
+        Returns: undefined
+      }
+      public_create_booking: {
+        Args: {
+          p_discord_name: string
+          p_duration: number
+          p_email: string
+          p_name: string
+          p_note: string
+          p_starts_at: string
+        }
+        Returns: string
+      }
+      public_create_review: {
+        Args: {
+          p_body: string
+          p_email: string
+          p_name: string
+          p_rating: number
+          p_title: string
+        }
+        Returns: {
+          code: string
+          review_id: string
+        }[]
+      }
+      public_verify_review: {
+        Args: { p_code: string; p_review_id: string }
+        Returns: boolean
+      }
+      reset_month_slots: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
+      slots_remaining: {
+        Args: { p_month: number; p_year: number }
+        Returns: number
+      }
     }
     Enums: {
-      [_ in never]: never
+      booking_status: "neu" | "bestaetigt" | "abgelehnt" | "storniert"
+      review_status:
+        | "neu"
+        | "verifiziert"
+        | "veroeffentlicht"
+        | "zurueckgewiesen"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +373,14 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      booking_status: ["neu", "bestaetigt", "abgelehnt", "storniert"],
+      review_status: [
+        "neu",
+        "verifiziert",
+        "veroeffentlicht",
+        "zurueckgewiesen",
+      ],
+    },
   },
 } as const
