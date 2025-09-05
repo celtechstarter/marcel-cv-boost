@@ -75,3 +75,6 @@ backend = "postgres"
 
 [functions.ping-supabase]
 verify_jwt = false
+
+[functions.api]
+verify_jwt = false
