@@ -361,9 +361,15 @@ const handler = async (req: Request): Promise<Response> => {
         `,
       });
 
+      // Enhanced logging for email diagnostics
+      console.log(`[REQUEST-EMAIL-DEBUG] User mail result:`, JSON.stringify(userMail));
+      console.log(`[REQUEST-EMAIL-DEBUG] Admin mail result:`, JSON.stringify(adminMail));
+
       const mailStatus = (userMail.ok && adminMail.ok) ? 'sent' : 'not_sent';
 
       if (mailStatus === 'not_sent') {
+        console.error(`[REQUEST-EMAIL-ERROR] Email failed - User: ${JSON.stringify(userMail)}, Admin: ${JSON.stringify(adminMail)}`);
+        
         // Best-effort logging to form_errors (if table exists)
         try {
           await supabase.from('form_errors').insert({
@@ -374,6 +380,8 @@ const handler = async (req: Request): Promise<Response> => {
         } catch (logErr) {
           console.warn('form_errors log failed (ignored):', (logErr as Error).message);
         }
+      } else {
+        console.log(`[REQUEST-EMAIL-SUCCESS] Both emails sent successfully for request from ${email}`);
       }
 
       return new Response(
@@ -681,9 +689,15 @@ const handler = async (req: Request): Promise<Response> => {
         `,
       });
 
+      // Enhanced logging for email diagnostics
+      console.log(`[BOOKING-EMAIL-DEBUG] User mail result:`, JSON.stringify(userMail));
+      console.log(`[BOOKING-EMAIL-DEBUG] Admin mail result:`, JSON.stringify(adminMail));
+
       const mailStatus = (userMail.ok && adminMail.ok) ? 'sent' : 'not_sent';
 
       if (mailStatus === 'not_sent') {
+        console.error(`[BOOKING-EMAIL-ERROR] Email failed - User: ${JSON.stringify(userMail)}, Admin: ${JSON.stringify(adminMail)}`);
+        
         // Best-effort logging to form_errors (if table exists)
         try {
           await supabase.from('form_errors').insert({
@@ -694,6 +708,8 @@ const handler = async (req: Request): Promise<Response> => {
         } catch (logErr) {
           console.warn('form_errors log failed (ignored):', (logErr as Error).message);
         }
+      } else {
+        console.log(`[BOOKING-EMAIL-SUCCESS] Both emails sent successfully for booking ${bookingId}`);
       }
 
       return new Response(JSON.stringify({ ok: true, booking_id: bookingId, mail: mailStatus }), {
