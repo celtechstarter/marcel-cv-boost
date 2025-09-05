@@ -96,7 +96,10 @@ const Bewerbungshilfe = () => {
         duration_minutes: duration,
       };
       
-      await callEdge('/bookings/create', { body: JSON.stringify(bookingData) });
+      await callEdge('/bookings/create', {
+        method: 'POST',
+        body: JSON.stringify(bookingData)
+      });
       
       toast({
         title: "Termin erfolgreich gebucht! 🎉",
