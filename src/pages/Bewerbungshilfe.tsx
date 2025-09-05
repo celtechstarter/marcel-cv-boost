@@ -37,7 +37,7 @@ const Bewerbungshilfe = () => {
         help: formData.get('help') as string || '',
       };
       
-      await callEdge('/contact/create', { body: contactData });
+      await callEdge('/contact/create', { body: JSON.stringify(contactData) });
       
       toast({
         title: "Nachricht gesendet! 📨",
@@ -74,7 +74,7 @@ const Bewerbungshilfe = () => {
         duration_minutes: duration,
       };
       
-      await callEdge('/bookings/create', { body: bookingData });
+      await callEdge('/bookings/create', { body: JSON.stringify(bookingData) });
       
       toast({
         title: "Termin erfolgreich gebucht! 🎉",
