@@ -13,6 +13,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminResetSlots from "./pages/AdminResetSlots";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import Bewerbungshilfe from "./pages/Bewerbungshilfe";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,10 @@ const App = () => (
           <Route path="/admin/reset-slots" element={<AdminResetSlots />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/bewerbungshilfe" element={<Bewerbungshilfe />} />
+          {/* Redirects for old routes */}
+          <Route path="/bewerbungshilfe-anfragen" element={<Bewerbungshilfe />} />
+          <Route path="/termin-buchen" element={<Bewerbungshilfe />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

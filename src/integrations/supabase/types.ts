@@ -203,6 +203,19 @@ export type Database = {
         Args: { p_month: number; p_year: number }
         Returns: undefined
       }
+      public_bookings_next7: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          discord_name: string
+          duration_minutes: number
+          email: string
+          id: string
+          name: string
+          note: string
+          starts_at: string
+          status: string
+        }[]
+      }
       public_create_booking: {
         Args: {
           p_discord_name: string
@@ -225,6 +238,21 @@ export type Database = {
         Returns: {
           code: string
           review_id: string
+        }[]
+      }
+      public_export_bookings_csv: {
+        Args: { p_from?: string; p_to?: string }
+        Returns: string
+      }
+      public_get_published_reviews: {
+        Args: { p_limit?: number; p_offset?: number; p_stars?: number }
+        Returns: Database["public"]["CompositeTypes"]["review_public"][]
+      }
+      public_get_review_stats: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          avg_rating: number
+          review_count: number
         }[]
       }
       public_verify_review: {
@@ -253,7 +281,14 @@ export type Database = {
         | "zurueckgewiesen"
     }
     CompositeTypes: {
-      [_ in never]: never
+      review_public: {
+        id: string | null
+        rating: number | null
+        title: string | null
+        body: string | null
+        date_published: string | null
+        display_name: string | null
+      }
     }
   }
 }

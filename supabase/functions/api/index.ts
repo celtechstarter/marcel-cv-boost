@@ -60,6 +60,78 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // POST /requests/create - Handle general request submissions
+  if (req.method === 'POST' && url.pathname === '/requests/create') {
+    try {
+      const { name, email, discord_name, message } = await req.json();
+
+      if (!name?.trim() || !email?.trim() || !message?.trim()) {
+        return new Response(
+          JSON.stringify({ error: 'Name, E-Mail und Nachricht sind erforderlich' }),
+          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+
+      // Send confirmation email to user
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${Deno.env.get('RESEND_API_KEY')}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: 'Marcel <noreply@marcel-cv-boost.lovable.dev>',
+          to: [email],
+          subject: 'Anfrage erhalten - Bewerbungshilfe',
+          text: `Hallo ${name},
+
+vielen Dank für deine Anfrage zur Bewerbungshilfe.
+
+Ich habe deine Nachricht erhalten:
+"${message}"
+
+Ich melde mich zeitnah bei dir, um dir zu helfen.
+
+Viele Grüße
+Marcel`
+        })
+      });
+
+      // Send notification to Marcel
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${Deno.env.get('RESEND_API_KEY')}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: 'Bewerbungshilfe <noreply@marcel-cv-boost.lovable.dev>',
+          to: ['marcel.welk87@gmail.com'],
+          subject: 'Neue Bewerbungshilfe-Anfrage',
+          text: `Neue Anfrage erhalten:
+
+Name: ${name}
+E-Mail: ${email}
+Discord: ${discord_name || 'Nicht angegeben'}
+
+Nachricht:
+${message}`
+        })
+      });
+
+      return new Response(
+        JSON.stringify({ success: true }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    } catch (error) {
+      console.error('Error processing request:', error);
+      return new Response(
+        JSON.stringify({ error: 'Interner Serverfehler' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+  }
+
   try {
     const url = new URL(req.url);
     const rawPath = url.pathname;

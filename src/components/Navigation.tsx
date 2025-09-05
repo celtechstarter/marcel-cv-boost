@@ -11,6 +11,7 @@ const Navigation = () => {
     { href: "/#about", label: "Über mich" },
     { href: "/#services", label: "Leistungen" },
     { href: "/#ablauf", label: "Ablauf" },
+    { href: "/bewerbungshilfe", label: "Kostenlose Bewerbungshilfe" },
     { href: "/reviews", label: "Bewertungen" },
     { href: "/faq", label: "FAQ" },
     { href: "/blog", label: "Blog" },
@@ -43,7 +44,7 @@ const Navigation = () => {
               ))}
               <ThemeToggle />
               <Button variant="default" className="btn-accent" asChild>
-                <a href="#contact">Jetzt Anfragen</a>
+                <a href="/bewerbungshilfe">Jetzt Anfragen</a>
               </Button>
             </div>
           </div>
@@ -79,7 +80,7 @@ const Navigation = () => {
               ))}
               <div className="pt-2">
                 <Button variant="default" className="btn-accent w-full" asChild>
-                  <a href="#contact" onClick={() => setIsOpen(false)}>
+                  <a href="/bewerbungshilfe" onClick={() => setIsOpen(false)}>
                     Jetzt Anfragen
                   </a>
                 </Button>
