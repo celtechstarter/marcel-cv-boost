@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_log: {
+        Row: {
+          actor_email: string | null
+          actor_ip: string | null
+          actor_role: string | null
+          created_at: string
+          details: Json | null
+          event_type: string
+          id: string
+          resource_id: string | null
+        }
+        Insert: {
+          actor_email?: string | null
+          actor_ip?: string | null
+          actor_role?: string | null
+          created_at?: string
+          details?: Json | null
+          event_type: string
+          id?: string
+          resource_id?: string | null
+        }
+        Update: {
+          actor_email?: string | null
+          actor_ip?: string | null
+          actor_role?: string | null
+          created_at?: string
+          details?: Json | null
+          event_type?: string
+          id?: string
+          resource_id?: string | null
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
           created_at: string | null
@@ -194,6 +227,48 @@ export type Database = {
         }
         Relationships: []
       }
+      uploads: {
+        Row: {
+          created_at: string
+          created_by_ip: string | null
+          delete_after: string
+          deleted_at: string | null
+          id: string
+          mime_type: string
+          original_filename: string
+          sha256_hash: string
+          size_bytes: number
+          storage_path: string
+          user_email: string
+        }
+        Insert: {
+          created_at?: string
+          created_by_ip?: string | null
+          delete_after?: string
+          deleted_at?: string | null
+          id?: string
+          mime_type?: string
+          original_filename: string
+          sha256_hash: string
+          size_bytes: number
+          storage_path: string
+          user_email: string
+        }
+        Update: {
+          created_at?: string
+          created_by_ip?: string | null
+          delete_after?: string
+          deleted_at?: string | null
+          id?: string
+          mime_type?: string
+          original_filename?: string
+          sha256_hash?: string
+          size_bytes?: number
+          storage_path?: string
+          user_email?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       public_reviews: {
@@ -260,6 +335,21 @@ export type Database = {
       apply_free_slot: {
         Args: { p_month: number; p_year: number }
         Returns: undefined
+      }
+      cleanup_expired_uploads: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
+      log_audit_event: {
+        Args: {
+          p_actor_email?: string
+          p_actor_ip?: string
+          p_actor_role?: string
+          p_details?: Json
+          p_event_type: string
+          p_resource_id?: string
+        }
+        Returns: string
       }
       public_bookings_next7: {
         Args: Record<PropertyKey, never>
