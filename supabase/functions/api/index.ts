@@ -72,7 +72,7 @@ const handler = async (req: Request): Promise<Response> => {
       const month = currentDate.getMonth() + 1;
 
       const { data, error } = await supabase
-        .rpc('slots_remaining', { p_year: year, p_month: month });
+        .rpc('slots_remaining_safe', { p_year: year, p_month: month });
 
       if (error) {
         console.error('Error fetching slots:', error);
@@ -213,24 +213,24 @@ const handler = async (req: Request): Promise<Response> => {
     if (path === '/bookings/create' && req.method === 'POST') {
       const { name, email, discordName, note, startsAt, duration } = await req.json();
 
-      // Check available slots first
+      // Check available slots first using the safe function
       const currentDate = new Date();
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth() + 1;
 
       const { data: slotsData, error: slotsError } = await supabase
-        .rpc('slots_remaining', { p_year: year, p_month: month });
+        .rpc('slots_remaining_safe', { p_year: year, p_month: month });
 
       if (slotsError) {
         console.error('Error checking slots:', slotsError);
-        return new Response(JSON.stringify({ error: 'Failed to check available slots' }), {
+        return new Response(JSON.stringify({ error: 'Fehler beim Prüfen der verfügbaren Slots' }), {
           status: 500,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }
 
       if (slotsData <= 0) {
-        return new Response(JSON.stringify({ error: 'No free slots left this month' }), {
+        return new Response(JSON.stringify({ error: 'Keine freien Slots mehr in diesem Monat.' }), {
           status: 409,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
@@ -255,12 +255,22 @@ const handler = async (req: Request): Promise<Response> => {
         });
       }
 
-      // Apply free slot usage
+      // Apply free slot usage - this is critical for slot management
       try {
-        await supabase.rpc('apply_free_slot', { p_year: year, p_month: month });
+        const { error: slotError } = await supabase.rpc('apply_free_slot', { p_year: year, p_month: month });
+        if (slotError) {
+          console.error('Error applying slot usage:', slotError);
+          return new Response(JSON.stringify({ error: 'Keine freien Slots mehr in diesem Monat.' }), {
+            status: 409,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
       } catch (slotError) {
-        console.error('Error applying slot usage:', slotError);
-        // Don't fail the booking, just log the error
+        console.error('Critical slot error:', slotError);
+        return new Response(JSON.stringify({ error: 'Keine freien Slots mehr in diesem Monat.' }), {
+          status: 409,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
       }
 
       // Send confirmation emails
@@ -322,12 +332,12 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Route: POST /admin/reset-slots
     if (path === '/admin/reset-slots' && req.method === 'POST') {
-      const { adminPassword } = await req.json();
+      const { adminPass } = await req.json();
 
       // Check admin password
       const expectedPassword = Deno.env.get('ADMIN_PASS');
-      if (adminPassword !== expectedPassword) {
-        return new Response(JSON.stringify({ error: 'Ungültiges Admin-Passwort' }), {
+      if (adminPass !== expectedPassword) {
+        return new Response(JSON.stringify({ error: 'Nicht autorisiert' }), {
           status: 401,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
@@ -343,7 +353,7 @@ const handler = async (req: Request): Promise<Response> => {
         });
       }
 
-      return new Response(JSON.stringify({ success: true, message: 'Monthly slots reset successfully' }), {
+      return new Response(JSON.stringify({ ok: true }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }

@@ -176,12 +176,20 @@ const AdminDashboard = () => {
       <div className="container mx-auto px-4 py-16 space-y-8">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-          <Button 
-            variant="outline" 
-            onClick={() => setIsAuthenticated(false)}
-          >
-            Abmelden
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              variant="outline" 
+              onClick={() => window.location.href = '/admin/reset-slots'}
+            >
+              Slots zurücksetzen
+            </Button>
+            <Button 
+              variant="outline" 
+              onClick={() => setIsAuthenticated(false)}
+            >
+              Abmelden
+            </Button>
+          </div>
         </div>
 
         {/* Pending Reviews */}

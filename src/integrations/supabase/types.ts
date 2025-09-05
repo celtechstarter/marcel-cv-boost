@@ -239,6 +239,10 @@ export type Database = {
         Args: { p_month: number; p_year: number }
         Returns: number
       }
+      slots_remaining_safe: {
+        Args: { p_month: number; p_year: number }
+        Returns: number
+      }
     }
     Enums: {
       booking_status: "neu" | "bestaetigt" | "abgelehnt" | "storniert"

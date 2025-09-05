@@ -70,10 +70,18 @@ export const BookingForm = () => {
         duration: '',
         privacyAccepted: false,
       });
-    } catch (error) {
+    } catch (error: any) {
+      let errorMessage = 'Fehler beim Erstellen der Buchung';
+      
+      if (error.message.includes('Keine freien Slots')) {
+        errorMessage = 'Keine freien Slots mehr in diesem Monat. Bitte versuchen Sie es nächsten Monat wieder.';
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
       setResult({ 
         success: false, 
-        error: error instanceof Error ? error.message : 'Fehler beim Erstellen der Buchung' 
+        error: errorMessage
       });
     } finally {
       setIsSubmitting(false);
