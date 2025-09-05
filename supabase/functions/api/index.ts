@@ -19,9 +19,10 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const url = new URL(req.url);
-    const path = url.pathname.replace('/functions/v1/api', '');
+    const rawPath = url.pathname;
+    const path = rawPath.replace(/^\/functions\/v1/, '').replace(/^\/api/, '');
     
-    console.log(`API request: ${req.method} ${path}`);
+    console.log(`API request: ${req.method} ${rawPath} -> ${path}`);
 
     // Route: GET /slots/remaining
     if (path === '/slots/remaining' && req.method === 'GET') {
