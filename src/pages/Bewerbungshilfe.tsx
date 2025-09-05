@@ -8,12 +8,14 @@ import { Mail, Send, Calendar, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { callEdge } from "@/utils/callEdge";
 import { SlotsBadge } from "@/components/SlotsBadge";
+import { CvDropzone } from "@/components/CvDropzone";
 import Layout from "@/components/Layout";
 
 const Bewerbungshilfe = () => {
   const [activeSection, setActiveSection] = useState<'anfrage' | 'termin'>('anfrage');
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const [isSubmittingBooking, setIsSubmittingBooking] = useState(false);
+  const [cvPath, setCvPath] = useState<string>('');
   const { toast } = useToast();
 
   const scrollToSection = (section: 'anfrage' | 'termin') => {
@@ -40,22 +42,26 @@ const Bewerbungshilfe = () => {
     const formData = new FormData(e.target as HTMLFormElement);
     
     try {
-      const contactData = {
+    const formData = new FormData(e.target as HTMLFormElement);
+    
+    try {
+      const requestData = {
         name: formData.get('name') as string,
         email: formData.get('email') as string,
-        phone: formData.get('phone') as string || '',
-        situation: formData.get('situation') as string || '',
-        help: formData.get('help') as string || '',
+        discord_name: formData.get('phone') as string || '', // Using phone field as discord for compatibility
+        message: formData.get('situation') as string || '',
+        cv_path: cvPath || null,
       };
       
-      await callEdge('/contact/create', { body: JSON.stringify(contactData) });
+      await callEdge('/requests/create', { body: JSON.stringify(requestData) });
       
       toast({
         title: "Nachricht gesendet! 📨",
-        description: "Ich melde mich schnellstmöglich bei dir. Vielen Dank für dein Vertrauen!",
+        description: "Danke, deine Anfrage ist eingegangen. Ich melde mich zeitnah.",
       });
       
       (e.target as HTMLFormElement).reset();
+      setCvPath('');
     } catch (error) {
       toast({
         title: "Fehler beim Senden",
@@ -65,6 +71,14 @@ const Bewerbungshilfe = () => {
     } finally {
       setIsSubmittingContact(false);
     }
+  };
+
+  const handleCvUploaded = (path: string, fileName: string) => {
+    setCvPath(path);
+  };
+
+  const handleCvRemoved = () => {
+    setCvPath('');
   };
 
   const handleBookingSubmit = async (e: React.FormEvent) => {
@@ -179,6 +193,11 @@ const Bewerbungshilfe = () => {
                     </div>
                   </div>
                   
+                  <CvDropzone 
+                    onFileUploaded={handleCvUploaded}
+                    onFileRemoved={handleCvRemoved}
+                  />
+
                   <div>
                     <Label htmlFor="contact-phone">Telefon (optional)</Label>
                     <Input

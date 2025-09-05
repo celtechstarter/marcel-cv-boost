@@ -50,6 +50,36 @@ export type Database = {
         }
         Relationships: []
       }
+      help_requests: {
+        Row: {
+          created_at: string
+          cv_path: string | null
+          discord_name: string | null
+          email: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          cv_path?: string | null
+          discord_name?: string | null
+          email: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          cv_path?: string | null
+          discord_name?: string | null
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
       monthly_free_slots: {
         Row: {
           max_slots: number
@@ -195,6 +225,26 @@ export type Database = {
       }
     }
     Functions: {
+      admin_cv_signed_url: {
+        Args: { p_expires_sec?: number; p_path: string }
+        Returns: string
+      }
+      admin_export_help_requests_csv: {
+        Args: { p_from?: string; p_to?: string }
+        Returns: string
+      }
+      admin_list_help_requests: {
+        Args: { p_limit?: number; p_offset?: number }
+        Returns: {
+          created_at: string
+          cv_path: string
+          discord_name: string
+          email: string
+          id: string
+          message: string
+          name: string
+        }[]
+      }
       admin_publish_review: {
         Args: { p_review_id: string }
         Returns: undefined
