@@ -16,6 +16,7 @@ const Impressum = () => {
                 <div className="space-y-2">
                   <p><strong>Name:</strong> Marcel Welk</p>
                   <p><strong>E-Mail:</strong> marcel.welk87@gmail.com</p>
+                  <p><strong>Adresse:</strong> Musterstraße 123<br />12345 Musterstadt<br />Deutschland</p>
                   <p><strong>Website:</strong> https://marcel-cv-boost.lovable.dev</p>
                 </div>
               </section>

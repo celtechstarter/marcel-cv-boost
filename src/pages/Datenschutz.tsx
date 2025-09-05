@@ -22,22 +22,24 @@ const Datenschutz = () => {
               </section>
 
               <section>
-                <h2 className="text-xl font-semibold mb-3">2. Datenerfassung auf dieser Website</h2>
+                <h2 className="text-xl font-semibold mb-3">2. Datenerfassung und Verwendung</h2>
                 
+                <h3 className="text-lg font-medium mb-2">Bewerbungsunterstützung</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  Alle erhobenen Daten werden ausschließlich für die Bewerbungsunterstützung genutzt. 
+                  Wir verwenden Ihre Informationen, um Ihnen bestmögliche Hilfe bei Lebenslauf und Bewerbung zu bieten.
+                </p>
+
                 <h3 className="text-lg font-medium mb-2">Bewertungen</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                   Wenn Sie eine Bewertung abgeben, erheben wir folgende Daten:
                 </p>
                 <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 mb-4">
                   <li>Name</li>
-                  <li>E-Mail-Adresse</li>
+                  <li>E-Mail-Adresse (nicht öffentlich sichtbar)</li>
                   <li>Bewertungstext und Titel</li>
                   <li>Bewertung (Sterne)</li>
                 </ul>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  Diese Daten werden zur Verifizierung und Veröffentlichung Ihrer Bewertung verwendet. 
-                  Ihre E-Mail-Adresse wird nicht öffentlich angezeigt.
-                </p>
 
                 <h3 className="text-lg font-medium mb-2">Terminbuchungen</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
@@ -52,39 +54,48 @@ const Datenschutz = () => {
               </section>
 
               <section>
-                <h2 className="text-xl font-semibold mb-3">3. Datenverarbeitung</h2>
+                <h2 className="text-xl font-semibold mb-3">3. Datenspeicherung und -verarbeitung</h2>
                 
-                <h3 className="text-lg font-medium mb-2">Supabase</h3>
+                <h3 className="text-lg font-medium mb-2">Supabase (EU-Server)</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                   Wir verwenden Supabase für die sichere Speicherung und Verarbeitung Ihrer Daten. 
-                  Supabase entspricht den DSGVO-Anforderungen und bietet hohe Sicherheitsstandards.
+                  Supabase entspricht den DSGVO-Anforderungen und speichert alle Daten auf EU-Servern.
                 </p>
 
-                <h3 className="text-lg font-medium mb-2">Resend (E-Mail-Versand)</h3>
+                <h3 className="text-lg font-medium mb-2">E-Mail-Versand über Resend</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                   Für den Versand von Bestätigungs- und Verifizierungs-E-Mails nutzen wir den Dienst Resend. 
-                  Dabei werden Ihre E-Mail-Adresse und der Nachrichteninhalt an Resend übertragen.
+                  Dabei werden Ihre E-Mail-Adresse und der Nachrichteninhalt verschlüsselt übertragen.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-semibold mb-3">4. Ihre Rechte</h2>
+                <h2 className="text-xl font-semibold mb-3">4. Datenweitergabe</h2>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  <strong>Keine Weitergabe an Dritte:</strong> Ihre Daten werden nicht an Dritte weitergegeben, 
+                  verkauft oder anderweitig kommerziell genutzt. Sie bleiben ausschließlich in unserem System 
+                  für die Bewerbungsunterstützung.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-semibold mb-3">5. Ihre Rechte</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                   Sie haben jederzeit das Recht:
                 </p>
                 <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 mb-4">
-                  <li>Auskunft über Ihre gespeicherten personenbezogenen Daten zu erhalten</li>
-                  <li>Berichtigung unrichtiger Daten zu verlangen</li>
-                  <li>Löschung Ihrer Daten zu fordern</li>
-                  <li>Einschränkung der Datenverarbeitung zu verlangen</li>
-                  <li>Ihre Daten in einem strukturierten Format zu erhalten</li>
+                  <li><strong>Recht auf Auskunft:</strong> Welche Daten über Sie gespeichert sind</li>
+                  <li><strong>Recht auf Löschung:</strong> Vollständige Entfernung Ihrer Daten</li>
+                  <li><strong>Recht auf Berichtigung:</strong> Korrektur unrichtiger Daten</li>
+                  <li><strong>Recht auf Datenübertragbarkeit:</strong> Erhalt Ihrer Daten in strukturiertem Format</li>
+                  <li><strong>Recht auf Einschränkung:</strong> Beschränkung der Datenverarbeitung</li>
                 </ul>
               </section>
 
               <section>
-                <h2 className="text-xl font-semibold mb-3">5. Kontakt</h2>
+                <h2 className="text-xl font-semibold mb-3">6. Kontakt für Datenschutzfragen</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Bei Fragen zum Datenschutz wenden Sie sich bitte an:
+                  Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte wenden Sie sich bitte an:
                   <br />
                   <strong>Marcel Welk</strong>
                   <br />
@@ -93,10 +104,10 @@ const Datenschutz = () => {
               </section>
 
               <section>
-                <h2 className="text-xl font-semibold mb-3">6. Änderungen dieser Datenschutzerklärung</h2>
+                <h2 className="text-xl font-semibold mb-3">7. Änderungen dieser Datenschutzerklärung</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Diese Datenschutzerklärung kann bei Bedarf aktualisiert werden. 
-                  Die aktuelle Version finden Sie stets auf dieser Seite.
+                  Diese Datenschutzerklärung kann bei Bedarf aktualisiert werden, um rechtlichen Änderungen 
+                  oder Verbesserungen unseres Services zu entsprechen. Die aktuelle Version finden Sie stets auf dieser Seite.
                 </p>
               </section>
 
@@ -116,7 +127,7 @@ const Datenschutz = () => {
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "Datenschutzerklärung - Marcel CV Boost",
-            "description": "Datenschutzerklärung für Marcel CV Boost Service",
+            "description": "Datenschutzerklärung für Marcel CV Boost Service - DSGVO-konform",
             "url": "https://marcel-cv-boost.lovable.dev/datenschutz"
           })
         }}

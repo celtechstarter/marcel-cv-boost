@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { callEdge } from '@/utils/callEdge';
 
 export const ReviewForm = () => {
@@ -17,20 +18,31 @@ export const ReviewForm = () => {
     body: '',
     serviceUsed: false,
     agreePublication: false,
+    privacyAccepted: false,
   });
+  const [hcaptchaToken, setHcaptchaToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState<{ success: boolean; code?: string; reviewId?: string; error?: string } | null>(null);
+  const messageRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.body || !formData.rating) {
       setResult({ success: false, error: 'Bitte füllen Sie alle Pflichtfelder aus.' });
+      setTimeout(() => messageRef.current?.focus(), 100);
       return;
     }
     
-    if (!formData.serviceUsed || !formData.agreePublication) {
-      setResult({ success: false, error: 'Bitte bestätigen Sie beide Checkboxen.' });
+    if (!formData.serviceUsed || !formData.agreePublication || !formData.privacyAccepted) {
+      setResult({ success: false, error: 'Bitte bestätigen Sie alle Checkboxen.' });
+      setTimeout(() => messageRef.current?.focus(), 100);
+      return;
+    }
+
+    if (!hcaptchaToken) {
+      setResult({ success: false, error: 'Bitte bestätigen Sie das Captcha.' });
+      setTimeout(() => messageRef.current?.focus(), 100);
       return;
     }
 
@@ -46,6 +58,7 @@ export const ReviewForm = () => {
           rating: parseInt(formData.rating),
           title: formData.title,
           body: formData.body,
+          hcaptchaToken,
         }),
       });
 
@@ -64,7 +77,9 @@ export const ReviewForm = () => {
         body: '',
         serviceUsed: false,
         agreePublication: false,
+        privacyAccepted: false,
       });
+      setHcaptchaToken(null);
     } catch (error) {
       setResult({ 
         success: false, 
@@ -72,6 +87,7 @@ export const ReviewForm = () => {
       });
     } finally {
       setIsSubmitting(false);
+      setTimeout(() => messageRef.current?.focus(), 100);
     }
   };
 
@@ -183,7 +199,20 @@ export const ReviewForm = () => {
                 aria-describedby="publication-error"
               />
               <Label htmlFor="agree-publication" className="text-sm leading-5 cursor-pointer">
-                Ich stimme der Veröffentlichung meiner Bewertung zu und habe die{' '}
+                Ich stimme der Veröffentlichung meiner Bewertung zu *
+              </Label>
+            </div>
+
+            <div className="flex items-start space-x-2">
+              <Checkbox
+                id="privacy-accepted"
+                checked={formData.privacyAccepted}
+                onCheckedChange={(checked) => setFormData(prev => ({ ...prev, privacyAccepted: !!checked }))}
+                className="mt-1 focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                aria-describedby="privacy-error"
+              />
+              <Label htmlFor="privacy-accepted" className="text-sm leading-5 cursor-pointer">
+                Ich stimme der{' '}
                 <a 
                   href="/datenschutz" 
                   className="text-primary hover:underline focus:ring-2 focus:ring-primary focus:ring-offset-1"
@@ -192,9 +221,20 @@ export const ReviewForm = () => {
                 >
                   Datenschutzerklärung
                 </a>{' '}
-                gelesen *
+                zu *
               </Label>
             </div>
+          </div>
+
+          {/* hCaptcha */}
+          <div className="space-y-2">
+            <Label>Sicherheitsabfrage *</Label>
+            <HCaptcha
+              sitekey="10000000-ffff-ffff-ffff-000000000001" // Test site key
+              onVerify={(token) => setHcaptchaToken(token)}
+              onExpire={() => setHcaptchaToken(null)}
+              onError={() => setHcaptchaToken(null)}
+            />
           </div>
 
           <Button 
@@ -206,9 +246,11 @@ export const ReviewForm = () => {
           </Button>
 
           <div 
+            ref={messageRef}
             role="status" 
             aria-live="polite"
-            className="min-h-[24px]"
+            tabIndex={-1}
+            className="min-h-[24px] focus:outline-none"
           >
             {result && (
               <div 

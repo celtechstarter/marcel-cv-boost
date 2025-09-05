@@ -109,7 +109,7 @@ const AdminDashboard = () => {
     const link = document.createElement('a');
     const url = URL.createObjectURL(blob);
     link.setAttribute('href', url);
-    link.setAttribute('download', `bookings_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute('download', `buchungen_${new Date().toISOString().split('T')[0]}.csv`);
     link.style.visibility = 'hidden';
     document.body.appendChild(link);
     link.click();
@@ -242,9 +242,9 @@ const AdminDashboard = () => {
             <div className="flex justify-between items-center">
               <CardTitle>Anstehende Termine (nächste 7 Tage)</CardTitle>
               {dashboardData?.upcomingBookings && dashboardData.upcomingBookings.length > 0 && (
-                <Button onClick={exportBookingsCSV} variant="outline" size="sm">
-                  CSV Export
-                </Button>
+              <Button onClick={exportBookingsCSV} variant="outline" size="sm">
+                Als CSV exportieren
+              </Button>
               )}
             </div>
           </CardHeader>

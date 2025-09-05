@@ -26,12 +26,12 @@ const SITE_URL = 'https://marcel-cv-boost.lovable.dev';
 // Spam protection function
 function validateReviewContent(body: string): string | null {
   if (body.length < 10) {
-    return 'Review body must be at least 10 characters long';
+    return 'Bitte schreibe eine aussagekräftige Bewertung ohne zu viele Links.';
   }
   
   const linkCount = (body.match(/https?:\/\/[^\s]+/g) || []).length;
   if (linkCount > 2) {
-    return 'Review body cannot contain more than 2 links';
+    return 'Bitte schreibe eine aussagekräftige Bewertung ohne zu viele Links.';
   }
   
   return null;
@@ -91,7 +91,15 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Route: POST /reviews/create
     if (path === '/reviews/create' && req.method === 'POST') {
-      const { name, email, rating, title, body } = await req.json();
+      const { name, email, rating, title, body, hcaptchaToken } = await req.json();
+
+      // Check hCaptcha token (stub validation for now)
+      if (!hcaptchaToken) {
+        return new Response(JSON.stringify({ error: 'Captcha-Verifizierung erforderlich' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
 
       // Spam protection
       const validationError = validateReviewContent(body);
@@ -122,20 +130,22 @@ const handler = async (req: Request): Promise<Response> => {
       const reviewId = data[0].review_id;
       const code = data[0].code;
 
-      // Send verification email
+      // Send verification email with German content
       try {
         const verificationUrl = `${SITE_URL}/review-verify?id=${reviewId}&code=${code}`;
         
         await resend.emails.send({
           from: 'Marcel <onboarding@resend.dev>',
           to: [email],
-          subject: 'Please verify your review',
+          subject: 'Bitte bestätige deine Bewertung',
           html: `
-            <h1>Verify Your Review</h1>
-            <p>Thank you for your review, ${name}!</p>
-            <p>Your verification code is: <strong>${code}</strong></p>
-            <p><a href="${verificationUrl}">Click here to verify your review</a></p>
-            <p>If you didn't submit this review, you can safely ignore this email.</p>
+            <h1>Bewertung bestätigen</h1>
+            <p>Hallo,</p>
+            <p>vielen Dank für deine Bewertung.</p>
+            <p>Bitte bestätige sie mit folgendem Code: <strong>${code}</strong></p>
+            <p>Oder klicke direkt auf diesen Link:</p>
+            <p><a href="${verificationUrl}" style="color: #0066cc; text-decoration: none;">${verificationUrl}</a></p>
+            <p>Viele Grüße<br>Marcel</p>
           `,
         });
         console.log('Verification email sent successfully');
@@ -275,7 +285,7 @@ const handler = async (req: Request): Promise<Response> => {
         });
       }
 
-      // Send confirmation emails
+      // Send confirmation emails with German content
       try {
         const startDate = new Date(startsAt);
         const formattedDate = startDate.toLocaleDateString('de-DE');
@@ -285,20 +295,20 @@ const handler = async (req: Request): Promise<Response> => {
         await resend.emails.send({
           from: 'Marcel <onboarding@resend.dev>',
           to: [email],
-          subject: 'Booking Confirmation',
+          subject: 'Terminbestätigung Bewerbungshilfe',
           html: `
-            <h1>Booking Confirmed</h1>
-            <p>Hello ${name},</p>
-            <p>Your booking has been confirmed for:</p>
+            <h1>Terminbestätigung</h1>
+            <p>Hallo ${name},</p>
+            <p>vielen Dank für deine Anfrage.</p>
+            <p>Dein Termin wurde angelegt:</p>
             <ul>
-              <li><strong>Date:</strong> ${formattedDate}</li>
-              <li><strong>Time:</strong> ${formattedTime}</li>
-              <li><strong>Duration:</strong> ${duration} minutes</li>
-              ${discordName ? `<li><strong>Discord:</strong> ${discordName}</li>` : ''}
-              ${note ? `<li><strong>Note:</strong> ${note}</li>` : ''}
+              <li><strong>Datum/Uhrzeit:</strong> ${formattedDate} um ${formattedTime}</li>
+              <li><strong>Dauer:</strong> ${duration} Minuten</li>
+              <li><strong>Hinweis:</strong> Wir sprechen über Discord.</li>
             </ul>
-            <p>I'll contact you soon with more details!</p>
-            <p>Best regards,<br>Marcel</p>
+            ${discordName ? `<p>Dein Discord-Name: ${discordName}</p>` : ''}
+            ${note ? `<p>Deine Notiz: ${note}</p>` : ''}
+            <p>Viele Grüße<br>Marcel</p>
           `,
         });
 
@@ -306,18 +316,17 @@ const handler = async (req: Request): Promise<Response> => {
         await resend.emails.send({
           from: 'Booking System <onboarding@resend.dev>',
           to: ['marcel.welk87@gmail.com'],
-          subject: 'New Booking Received',
+          subject: 'Neue Terminbuchung',
           html: `
-            <h1>New Booking</h1>
-            <p>New booking from ${name} (${email}):</p>
+            <h1>Neue Terminbuchung</h1>
+            <p>Neue Buchung von ${name} (${email}):</p>
             <ul>
-              <li><strong>Date:</strong> ${formattedDate}</li>
-              <li><strong>Time:</strong> ${formattedTime}</li>
-              <li><strong>Duration:</strong> ${duration} minutes</li>
+              <li><strong>Datum/Uhrzeit:</strong> ${formattedDate} um ${formattedTime}</li>
+              <li><strong>Dauer:</strong> ${duration} Minuten</li>
               ${discordName ? `<li><strong>Discord:</strong> ${discordName}</li>` : ''}
-              ${note ? `<li><strong>Note:</strong> ${note}</li>` : ''}
+              ${note ? `<li><strong>Notiz:</strong> ${note}</li>` : ''}
             </ul>
-            <p>Booking ID: ${data}</p>
+            <p>Buchungs-ID: ${data}</p>
           `,
         });
 
