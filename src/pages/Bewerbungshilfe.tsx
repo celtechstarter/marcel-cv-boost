@@ -1,226 +1,385 @@
-import Layout from '@/components/Layout';
-import { SlotsBadge } from '@/components/SlotsBadge';
-import { BookingForm } from '@/components/BookingForm';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Send, Calendar } from 'lucide-react';
-import { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
-import { callEdge } from '@/utils/callEdge';
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Mail, Send, Calendar, Clock } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { callEdge } from "@/utils/callEdge";
+import { SlotsBadge } from "@/components/SlotsBadge";
+import Layout from "@/components/Layout";
 
 const Bewerbungshilfe = () => {
-  const [isSubmittingRequest, setIsSubmittingRequest] = useState(false);
-  const [privacyAcceptedRequest, setPrivacyAcceptedRequest] = useState(false);
+  const [activeSection, setActiveSection] = useState<'anfrage' | 'termin'>('anfrage');
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+  const [isSubmittingBooking, setIsSubmittingBooking] = useState(false);
   const { toast } = useToast();
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      element.focus();
+  const scrollToSection = (section: 'anfrage' | 'termin') => {
+    setActiveSection(section);
+    const element = document.getElementById(section === 'anfrage' ? 'anfrage-section' : 'termin-section');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmittingContact(true);
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    
+    try {
+      const contactData = {
+        name: formData.get('name') as string,
+        email: formData.get('email') as string,
+        phone: formData.get('phone') as string || '',
+        situation: formData.get('situation') as string || '',
+        help: formData.get('help') as string || '',
+      };
+      
+      await callEdge('/contact/create', { body: contactData });
+      
+      toast({
+        title: "Nachricht gesendet! 📨",
+        description: "Ich melde mich schnellstmöglich bei dir. Vielen Dank für dein Vertrauen!",
+      });
+      
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      toast({
+        title: "Fehler beim Senden",
+        description: "Bitte versuche es später erneut oder schreibe direkt an marcel.welk87@gmail.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmittingContact(false);
     }
   };
 
-  const handleRequestSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmittingRequest(true);
-
+    setIsSubmittingBooking(true);
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const startsAt = new Date(formData.get('datetime') as string);
+    const duration = parseInt(formData.get('duration') as string);
+    
     try {
-      const formData = new FormData(e.currentTarget);
+      const bookingData = {
+        name: formData.get('name') as string,
+        email: formData.get('email') as string,
+        discord_name: formData.get('discord_name') as string || '',
+        note: formData.get('note') as string || '',
+        starts_at: startsAt.toISOString(),
+        duration_minutes: duration,
+      };
       
-      await callEdge('/requests/create', {
-        method: 'POST',
-        body: JSON.stringify({
-          name: formData.get('name'),
-          email: formData.get('email'),
-          discord_name: formData.get('discord'),
-          message: formData.get('message')
-        })
-      });
-
+      await callEdge('/bookings/create', { body: bookingData });
+      
       toast({
-        title: "Anfrage gesendet! 📨",
-        description: "Ich melde mich schnellstmöglich bei dir. Vielen Dank für dein Vertrauen!",
+        title: "Termin erfolgreich gebucht! 🎉",
+        description: "Du erhältst eine Bestätigungs-E-Mail mit allen Details. Ich freue mich auf unser Gespräch!",
       });
-
+      
       (e.target as HTMLFormElement).reset();
-      setPrivacyAcceptedRequest(false);
     } catch (error) {
       toast({
+        title: "Fehler bei der Buchung",
+        description: error instanceof Error ? error.message : "Bitte versuche es später erneut.",
         variant: "destructive",
-        title: "Fehler beim Senden",
-        description: "Bitte versuche es erneut oder schreibe mir direkt an marcel.welk87@gmail.com",
       });
     } finally {
-      setIsSubmittingRequest(false);
+      setIsSubmittingBooking(false);
     }
   };
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16 space-y-12">
+      <div className="container mx-auto px-4 py-16">
         {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold">Kostenlose Bewerbungshilfe</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Sichere dir einen der kostenlosen Plätze für professionelle Unterstützung bei deiner Bewerbung.
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-4">Kostenlose Bewerbungshilfe</h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            Wähle den Weg, der am besten zu dir passt: Sende eine kurze Anfrage oder buche direkt einen Termin für persönliche Beratung.
           </p>
+          
           <SlotsBadge />
         </div>
 
         {/* Section Navigation */}
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-4 mb-12">
           <Button
-            variant="outline"
-            onClick={() => scrollToSection('anfrage-section')}
-            className="focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            variant={activeSection === 'anfrage' ? 'default' : 'outline'}
+            onClick={() => scrollToSection('anfrage')}
+            className="flex items-center gap-2"
           >
-            <Send className="mr-2 h-4 w-4" />
+            <Mail className="h-4 w-4" />
             Anfrage senden
           </Button>
           <Button
-            variant="outline"
-            onClick={() => scrollToSection('termin-section')}
-            className="focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            variant={activeSection === 'termin' ? 'default' : 'outline'}
+            onClick={() => scrollToSection('termin')}
+            className="flex items-center gap-2"
           >
-            <Calendar className="mr-2 h-4 w-4" />
+            <Calendar className="h-4 w-4" />
             Sofort Termin buchen
           </Button>
         </div>
 
-        {/* Section 1: Anfrage senden */}
-        <section 
-          id="anfrage-section"
-          className="scroll-mt-8"
-          tabIndex={-1}
-        >
-          <Card className="max-w-2xl mx-auto">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Send className="h-5 w-5 text-primary" />
-                Kurze Anfrage senden
-              </CardTitle>
-              <p className="text-muted-foreground">
-                Wenn du erst kurz schildern möchtest, wobei du Unterstützung brauchst, sende mir hier eine Anfrage. Ich melde mich zeitnah bei dir.
-              </p>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleRequestSubmit} className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-4">
+        <div className="max-w-4xl mx-auto space-y-16">
+          {/* Section 1: Contact Request */}
+          <section id="anfrage-section" className="scroll-mt-24">
+            <Card className="card-soft">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-2xl">
+                  <Mail className="h-6 w-6 text-primary" />
+                  Kurze Anfrage senden
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Wenn du erst kurz schildern möchtest, wobei du Unterstützung brauchst, sende mir hier eine Anfrage. 
+                  Ich melde mich zeitnah bei dir.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleContactSubmit} className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="contact-name">Name *</Label>
+                      <Input
+                        id="contact-name"
+                        name="name"
+                        placeholder="Dein Name"
+                        required
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="contact-email">E-Mail *</Label>
+                      <Input
+                        id="contact-email"
+                        name="email"
+                        type="email"
+                        placeholder="deine@email.de"
+                        required
+                        className="mt-1"
+                      />
+                    </div>
+                  </div>
+                  
                   <div>
-                    <Label htmlFor="request-name">Name *</Label>
+                    <Label htmlFor="contact-phone">Telefon (optional)</Label>
                     <Input
-                      id="request-name"
-                      name="name"
-                      placeholder="Dein Name"
-                      required
+                      id="contact-phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="+49 123 456789"
                       className="mt-1"
                     />
                   </div>
+
                   <div>
-                    <Label htmlFor="request-email">E-Mail *</Label>
-                    <Input
-                      id="request-email"
-                      name="email"
-                      type="email"
-                      placeholder="deine@email.de"
+                    <Label htmlFor="situation">Beschreibe frei, wobei ich dir helfen kann *</Label>
+                    <Textarea
+                      id="situation"
+                      name="situation"
+                      placeholder="Schreibe einfach ganz frei, wo du Probleme siehst und ich helfe dir schnell weiter."
+                      rows={4}
+                      className="mt-1"
                       required
+                      aria-describedby="help-description"
+                    />
+                    <p id="help-description" className="text-sm text-muted-foreground mt-1">
+                      Teile mit, was dich beschäftigt - ich bin hier, um zu helfen.
+                    </p>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="help">Gewünschte Hilfe (optional)</Label>
+                    <Textarea
+                      id="help"
+                      name="help"
+                      placeholder="Was genau brauchst du? (z.B. kompletter Lebenslauf, Design-Optimierung, Bewerbungstracker, etc.)"
+                      rows={3}
                       className="mt-1"
                     />
                   </div>
-                </div>
-                
-                <div>
-                  <Label htmlFor="request-discord">Discord Name (optional)</Label>
-                  <Input
-                    id="request-discord"
-                    name="discord"
-                    placeholder="@deinname"
-                    className="mt-1"
-                  />
-                </div>
 
-                <div>
-                  <Label htmlFor="request-message">Deine Nachricht *</Label>
-                  <Textarea
-                    id="request-message"
-                    name="message"
-                    placeholder="Beschreibe frei, wobei ich dir helfen kann..."
-                    rows={4}
-                    required
-                    className="mt-1"
-                  />
-                </div>
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="contact-privacy"
+                      required
+                      className="mt-1"
+                    />
+                    <Label htmlFor="contact-privacy" className="text-sm leading-relaxed cursor-pointer">
+                      Ich stimme der{" "}
+                      <a href="/datenschutz" className="text-primary hover:underline">
+                        Datenschutzerklärung
+                      </a>{" "}
+                      zu. *
+                    </Label>
+                  </div>
 
-                <div className="flex items-start gap-2">
-                  <Checkbox
-                    id="request-privacy"
-                    checked={privacyAcceptedRequest}
-                    onCheckedChange={(checked) => setPrivacyAcceptedRequest(checked === true)}
-                    required
-                  />
-                  <Label htmlFor="request-privacy" className="text-sm leading-relaxed cursor-pointer">
-                    Ich stimme der <a href="/datenschutz" className="text-primary hover:underline">Datenschutzerklärung</a> zu. *
-                  </Label>
-                </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full text-lg py-3" 
+                    disabled={isSubmittingContact}
+                  >
+                    {isSubmittingContact ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Wird gesendet...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-5 w-5" />
+                        Kostenlose Anfrage senden
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </section>
 
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={isSubmittingRequest || !privacyAcceptedRequest}
-                >
-                  {isSubmittingRequest ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Wird gesendet...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="mr-2 h-4 w-4" />
-                      Kostenlose Anfrage senden
-                    </>
-                  )}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </section>
+          {/* Section 2: Direct Booking */}
+          <section id="termin-section" className="scroll-mt-24">
+            <Card className="card-soft">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-2xl">
+                  <Calendar className="h-6 w-6 text-primary" />
+                  Direkt Termin buchen
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Wenn du direkt loslegen möchtest, buche dir hier sofort einen freien Termin.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleBookingSubmit} className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="booking-name">Name *</Label>
+                      <Input
+                        id="booking-name"
+                        name="name"
+                        placeholder="Dein Name"
+                        required
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="booking-email">E-Mail *</Label>
+                      <Input
+                        id="booking-email"
+                        name="email"
+                        type="email"
+                        placeholder="deine@email.de"
+                        required
+                        className="mt-1"
+                      />
+                    </div>
+                  </div>
 
-        {/* Section 2: Termin buchen */}
-        <section 
-          id="termin-section"
-          className="scroll-mt-8"
-          tabIndex={-1}
-        >
-          <div className="text-center space-y-4 mb-8">
-            <h2 className="text-3xl font-bold flex items-center justify-center gap-2">
-              <Calendar className="h-8 w-8 text-primary" />
-              Direkt Termin buchen
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Wenn du direkt loslegen möchtest, buche dir hier sofort einen freien Termin.
-            </p>
-          </div>
-          <BookingForm />
-        </section>
+                  <div>
+                    <Label htmlFor="discord_name">Discord Name (optional)</Label>
+                    <Input
+                      id="discord_name"
+                      name="discord_name"
+                      placeholder="deinname#1234"
+                      className="mt-1"
+                      aria-describedby="discord-help"
+                    />
+                    <p id="discord-help" className="text-sm text-muted-foreground mt-1">
+                      Wenn vorhanden, erleichtert das den Termin. Alternativ sende ich dir einen Discord-Link.
+                    </p>
+                  </div>
 
-        {/* SEO Meta Tags */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebPage",
-              "name": "Kostenlose Bewerbungshilfe - Marcel CV Boost",
-              "description": "Sichere dir einen kostenlosen Platz für professionelle Bewerbungsunterstützung. Anfrage senden oder direkt Termin buchen.",
-              "url": "https://marcel-cv-boost.lovable.dev/bewerbungshilfe"
-            })
-          }}
-        />
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="datetime">Wunschtermin *</Label>
+                      <Input
+                        id="datetime"
+                        name="datetime"
+                        type="datetime-local"
+                        required
+                        min={new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().slice(0, 16)}
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="duration">Dauer</Label>
+                      <select
+                        id="duration"
+                        name="duration"
+                        required
+                        className="mt-1 w-full h-10 px-3 rounded-md border border-input bg-background text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        <option value="30">30 Minuten</option>
+                        <option value="60" selected>60 Minuten</option>
+                        <option value="90">90 Minuten</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="note">Anmerkungen (optional)</Label>
+                    <Textarea
+                      id="note"
+                      name="note"
+                      placeholder="Was möchtest du besprechen? Gibt es spezielle Wünsche?"
+                      rows={3}
+                      className="mt-1"
+                    />
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="booking-privacy"
+                      required
+                      className="mt-1"
+                    />
+                    <Label htmlFor="booking-privacy" className="text-sm leading-relaxed cursor-pointer">
+                      Ich stimme der{" "}
+                      <a href="/datenschutz" className="text-primary hover:underline">
+                        Datenschutzerklärung
+                      </a>{" "}
+                      zu. *
+                    </Label>
+                  </div>
+
+                  <div className="bg-muted p-4 rounded-lg">
+                    <div className="flex items-center gap-2 text-sm">
+                      <Clock className="h-4 w-4 text-primary" />
+                      <span className="font-medium">Hinweis:</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Termine finden über Discord statt. Du erhältst eine Bestätigung per E-Mail mit allen Details.
+                    </p>
+                  </div>
+
+                  <Button 
+                    type="submit" 
+                    className="w-full text-lg py-3" 
+                    disabled={isSubmittingBooking}
+                  >
+                    {isSubmittingBooking ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Wird gebucht...
+                      </>
+                    ) : (
+                      <>
+                        <Calendar className="mr-2 h-5 w-5" />
+                        Kostenlosen Termin buchen
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </section>
+        </div>
       </div>
     </Layout>
   );
