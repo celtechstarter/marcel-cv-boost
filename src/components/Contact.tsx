@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Send, Clock, Users } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Clock, Users, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -169,6 +170,19 @@ const Contact = () => {
                         Kostenlose Anfrage senden
                       </>
                     )}
+                  </Button>
+
+                  <Button 
+                    asChild 
+                    variant="outline" 
+                    className="w-full mt-3 text-sm"
+                    aria-label="Hier geht's direkt zur Terminbuchung (CV-Upload möglich)"
+                    title="Direkt zur Terminbuchung – hier kannst du auch deinen CV hochladen"
+                  >
+                    <Link to="/bewerbungshilfe#termin">
+                      <Calendar className="mr-2 h-4 w-4" />
+                      Hier geht's direkt zur Terminbuchung <span className="text-muted-foreground">(Lade deinen CV hoch, falls du einen hast)</span>
+                    </Link>
                   </Button>
                 </form>
               </CardContent>
