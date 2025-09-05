@@ -364,9 +364,9 @@ const Bewerbungshilfe = () => {
                         required
                         className="mt-1 w-full h-10 px-3 rounded-md border border-input bg-background text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
-                        <option value="30">30 Minuten</option>
-                        <option value="60" selected>60 Minuten</option>
-                        <option value="90">90 Minuten</option>
+                         <option value="30">30 Minuten</option>
+                         <option value="45">45 Minuten</option>
+                         <option value="60" selected>60 Minuten</option>
                       </select>
                     </div>
                   </div>
