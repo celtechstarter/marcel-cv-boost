@@ -11,6 +11,7 @@ const Navigation = () => {
     { href: "/#about", label: "Über mich" },
     { href: "/#services", label: "Leistungen" },
     { href: "/#ablauf", label: "Ablauf" },
+    { href: "/reviews", label: "Bewertungen" },
     { href: "/faq", label: "FAQ" },
     { href: "/blog", label: "Blog" },
     { href: "/#contact", label: "Kontakt" },

@@ -173,7 +173,16 @@ export const BookingForm = () => {
               aria-describedby="privacy-error"
             />
             <Label htmlFor="privacy-accepted" className="text-sm leading-5 cursor-pointer">
-              Ich stimme der Verarbeitung meiner Daten gemäß der Datenschutzerklärung zu *
+              Ich stimme der Verarbeitung meiner Daten gemäß der{' '}
+              <a 
+                href="/datenschutz" 
+                className="text-primary hover:underline focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Datenschutzerklärung
+              </a>{' '}
+              zu *
             </Label>
           </div>
 

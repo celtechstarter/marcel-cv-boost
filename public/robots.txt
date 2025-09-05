@@ -1,14 +1,17 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
 Allow: /
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /review-verify
+
+# Allow important pages
+Allow: /
+Allow: /reviews
+Allow: /faq
+Allow: /blog
+Allow: /impressum
+Allow: /datenschutz
+
+# Sitemap
+Sitemap: https://marcel-cv-boost.lovable.dev/sitemap.xml

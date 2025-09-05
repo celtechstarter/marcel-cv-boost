@@ -39,6 +39,9 @@ const Footer = () => {
               <a href="/#ablauf" className="block text-background/80 hover:text-background transition-colors">
                 Ablauf
               </a>
+              <a href="/reviews" className="block text-background/80 hover:text-background transition-colors">
+                Bewertungen
+              </a>
               <a href="/faq" className="block text-background/80 hover:text-background transition-colors">
                 FAQ
               </a>

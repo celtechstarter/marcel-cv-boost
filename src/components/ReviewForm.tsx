@@ -183,7 +183,16 @@ export const ReviewForm = () => {
                 aria-describedby="publication-error"
               />
               <Label htmlFor="agree-publication" className="text-sm leading-5 cursor-pointer">
-                Ich stimme der Veröffentlichung meiner Bewertung zu *
+                Ich stimme der Veröffentlichung meiner Bewertung zu und habe die{' '}
+                <a 
+                  href="/datenschutz" 
+                  className="text-primary hover:underline focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Datenschutzerklärung
+                </a>{' '}
+                gelesen *
               </Label>
             </div>
           </div>
