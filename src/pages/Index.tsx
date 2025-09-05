@@ -11,7 +11,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <main>
+      <main className="pt-16">
         <Hero />
         <div className="py-8">
           <div className="container mx-auto px-4">

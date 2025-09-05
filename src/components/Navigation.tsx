@@ -98,15 +98,15 @@ const Navigation = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-6 lg:space-x-8">
+              <div className="ml-10 flex items-baseline space-x-6 lg:space-x-6">
                 {navItems.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
                     title={item.title}
-                    className={`whitespace-nowrap text-foreground/80 hover:text-primary transition-colors duration-300 font-medium focus:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm px-2 py-1 ${
+                    className={`whitespace-nowrap text-foreground/80 hover:text-primary transition-all duration-300 font-medium focus:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm px-2 py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:bg-current after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100 ${
                       isActiveRoute(item.href) 
-                        ? 'text-primary border-b-2 border-primary' 
+                        ? 'text-primary after:scale-x-100 after:h-0.5 after:bg-primary' 
                         : ''
                     }`}
                     aria-current={isActiveRoute(item.href) ? "page" : undefined}
@@ -151,7 +151,7 @@ const Navigation = () => {
           {isOpen && (
             <div 
               id="mobile-menu"
-              className="md:hidden animate-slide-up"
+              className="md:hidden animate-fade-in motion-reduce:animate-none"
               role="dialog"
               aria-modal="true"
               aria-label="Hauptmenü"
