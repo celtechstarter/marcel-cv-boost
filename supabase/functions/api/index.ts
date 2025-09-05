@@ -327,7 +327,7 @@ const handler = async (req: Request): Promise<Response> => {
   // POST /requests/create - Handle general request submissions
   if (req.method === 'POST' && url.pathname === '/requests/create') {
     try {
-      const { name, email, discord_name, message } = await req.json();
+      const { name, email, discord_name, message, cv_path } = await req.json();
 
       if (!name?.trim() || !email?.trim() || !message?.trim()) {
         return new Response(
@@ -336,55 +336,58 @@ const handler = async (req: Request): Promise<Response> => {
         );
       }
 
-      // Send confirmation email to user with GDPR footer
-      await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${Deno.env.get('RESEND_API_KEY')}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          from: 'Marcel <noreply@marcel-cv-boost.lovable.dev>',
-          to: [email],
-          subject: 'Anfrage erhalten - Bewerbungshilfe',
-          text: `Hallo ${name},
-
-vielen Dank für deine Anfrage zur Bewerbungshilfe.
-
-Ich habe deine Nachricht erhalten:
-"${message}"
-
-Ich melde mich zeitnah bei dir, um dir zu helfen.
-
-Viele Grüße
-Marcel${GDPR_EMAIL_FOOTER}`
-        })
+      // Send confirmation email to user using sendMailSafe
+      const userMail = await sendMailSafe({
+        to: email,
+        subject: 'Anfrage erhalten - Bewerbungshilfe',
+        html: `
+          <h1>Anfrage erhalten</h1>
+          <p>Hallo ${name},</p>
+          <p>vielen Dank für deine Anfrage zur Bewerbungshilfe.</p>
+          <p>Ich habe deine Nachricht erhalten:</p>
+          <blockquote style="border-left: 3px solid #0066cc; padding-left: 16px; margin: 16px 0; font-style: italic;">"${message}"</blockquote>
+          <p>Ich melde mich zeitnah bei dir, um dir zu helfen.</p>
+          <p>Viele Grüße<br>Marcel</p>
+          <hr>
+          <small>Hinweis: Verarbeitung gemäß Datenschutzerklärung. Auftragsverarbeiter: Supabase (EU-Region) und Resend (E-Mail).</small>
+        `,
       });
 
-      // Send notification to Marcel
-      await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${Deno.env.get('RESEND_API_KEY')}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          from: 'Bewerbungshilfe <noreply@marcel-cv-boost.lovable.dev>',
-          to: ['marcel.welk87@gmail.com'],
-          subject: 'Neue Bewerbungshilfe-Anfrage',
-          text: `Neue Anfrage erhalten:
-
-Name: ${name}
-E-Mail: ${email}
-Discord: ${discord_name || 'Nicht angegeben'}
-
-Nachricht:
-${message}`
-        })
+      // Send notification to Marcel using sendMailSafe
+      const adminMail = await sendMailSafe({
+        to: 'marcel.welk87@gmail.com',
+        subject: 'Neue Bewerbungshilfe-Anfrage',
+        html: `
+          <h1>Neue Bewerbungshilfe-Anfrage</h1>
+          <p>Neue Anfrage von ${name} (${email}):</p>
+          <ul>
+            <li><strong>Name:</strong> ${name}</li>
+            <li><strong>E-Mail:</strong> ${email}</li>
+            ${discord_name ? `<li><strong>Discord:</strong> ${discord_name}</li>` : ''}
+            ${cv_path ? `<li><strong>CV hochgeladen:</strong> Ja</li>` : ''}
+          </ul>
+          <h3>Nachricht:</h3>
+          <blockquote style="border-left: 3px solid #0066cc; padding-left: 16px; margin: 16px 0;">${message}</blockquote>
+        `,
       });
+
+      const mailStatus = (userMail.ok && adminMail.ok) ? 'sent' : 'not_sent';
+
+      if (mailStatus === 'not_sent') {
+        // Best-effort logging to form_errors (if table exists)
+        try {
+          await supabase.from('form_errors').insert({
+            endpoint: 'requests/create',
+            status: 'mail_failed',
+            message: JSON.stringify({ user: userMail, admin: adminMail }).slice(0, 1000),
+          });
+        } catch (logErr) {
+          console.warn('form_errors log failed (ignored):', (logErr as Error).message);
+        }
+      }
 
       return new Response(
-        JSON.stringify({ success: true }),
+        JSON.stringify({ success: true, mail: mailStatus }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     } catch (error) {

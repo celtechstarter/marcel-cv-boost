@@ -51,12 +51,21 @@ const Bewerbungshilfe = () => {
         cv_path: cvPath || null,
       };
       
-      await callEdge('/requests/create', { body: JSON.stringify(requestData) });
+      const res = await callEdge('/requests/create', { body: JSON.stringify(requestData) });
       
       toast({
         title: "Nachricht gesendet! 📨",
         description: "Danke, deine Anfrage ist eingegangen. Ich melde mich zeitnah.",
       });
+
+      // Show mail status warning if needed
+      if (res.mail === 'not_sent') {
+        toast({
+          title: "⚠️ E-Mail-Problem",
+          description: "Deine Anfrage wurde gespeichert, aber es gab ein Problem beim E-Mail-Versand. Ich kontaktiere dich trotzdem!",
+          variant: "default",
+        });
+      }
       
       (e.target as HTMLFormElement).reset();
       setCvPath('');
