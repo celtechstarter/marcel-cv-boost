@@ -39,7 +39,9 @@ function validateReviewContent(body: string): string | null {
 
 // CORS validation
 function validateCORS(origin: string | null): boolean {
-  return origin ? allowedOrigins.includes(origin) : false;
+  return origin
+    ? (allowedOrigins.includes(origin) || origin.endsWith('.lovable.dev') || origin.endsWith('.lovable.app'))
+    : false;
 }
 
 const handler = async (req: Request): Promise<Response> => {
