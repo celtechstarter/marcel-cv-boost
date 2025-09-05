@@ -7,13 +7,16 @@ export const SlotsBadge = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [maxSlots, setMaxSlots] = useState<number>(5);
+
   useEffect(() => {
     const fetchSlots = async () => {
       try {
         setIsLoading(true);
         setError(null);
-        const data = await callEdge('/slots/remaining');
+        const data = await callEdge('/slots/state');
         setSlotsRemaining(data.remaining);
+        setMaxSlots(data.max_slots);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Fehler beim Laden der verfügbaren Plätze');
       } finally {
@@ -45,7 +48,7 @@ export const SlotsBadge = () => {
       
       {!isLoading && !error && slotsRemaining !== null && (
         <Badge variant="default" className="text-sm bg-green-600 hover:bg-green-700 text-white">
-          {slotsRemaining} kostenlose Plätze verfügbar
+          Noch {slotsRemaining} von {maxSlots} kostenlosen Slots verfügbar
         </Badge>
       )}
     </div>

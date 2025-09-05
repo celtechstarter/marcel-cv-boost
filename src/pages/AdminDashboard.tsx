@@ -87,6 +87,46 @@ const AdminDashboard = () => {
     }
   };
 
+  const approveBooking = async (bookingId: string) => {
+    try {
+      setIsLoading(true);
+      await callEdge('/admin/bookings/approve', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${adminPassword}`,
+        },
+        body: JSON.stringify({ booking_id: bookingId }),
+      });
+      
+      // Refresh dashboard data
+      authenticate();
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Fehler beim Genehmigen der Buchung');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const rejectBooking = async (bookingId: string) => {
+    try {
+      setIsLoading(true);
+      await callEdge('/admin/bookings/reject', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${adminPassword}`,
+        },
+        body: JSON.stringify({ booking_id: bookingId }),
+      });
+      
+      // Refresh dashboard data
+      authenticate();
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Fehler beim Ablehnen der Buchung');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const exportBookingsCSV = () => {
     if (!dashboardData?.upcomingBookings) return;
 
@@ -262,6 +302,8 @@ const AdminDashboard = () => {
                       <TableHead>Dauer</TableHead>
                       <TableHead>Discord</TableHead>
                       <TableHead>Notizen</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Aktionen</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -281,6 +323,38 @@ const AdminDashboard = () => {
                         <TableCell>{booking.discord_name || '-'}</TableCell>
                         <TableCell className="max-w-xs truncate" title={booking.note}>
                           {booking.note || '-'}
+                        </TableCell>
+                        <TableCell>
+                          <span className={`px-2 py-1 rounded text-sm ${
+                            booking.status === 'neu' ? 'bg-yellow-100 text-yellow-800' :
+                            booking.status === 'bestaetigt' ? 'bg-green-100 text-green-800' :
+                            booking.status === 'abgelehnt' ? 'bg-red-100 text-red-800' :
+                            'bg-gray-100 text-gray-800'
+                          }`}>
+                            {booking.status}
+                          </span>
+                        </TableCell>
+                        <TableCell>
+                          {booking.status === 'neu' && (
+                            <div className="flex gap-2">
+                              <Button
+                                size="sm"
+                                onClick={() => approveBooking(booking.id)}
+                                disabled={isLoading}
+                                className="bg-green-600 hover:bg-green-700"
+                              >
+                                Annehmen
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                onClick={() => rejectBooking(booking.id)}
+                                disabled={isLoading}
+                              >
+                                Ablehnen
+                              </Button>
+                            </div>
+                          )}
                         </TableCell>
                       </TableRow>
                     ))}

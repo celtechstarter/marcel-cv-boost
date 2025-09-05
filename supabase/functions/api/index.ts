@@ -161,6 +161,32 @@ ${message}`
       });
     }
 
+    // Route: GET /slots/state
+    if (path === '/slots/state' && req.method === 'GET') {
+      const urlObj = new URL(req.url);
+      const now = new Date();
+      const year = parseInt(urlObj.searchParams.get('year') || now.getFullYear().toString());
+      const month = parseInt(urlObj.searchParams.get('month') || (now.getMonth() + 1).toString());
+
+      const { data, error } = await supabase.rpc('public_get_slot_state', {
+        p_year: year,
+        p_month: month
+      });
+
+      if (error) {
+        console.error('Error fetching slot state:', error);
+        return new Response(JSON.stringify({ error: 'Internal server error' }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      const result = Array.isArray(data) ? data[0] : data;
+      return new Response(JSON.stringify(result || { year, month, max_slots: 5, used_slots: 0, remaining: 5 }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     // Route: POST /reviews/create
     if (path === '/reviews/create' && req.method === 'POST') {
       const { name, email, rating, title, body, hcaptchaToken } = await req.json();
@@ -339,23 +365,7 @@ ${message}`
         });
       }
 
-      // Apply free slot usage - this is critical for slot management
-      try {
-        const { error: slotError } = await supabase.rpc('apply_free_slot', { p_year: year, p_month: month });
-        if (slotError) {
-          console.error('Error applying slot usage:', slotError);
-          return new Response(JSON.stringify({ error: 'Keine freien Slots mehr in diesem Monat.' }), {
-            status: 409,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          });
-        }
-      } catch (slotError) {
-        console.error('Critical slot error:', slotError);
-        return new Response(JSON.stringify({ error: 'Keine freien Slots mehr in diesem Monat.' }), {
-          status: 409,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
-      }
+      // Note: We no longer apply slot usage here - slots are consumed only on approval
 
       // Send confirmation emails with German content
       try {
@@ -487,6 +497,102 @@ ${message}`
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
+    }
+
+    // Route: POST /admin/bookings/approve
+    if (path === '/admin/bookings/approve' && req.method === 'POST') {
+      const authHeader = req.headers.get('Authorization');
+      const adminPassword = authHeader?.replace('Bearer ', '');
+
+      const expectedPassword = Deno.env.get('ADMIN_PASS');
+      if (adminPassword !== expectedPassword) {
+        return new Response(JSON.stringify({ error: 'Ungültiges Admin-Passwort' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      try {
+        const body = await req.json();
+        const { booking_id } = body;
+
+        if (!booking_id) {
+          return new Response(JSON.stringify({ error: 'booking_id is required' }), {
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        const { data, error } = await supabase.rpc('admin_approve_booking', {
+          p_booking_id: booking_id
+        });
+
+        if (error) {
+          console.error('Error approving booking:', error);
+          if (error.message.includes('Keine freien Slots')) {
+            return new Response(JSON.stringify({ error: 'Keine freien Slots mehr in diesem Monat.' }), {
+              status: 409,
+              headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            });
+          }
+          throw new Error('Failed to approve booking');
+        }
+
+        return new Response(JSON.stringify({ ok: true }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      } catch (error) {
+        console.error('Error in booking approval:', error);
+        return new Response(JSON.stringify({ error: error.message || 'Internal server error' }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
+    // Route: POST /admin/bookings/reject
+    if (path === '/admin/bookings/reject' && req.method === 'POST') {
+      const authHeader = req.headers.get('Authorization');
+      const adminPassword = authHeader?.replace('Bearer ', '');
+
+      const expectedPassword = Deno.env.get('ADMIN_PASS');
+      if (adminPassword !== expectedPassword) {
+        return new Response(JSON.stringify({ error: 'Ungültiges Admin-Passwort' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      try {
+        const body = await req.json();
+        const { booking_id } = body;
+
+        if (!booking_id) {
+          return new Response(JSON.stringify({ error: 'booking_id is required' }), {
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        const { data, error } = await supabase.rpc('admin_reject_booking', {
+          p_booking_id: booking_id
+        });
+
+        if (error) {
+          console.error('Error rejecting booking:', error);
+          throw new Error('Failed to reject booking');
+        }
+
+        return new Response(JSON.stringify({ ok: true }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      } catch (error) {
+        console.error('Error in booking rejection:', error);
+        return new Response(JSON.stringify({ error: error.message || 'Internal server error' }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
     }
 
     // 404 for unknown routes

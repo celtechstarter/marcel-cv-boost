@@ -225,6 +225,10 @@ export type Database = {
       }
     }
     Functions: {
+      admin_approve_booking: {
+        Args: { p_booking_id: string }
+        Returns: boolean
+      }
       admin_cv_signed_url: {
         Args: { p_expires_sec?: number; p_path: string }
         Returns: string
@@ -248,6 +252,10 @@ export type Database = {
       admin_publish_review: {
         Args: { p_review_id: string }
         Returns: undefined
+      }
+      admin_reject_booking: {
+        Args: { p_booking_id: string }
+        Returns: boolean
       }
       apply_free_slot: {
         Args: { p_month: number; p_year: number }
@@ -305,6 +313,16 @@ export type Database = {
           review_count: number
         }[]
       }
+      public_get_slot_state: {
+        Args: { p_month: number; p_year: number }
+        Returns: {
+          max_slots: number
+          month: number
+          remaining: number
+          used_slots: number
+          year: number
+        }[]
+      }
       public_verify_review: {
         Args: { p_code: string; p_review_id: string }
         Returns: boolean
@@ -323,7 +341,12 @@ export type Database = {
       }
     }
     Enums: {
-      booking_status: "neu" | "bestaetigt" | "abgelehnt" | "storniert"
+      booking_status:
+        | "neu"
+        | "bestaetigt"
+        | "abgelehnt"
+        | "storniert"
+        | "abgesagt"
       review_status:
         | "neu"
         | "verifiziert"
@@ -463,7 +486,13 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      booking_status: ["neu", "bestaetigt", "abgelehnt", "storniert"],
+      booking_status: [
+        "neu",
+        "bestaetigt",
+        "abgelehnt",
+        "storniert",
+        "abgesagt",
+      ],
       review_status: [
         "neu",
         "verifiziert",
