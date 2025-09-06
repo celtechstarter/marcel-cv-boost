@@ -23,12 +23,14 @@ const translations: Record<Locale, Record<string, any>> = {
 
 async function loadTranslation(locale: Locale, namespace: string) {
   try {
-    const response = await fetch(`/locales/${locale}/${namespace}.json`);
+    const url = '/locales/' + locale + '/' + namespace + '.json';
+    const response = await fetch(url);
     const data = await response.json();
     if (!translations[locale]) translations[locale] = {};
     translations[locale][namespace] = data;
   } catch (error) {
-    console.warn(`Failed to load translation ${locale}/${namespace}:`, error);
+    const message = 'Failed to load translation ' + locale + '/' + namespace + ':';
+    console.warn(message, error);
   }
 }
 
@@ -40,7 +42,11 @@ export function useI18n() {
   return context;
 }
 
-export function I18nProvider({ children }: { children: ReactNode }) {
+interface I18nProviderProps {
+  children: ReactNode;
+}
+
+export function I18nProvider(props: I18nProviderProps) {
   const [locale, setLocaleState] = useState<Locale>('de');
 
   useEffect(() => {
@@ -75,9 +81,15 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     if (typeof value !== 'string') return key;
     
     if (params) {
-      return value.replace(/\{\{(\w+)\}\}/g, (match: string, paramKey: string) => 
-        params[paramKey] !== undefined ? String(params[paramKey]) : match
-      );
+      let result = value;
+      for (const paramKey in params) {
+        const placeholder = '{{' + paramKey + '}}';
+        const replacement = String(params[paramKey]);
+        while (result.indexOf(placeholder) !== -1) {
+          result = result.replace(placeholder, replacement);
+        }
+      }
+      return result;
     }
     
     return value;
@@ -88,9 +100,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     loadTranslation(locale, 'home');
   }, [locale]);
 
-  return (
-    <I18nContext.Provider value={{ locale, setLocale, t }}>
-      {children}
-    </I18nContext.Provider>
-  );
+  const contextValue: I18nContextType = {
+    locale,
+    setLocale,
+    t
+  };
+
+  const element = I18nContext.Provider({
+    value: contextValue,
+    children: props.children
+  });
+
+  return element;
 }
