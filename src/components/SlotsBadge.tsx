@@ -43,19 +43,19 @@ export const SlotsBadge = () => {
     >
       {isLoading && (
         <Badge variant="secondary" className="text-sm">
-          {t('slots.loading')}
+          {t('slots.loading') || 'Lade verfügbare Plätze...'}
         </Badge>
       )}
       
       {error && (
         <Badge variant="destructive" className="text-sm">
-          {t('slots.error', { error })}
+          {t('slots.error', { error }) || 'Fehler beim Laden der Plätze'}
         </Badge>
       )}
       
       {!isLoading && !error && slotsRemaining !== null && (
-        <Badge variant="default" className="text-sm bg-green-600 hover:bg-green-700 text-white">
-          {t('slots.remaining', { remaining: slotsRemaining })}
+        <Badge variant="default" className="text-sm bg-accent hover:bg-accent-light text-accent-foreground">
+          {t('slots.remaining', { remaining: slotsRemaining }) || `${slotsRemaining} von ${maxSlots} kostenlose Plätze verfügbar`}
         </Badge>
       )}
     </div>

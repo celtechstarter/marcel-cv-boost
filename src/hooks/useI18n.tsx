@@ -25,12 +25,15 @@ async function loadTranslation(locale: Locale, namespace: string) {
   try {
     const url = '/locales/' + locale + '/' + namespace + '.json';
     const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     if (!translations[locale]) translations[locale] = {};
     translations[locale][namespace] = data;
   } catch (error) {
-    const message = 'Failed to load translation ' + locale + '/' + namespace + ':';
-    console.warn(message, error);
+    // Only warn if it's not a missing file (404) - those are expected for some locales
+    if (error instanceof Error && !error.message.includes('404')) {
+      console.warn(`Failed to load translation ${locale}/${namespace}:`, error);
+    }
   }
 }
 
