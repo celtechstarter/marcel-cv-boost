@@ -106,10 +106,9 @@ export function I18nProvider(props: I18nProviderProps) {
     t
   };
 
-  const element = I18nContext.Provider({
-    value: contextValue,
-    children: props.children
-  });
-
-  return element;
+  return (
+    <I18nContext.Provider value={contextValue}>
+      {props.children}
+    </I18nContext.Provider>
+  );
 }
