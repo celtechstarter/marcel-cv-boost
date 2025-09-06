@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLocation } from "react-router-dom";
 
 const Navigation = () => {
@@ -114,6 +115,7 @@ const Navigation = () => {
                     {item.label}
                   </a>
                 ))}
+                <LanguageSwitcher />
                 <ThemeToggle />
                 <Button 
                   variant="default" 
@@ -132,6 +134,7 @@ const Navigation = () => {
 
             {/* Mobile menu button */}
             <div className="md:hidden flex items-center gap-2">
+              <LanguageSwitcher />
               <ThemeToggle />
               <Button
                 variant="ghost"

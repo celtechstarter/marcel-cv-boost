@@ -103,7 +103,7 @@ const Services = () => {
                 komplett kostenfrei. Sichere dir jetzt einen der limitierten Plätze.
               </p>
               <Button size="lg" className="btn-accent text-lg px-8 py-3" asChild>
-                <a href="#contact">
+                <a href="/bewerbungshilfe#termin">
                   <FileText className="mr-2 h-5 w-5" />
                   Jetzt kostenlosen Slot sichern
                 </a>

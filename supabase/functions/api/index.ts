@@ -452,7 +452,11 @@ const handler = async (req: Request): Promise<Response> => {
 
       const result = Array.isArray(data) ? data[0] : data;
       return new Response(JSON.stringify(result || { year, month, max_slots: 5, used_slots: 0, remaining: 5 }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0'
+        },
       });
     }
 
