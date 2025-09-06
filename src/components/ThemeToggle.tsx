@@ -11,9 +11,11 @@ const ThemeToggle = () => {
     if (savedTheme === "light") {
       setIsDark(false);
       document.documentElement.classList.remove("dark");
+      document.body.classList.remove("dark");
     } else {
       setIsDark(true);
       document.documentElement.classList.add("dark");
+      document.body.classList.add("dark");
       localStorage.setItem("theme", "dark");
     }
   }, []);
@@ -21,6 +23,7 @@ const ThemeToggle = () => {
   const toggleTheme = () => {
     const newTheme = isDark ? "light" : "dark";
     document.documentElement.classList.toggle("dark", newTheme === "dark");
+    document.body.classList.toggle("dark", newTheme === "dark");
     localStorage.setItem("theme", newTheme);
     setIsDark(newTheme === "dark");
   };

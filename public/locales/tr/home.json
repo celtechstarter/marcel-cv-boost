@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "title": "Ücretsiz CV Yardımı ve Online Başvuru Desteği",
+    "subtitle": "Ücretsiz Başvuru Yardımı",
+    "description": "Ruhsal sorunlar, engelli durumu veya diğer zorluklarla karşılaşan kişiler için ücretsiz profesyonel CV. AI desteği ve kişisel rehberlik ile CV oluşturma. Ayda 5 ücretsiz slot mevcut.",
+    "benefits": {
+      "free": "%100 ücretsiz",
+      "personal": "Kişisel destek"
+    },
+    "cta": {
+      "primary": "Ücretsiz yardım iste",
+      "secondary": "Hakkımda daha fazla"
+    }
+  },
+  "cta": {
+    "title": "Başlamaya hazır mısın?",
+    "subtitle": "Tercih ettiğin yolu seç:",
+    "booking": {
+      "text": "Doğrudan randevu rezervasyonuna git - Varsa CV'nizi yükleyin",
+      "aria": "Doğrudan randevu rezervasyonuna git"
+    },
+    "contact": {
+      "text": "Önce sorularınız varsa, bana yazmaktan çekinmeyin!",
+      "aria": "İletişim formuna git"
+    }
+  }
+}

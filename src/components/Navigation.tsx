@@ -4,11 +4,13 @@ import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLocation } from "react-router-dom";
+import { useI18n } from "@/hooks/useI18n";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { t } = useI18n();
 
   // Handle scroll for sticky header effect
   useEffect(() => {

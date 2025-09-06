@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "title": "Darmowa pomoc z CV i wsparcie aplikacji online",
+    "subtitle": "Darmowa pomoc z aplikacjami",
+    "description": "Profesjonalne CV za darmo dla osób z problemami psychicznymi, niepełnosprawnością lub innymi wyzwaniami. Tworzenie CV z wsparciem AI i osobistym przewodnictwem. 5 darmowych slotów miesięcznie.",
+    "benefits": {
+      "free": "100% za darmo",
+      "personal": "Osobiste wsparcie"
+    },
+    "cta": {
+      "primary": "Poproś o darmową pomoc",
+      "secondary": "Więcej o mnie"
+    }
+  },
+  "cta": {
+    "title": "Gotowy do rozpoczęcia?",
+    "subtitle": "Wybierz preferowany sposób:",
+    "booking": {
+      "text": "Bezpośrednia rezerwacja - Prześlij swoje CV, jeśli je masz",
+      "aria": "Przejdź bezpośrednio do rezerwacji spotkania"
+    },
+    "contact": {
+      "text": "Jeśli masz najpierw pytania, śmiało napisz do mnie!",
+      "aria": "Przejdź do formularza kontaktowego"
+    }
+  }
+}

@@ -8,8 +8,11 @@ import Footer from "@/components/Footer";
 import { SlotsBadge } from "@/components/SlotsBadge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Mail } from "lucide-react";
+import { useI18n } from "@/hooks/useI18n";
 
 const Index = () => {
+  const { t } = useI18n();
+  
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -25,8 +28,8 @@ const Index = () => {
         <section className="py-16 bg-muted/50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Bereit loszulegen?</h2>
-              <p className="text-xl text-muted-foreground mb-8">Wähle deinen bevorzugten Weg:</p>
+              <h2 className="text-3xl font-bold mb-4">{t('cta.title')}</h2>
+              <p className="text-xl text-muted-foreground mb-8">{t('cta.subtitle')}</p>
               
               <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 <Button 
@@ -36,11 +39,10 @@ const Index = () => {
                 >
                   <a 
                     href="/bewerbungshilfe#termin"
-                    aria-label="Direkt zur Terminbuchung springen"
+                    aria-label={t('cta.booking.aria')}
                   >
                     <Calendar className="h-8 w-8 mb-2" />
-                    <span className="font-semibold text-base">Hier geht's direkt zur Terminbuchung</span>
-                    <span className="text-sm opacity-90">(Lade deinen CV hoch, falls du einen hast)</span>
+                    <span className="font-semibold text-base">{t('cta.booking.text')}</span>
                   </a>
                 </Button>
                 
@@ -52,11 +54,10 @@ const Index = () => {
                 >
                   <a 
                     href="/bewerbungshilfe#anfrage"
-                    aria-label="Zum Anfrageformular springen"
+                    aria-label={t('cta.contact.aria')}
                   >
                     <Mail className="h-8 w-8 mb-2" />
-                    <span className="font-semibold text-base">Falls du erstmal Fragen hast,</span>
-                    <span className="text-sm opacity-90">kannst du mir gerne erstmal schreiben!</span>
+                    <span className="font-semibold text-base">{t('cta.contact.text')}</span>
                   </a>
                 </Button>
               </div>

@@ -7,6 +7,7 @@ interface I18nContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: (key: string, params?: Record<string, any>) => string;
+  isLoaded: boolean;
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
@@ -51,6 +52,7 @@ interface I18nProviderProps {
 
 export function I18nProvider(props: I18nProviderProps) {
   const [locale, setLocaleState] = useState<Locale>('de');
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('locale') as Locale;
@@ -77,6 +79,19 @@ export function I18nProvider(props: I18nProviderProps) {
       if (value && typeof value === 'object' && k in value) {
         value = value[k];
       } else {
+        // Fallback to German if key not found in current locale
+        if (locale !== 'de') {
+          let germanValue: any = translations['de'];
+          for (const k of keys) {
+            if (germanValue && typeof germanValue === 'object' && k in germanValue) {
+              germanValue = germanValue[k];
+            } else {
+              return key;
+            }
+          }
+          value = germanValue;
+          break;
+        }
         return key;
       }
     }
@@ -99,14 +114,22 @@ export function I18nProvider(props: I18nProviderProps) {
   };
 
   useEffect(() => {
-    loadTranslation(locale, 'common');
-    loadTranslation(locale, 'home');
+    const loadTranslations = async () => {
+      setIsLoaded(false);
+      await Promise.all([
+        loadTranslation(locale, 'common'),
+        loadTranslation(locale, 'home')
+      ]);
+      setIsLoaded(true);
+    };
+    loadTranslations();
   }, [locale]);
 
   const contextValue: I18nContextType = {
     locale,
     setLocale,
-    t
+    t,
+    isLoaded
   };
 
   return (

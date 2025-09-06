@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Heart, Users, FileText } from "lucide-react";
+import { useI18n } from "@/hooks/useI18n";
 // Using uploaded portrait directly
 
 const Hero = () => {
+  const { t } = useI18n();
+  
   return (
     <section id="home" className="min-h-screen flex items-center bg-gradient-to-br from-background to-secondary/30">
       <div className="max-w-7xl mx-auto section-padding">
@@ -12,40 +15,38 @@ const Hero = () => {
             <div className="flex items-center gap-2 mb-6">
               <Heart className="h-5 w-5 text-accent animate-pulse" />
               <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                Kostenlose Bewerbungshilfe
+                {t('hero.subtitle')}
               </span>
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Kostenlose <span className="gradient-text">Lebenslauf Hilfe</span> und Bewerbungshilfe online
+              {t('hero.title')}
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-              <strong className="text-foreground">Professioneller Lebenslauf kostenlos</strong> für Menschen mit psychischen Belastungen, Schwerbehinderung oder anderen Herausforderungen. 
-              CV erstellen lassen mit KI-Unterstützung und persönlicher Betreuung. 
-              <strong className="text-accent"> 5 kostenlose Slots pro Monat verfügbar.</strong>
+              {t('hero.description')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Button size="lg" className="btn-accent text-lg px-8 py-3" asChild>
                 <a href="#contact">
                   <FileText className="mr-2 h-5 w-5" />
-                  Kostenlose Hilfe anfragen
+                  {t('hero.cta.primary')}
                 </a>
               </Button>
               <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
-                <a href="#about">Mehr über mich</a>
+                <a href="#about">{t('hero.cta.secondary')}</a>
               </Button>
             </div>
 
             <div className="flex items-center gap-8 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-accent" />
-                <span>100% kostenlos</span>
+                <span>{t('hero.benefits.free')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Heart className="h-4 w-4 text-accent" />
-                <span>Persönliche Betreuung</span>
+                <span>{t('hero.benefits.personal')}</span>
               </div>
             </div>
           </div>

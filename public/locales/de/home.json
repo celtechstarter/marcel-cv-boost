@@ -1,8 +1,8 @@
 {
   "hero": {
-    "title": "Kostenlose Bewerbungshilfe direkt von Marcel",
-    "subtitle": "Professioneller Lebenslauf und persönliche Betreuung - komplett kostenlos",
-    "description": "Ich helfe dir dabei, einen überzeugenden Lebenslauf zu erstellen und deine Bewerbungsunterlagen zu optimieren. Mit modernster KI-Unterstützung und viel persönlicher Erfahrung bekommst du die Hilfe, die du brauchst.",
+    "title": "Kostenlose Lebenslauf Hilfe und Bewerbungshilfe online",
+    "subtitle": "Kostenlose Bewerbungshilfe",
+    "description": "Professioneller Lebenslauf kostenlos für Menschen mit psychischen Belastungen, Schwerbehinderung oder anderen Herausforderungen. CV erstellen lassen mit KI-Unterstützung und persönlicher Betreuung. 5 kostenlose Slots pro Monat verfügbar.",
     "benefits": {
       "free": "100% kostenlos",
       "personal": "Persönliche Betreuung"
@@ -16,7 +16,7 @@
     "title": "Bereit loszulegen?",
     "subtitle": "Wähle deinen bevorzugten Weg:",
     "booking": {
-      "text": "Hier geht's direkt zur Terminbuchung (Lade deinen CV hoch, falls du einen hast)",
+      "text": "Hier geht's direkt zur Terminbuchung - Lade deinen CV hoch, falls du einen hast",
       "aria": "Direkt zur Terminbuchung springen"
     },
     "contact": {
