@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "title": "Kostenlose Bewerbungshilfe direkt von Marcel",
+    "subtitle": "Professioneller Lebenslauf und persönliche Betreuung - komplett kostenlos",
+    "description": "Ich helfe dir dabei, einen überzeugenden Lebenslauf zu erstellen und deine Bewerbungsunterlagen zu optimieren. Mit modernster KI-Unterstützung und viel persönlicher Erfahrung bekommst du die Hilfe, die du brauchst.",
+    "benefits": {
+      "free": "100% kostenlos",
+      "personal": "Persönliche Betreuung"
+    },
+    "cta": {
+      "primary": "Kostenlose Hilfe anfragen",
+      "secondary": "Mehr über mich"
+    }
+  },
+  "cta": {
+    "title": "Bereit loszulegen?",
+    "subtitle": "Wähle deinen bevorzugten Weg:",
+    "booking": {
+      "text": "Hier geht's direkt zur Terminbuchung (Lade deinen CV hoch, falls du einen hast)",
+      "aria": "Direkt zur Terminbuchung springen"
+    },
+    "contact": {
+      "text": "Falls du erstmal Fragen hast, kannst du mir gerne erstmal schreiben!",
+      "aria": "Zum Anfrageformular springen"
+    }
+  }
+}

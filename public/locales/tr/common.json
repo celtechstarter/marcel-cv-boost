@@ -1,0 +1,27 @@
+{
+  "theme": {
+    "toggle": "Görünümü değiştir: Açık/Koyu",
+    "light": "Açık",
+    "dark": "Koyu"
+  },
+  "language": {
+    "select": "Dil seçin",
+    "german": "Deutsch",
+    "english": "English",
+    "turkish": "Türkçe",
+    "russian": "Русский",
+    "arabic": "العربية",
+    "ukrainian": "Українська",
+    "polish": "Polski"
+  },
+  "slots": {
+    "remaining": "{{remaining}} / 5 ücretsiz slot kaldı",
+    "loading": "Mevcut slotlar yükleniyor...",
+    "error": "Hata: {{error}}"
+  },
+  "buttons": {
+    "submit": "Gönder",
+    "cancel": "İptal",
+    "loading": "Yükleniyor..."
+  }
+}

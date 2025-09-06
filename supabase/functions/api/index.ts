@@ -422,7 +422,11 @@ const handler = async (req: Request): Promise<Response> => {
       }
 
       return new Response(JSON.stringify({ remaining: data || 0 }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0'
+        },
       });
     }
 

@@ -1,0 +1,27 @@
+{
+  "theme": {
+    "toggle": "تبديل المظهر: فاتح/داكن",
+    "light": "فاتح",
+    "dark": "داكن"
+  },
+  "language": {
+    "select": "اختر اللغة",
+    "german": "Deutsch",
+    "english": "English",
+    "turkish": "Türkçe",
+    "russian": "Русский",
+    "arabic": "العربية",
+    "ukrainian": "Українська",
+    "polish": "Polski"
+  },
+  "slots": {
+    "remaining": "{{remaining}} من 5 مواعيد مجانية متبقية",
+    "loading": "جاري تحميل المواعيد المتاحة...",
+    "error": "خطأ: {{error}}"
+  },
+  "buttons": {
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "loading": "جاري التحميل..."
+  }
+}

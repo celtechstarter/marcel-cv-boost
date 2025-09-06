@@ -1,0 +1,27 @@
+{
+  "theme": {
+    "toggle": "Toggle appearance: Light/Dark",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "language": {
+    "select": "Select language",
+    "german": "Deutsch",
+    "english": "English",
+    "turkish": "Türkçe",
+    "russian": "Русский",
+    "arabic": "العربية",
+    "ukrainian": "Українська",
+    "polish": "Polski"
+  },
+  "slots": {
+    "remaining": "{{remaining}} of 5 free slots remaining",
+    "loading": "Loading available slots...",
+    "error": "Error: {{error}}"
+  },
+  "buttons": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "loading": "Loading..."
+  }
+}

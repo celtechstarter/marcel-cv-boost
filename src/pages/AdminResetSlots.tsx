@@ -45,6 +45,9 @@ const AdminResetSlots = () => {
           message: 'Slots erfolgreich zurückgesetzt' 
         });
         setAdminPass('');
+        
+        // Trigger slots invalidation for immediate frontend refresh
+        window.dispatchEvent(new CustomEvent('slots:invalidate'));
       } else {
         throw new Error('Unerwartete Antwort vom Server');
       }

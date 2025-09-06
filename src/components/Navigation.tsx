@@ -114,6 +114,7 @@ const Navigation = () => {
                     {item.label}
                   </a>
                 ))}
+                <LanguageSwitcher />
                 <ThemeToggle />
                 <Button 
                   variant="default" 
@@ -132,6 +133,7 @@ const Navigation = () => {
 
             {/* Mobile menu button */}
             <div className="md:hidden flex items-center gap-2">
+              <LanguageSwitcher />
               <ThemeToggle />
               <Button
                 variant="ghost"

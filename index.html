@@ -5,6 +5,18 @@
     <link rel="icon" type="image/png" href="/lovable-uploads/b88262de-c305-473a-a997-7014c75c09ae.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Pre-render theme script to avoid FOUC -->
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored || (prefersDark ? 'dark' : 'light');
+          document.documentElement.classList.toggle('dark', theme === 'dark');
+        } catch (e) {}
+      })();
+    </script>
+    
     <!-- SEO Meta Tags with Keywords -->
     <title>Marcel - Lebenslauf Hilfe kostenlos | Bewerbungshilfe online für Menschen mit psychischen Problemen</title>
     <meta name="description" content="Kostenlose Bewerbungshilfe und CV erstellen lassen. Professioneller Lebenslauf kostenlos für Menschen mit psychischen Belastungen oder Schwerbehinderung. Online Lebenslauf Beratung mit KI-Unterstützung. 5 kostenlose Slots pro Monat." />
@@ -97,6 +109,16 @@
     
     <!-- Security Headers (Fallback) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co https://marcel-cv-boost.lovable.app https://marcel-cv-boost.lovable.dev; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+    
+    <!-- hreflang links for SEO -->
+    <link rel="alternate" hreflang="de" href="https://marcel-bewerbungshilfe.lovable.app/" />
+    <link rel="alternate" hreflang="en" href="https://marcel-bewerbungshilfe.lovable.app/" />
+    <link rel="alternate" hreflang="tr" href="https://marcel-bewerbungshilfe.lovable.app/" />
+    <link rel="alternate" hreflang="ru" href="https://marcel-bewerbungshilfe.lovable.app/" />
+    <link rel="alternate" hreflang="ar" href="https://marcel-bewerbungshilfe.lovable.app/" />
+    <link rel="alternate" hreflang="uk" href="https://marcel-bewerbungshilfe.lovable.app/" />
+    <link rel="alternate" hreflang="pl" href="https://marcel-bewerbungshilfe.lovable.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://marcel-bewerbungshilfe.lovable.app/" />
     
     <!-- Accessibility enhancements -->
     <meta name="theme-color" content="#2563eb" />

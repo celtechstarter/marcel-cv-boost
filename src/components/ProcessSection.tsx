@@ -81,6 +81,18 @@ const ProcessSection = () => {
                   Voraussetzung für unsere Zusammenarbeit.
                 </p>
               </div>
+              
+              <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                <p className="text-sm text-blue-800 dark:text-blue-200">
+                  Falls du keinen Laptop oder PC hast, können wir das auch ganz bequem über andere Medien machen. Wie z.B. schriftlich über WhatsApp oder E-Mail. So wie es für dich am angenehmsten ist.
+                </p>
+                <p className="text-sm text-blue-800 dark:text-blue-200 mt-3">
+                  Außerdem nutze ich Discord für die Kommunikation. Das kannst du dir ganz einfach herunterladen und dir einen Account erstellen. Danach kannst du meinem Discord-Server beitreten, indem du auf den blauen Button „Discord Server beitreten" klickst.
+                </p>
+                <p className="text-sm text-blue-800 dark:text-blue-200 mt-3">
+                  Weitere Fragen können wir gerne per E-Mail klären. Mach dir keinen Stress, wir bekommen das alles gemeinsam hin!
+                </p>
+              </div>
             </CardContent>
           </Card>
         </div>

@@ -1,0 +1,27 @@
+{
+  "theme": {
+    "toggle": "Переключить тему: Светлая/Тёмная",
+    "light": "Светлая",
+    "dark": "Тёмная"
+  },
+  "language": {
+    "select": "Выберите язык",
+    "german": "Deutsch",
+    "english": "English",
+    "turkish": "Türkçe",
+    "russian": "Русский",
+    "arabic": "العربية",
+    "ukrainian": "Українська",
+    "polish": "Polski"
+  },
+  "slots": {
+    "remaining": "Осталось {{remaining}} из 5 бесплатных слотов",
+    "loading": "Загрузка доступных мест...",
+    "error": "Ошибка: {{error}}"
+  },
+  "buttons": {
+    "submit": "Отправить",
+    "cancel": "Отмена",
+    "loading": "Загрузка..."
+  }
+}
