@@ -13,6 +13,7 @@ const securityHeaders = {
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   ...securityHeaders,
 };
 
@@ -21,6 +22,7 @@ const allowedOrigins = [
   'https://marcel-cv-boost.lovable.dev',
   'https://marcel-cv-boost.lovable.app',
   'http://localhost:3000',
+  'http://localhost:5173',
   // Keep preview domain for development (will be removed in production)
   'https://542cf94b-6c9e-4ab7-93f7-aaeacf7a41b9.sandbox.lovable.dev'
 ];

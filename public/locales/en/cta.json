@@ -1,0 +1,12 @@
+{
+  "title": "Ready for the next step?",
+  "subtitle": "Let's take your application to the next level together!",
+  "booking": {
+    "text": "Direct booking - Upload your CV if you have one",
+    "aria": "Go to booking page"
+  },
+  "contact": {
+    "text": "If you have questions first, feel free to write to me!",
+    "aria": "Go to contact page"
+  }
+}

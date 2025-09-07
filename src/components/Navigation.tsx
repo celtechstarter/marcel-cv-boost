@@ -45,15 +45,15 @@ const Navigation = () => {
   }, [isOpen]);
 
   const navItems = [
-    { href: "/#home", label: "Start", title: "Zur Startseite" },
-    { href: "/#about", label: "Über mich", title: "Über mich erfahren" },
-    { href: "/#services", label: "Leistungen", title: "Meine Leistungen ansehen" },
-    { href: "/#ablauf", label: "Ablauf", title: "Wie der Prozess abläuft" },
-    { href: "/bewerbungshilfe", label: "Bewerbungshilfe", title: "Kostenlose Bewerbungshilfe anfragen" },
-    { href: "/reviews", label: "Bewertungen", title: "Kundenbewertungen lesen" },
-    { href: "/faq", label: "FAQ", title: "Häufig gestellte Fragen" },
-    { href: "/blog", label: "Blog", title: "Blog-Artikel lesen" },
-    { href: "/#contact", label: "Kontakt", title: "Kontakt aufnehmen" },
+    { href: "/#home", label: t('navigation.items.home'), title: t('navigation.titles.home') },
+    { href: "/#about", label: t('navigation.items.about'), title: t('navigation.titles.about') },
+    { href: "/#services", label: t('navigation.items.services'), title: t('navigation.titles.services') },
+    { href: "/#ablauf", label: t('navigation.items.process'), title: t('navigation.titles.process') },
+    { href: "/bewerbungshilfe", label: t('navigation.items.help'), title: t('navigation.titles.help') },
+    { href: "/reviews", label: t('navigation.items.reviews'), title: t('navigation.titles.reviews') },
+    { href: "/faq", label: t('navigation.items.faq'), title: t('navigation.titles.faq') },
+    { href: "/blog", label: t('navigation.items.blog'), title: t('navigation.titles.blog') },
+    { href: "/#contact", label: t('navigation.items.contact'), title: t('navigation.titles.contact') },
   ];
 
   const isActiveRoute = (href: string) => {
@@ -76,7 +76,7 @@ const Navigation = () => {
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:font-medium"
       >
-        Zum Inhalt springen
+        {t('navigation.skipLink')}
       </a>
 
       <nav 
@@ -126,9 +126,9 @@ const Navigation = () => {
                 >
                   <a 
                     href="/bewerbungshilfe#anfrage"
-                    aria-label="Jetzt Bewerbungshilfe anfragen"
+                    aria-label={t('navigation.titles.help')}
                   >
-                    Jetzt Anfragen
+                    {t('navigation.requestButton')}
                   </a>
                 </Button>
               </div>
@@ -187,9 +187,9 @@ const Navigation = () => {
                     <a 
                       href="/bewerbungshilfe#anfrage" 
                       onClick={handleMenuItemClick}
-                      aria-label="Jetzt Bewerbungshilfe anfragen"
+                      aria-label={t('navigation.titles.help')}
                     >
-                      Jetzt Anfragen
+                      {t('navigation.requestButton')}
                     </a>
                   </Button>
                 </div>

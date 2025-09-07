@@ -73,8 +73,8 @@ export function I18nProvider(props: I18nProviderProps) {
   };
 
   const t = (key: string, params?: Record<string, any>): string => {
-    // Search across both 'home' and 'common' namespaces
-    const searchNamespaces = ['home', 'common'];
+    // Search across multiple namespaces
+    const searchNamespaces = ['home', 'common', 'cta', 'navigation'];
     
     for (const namespace of searchNamespaces) {
       const result = findTranslation(key, locale, namespace);
@@ -143,14 +143,18 @@ export function I18nProvider(props: I18nProviderProps) {
       // Always load German as fallback first
       await Promise.all([
         loadTranslation('de', 'common'),
-        loadTranslation('de', 'home')
+        loadTranslation('de', 'home'),
+        loadTranslation('de', 'cta'),
+        loadTranslation('de', 'navigation')
       ]);
       
       // Then load current locale if different from German
       if (locale !== 'de') {
         await Promise.all([
           loadTranslation(locale, 'common'),
-          loadTranslation(locale, 'home')
+          loadTranslation(locale, 'home'),
+          loadTranslation(locale, 'cta'),
+          loadTranslation(locale, 'navigation')
         ]);
       }
       

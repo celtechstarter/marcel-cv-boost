@@ -35,7 +35,7 @@ const Index = () => {
                 <Button 
                   asChild
                   size="lg"
-                  className="h-auto p-6 flex-col gap-3 text-left"
+                  className="h-auto p-6 flex-col gap-3 text-left w-full whitespace-normal break-words"
                 >
                   <a 
                     href="/bewerbungshilfe#termin"
@@ -50,7 +50,7 @@ const Index = () => {
                   asChild
                   variant="secondary"
                   size="lg"
-                  className="h-auto p-6 flex-col gap-3 text-left"
+                  className="h-auto p-6 flex-col gap-3 text-left w-full whitespace-normal break-words"
                 >
                   <a 
                     href="/bewerbungshilfe#anfrage"

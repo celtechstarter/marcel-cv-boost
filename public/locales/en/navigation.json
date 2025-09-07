@@ -1,0 +1,26 @@
+{
+  "items": {
+    "home": "Home",
+    "about": "About", 
+    "services": "Services",
+    "process": "Process",
+    "help": "CV Help",
+    "reviews": "Reviews",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "titles": {
+    "home": "Go to homepage",
+    "about": "Learn about me",
+    "services": "View my services", 
+    "process": "How the process works",
+    "help": "Request free CV help",
+    "reviews": "Read customer reviews",
+    "faq": "Frequently asked questions",
+    "blog": "Read blog articles",
+    "contact": "Get in touch"
+  },
+  "requestButton": "Get Started",
+  "skipLink": "Skip to content"
+}

@@ -13,14 +13,27 @@ export async function callEdge(path: string, init?: RequestInit) {
     throw new Error('Interner Fehler: GET/HEAD dürfen keinen Request-Body haben.');
   }
 
+  const headers: Record<string, string> = {};
+  
+  // Copy existing headers safely
+  if (init?.headers) {
+    Object.entries(init.headers).forEach(([key, value]) => {
+      if (typeof value === 'string') {
+        headers[key] = value;
+      }
+    });
+  }
+
+  // Only add Content-Type and Authorization for non-GET/HEAD requests
+  if (method !== 'GET' && method !== 'HEAD') {
+    headers["Content-Type"] = "application/json";
+    headers["Authorization"] = `Bearer ${ANON_KEY}`;
+  }
+
   const res = await fetch(`${PROJECT_URL}/functions/v1/api${path}`, {
     ...init,
     method,
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${ANON_KEY}`,
-      ...(init?.headers || {}),
-    },
+    headers,
   });
   
   const data = await res.json().catch(() => ({}));

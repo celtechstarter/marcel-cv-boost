@@ -1,0 +1,12 @@
+{
+  "title": "Bereit für den nächsten Schritt?",
+  "subtitle": "Lass uns gemeinsam deine Bewerbung auf das nächste Level bringen!",
+  "booking": {
+    "text": "Hier geht's direkt zur Terminbuchung - Lade deinen CV hoch, falls du einen hast",
+    "aria": "Zur Terminbuchung wechseln"
+  },
+  "contact": {
+    "text": "Falls du erstmal Fragen hast, kannst du mir gerne erstmal schreiben!",
+    "aria": "Zur Kontaktseite wechseln"
+  }
+}

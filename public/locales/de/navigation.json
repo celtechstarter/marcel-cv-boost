@@ -1,0 +1,26 @@
+{
+  "items": {
+    "home": "Start",
+    "about": "Über mich", 
+    "services": "Leistungen",
+    "process": "Ablauf",
+    "help": "Bewerbungshilfe",
+    "reviews": "Bewertungen",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Kontakt"
+  },
+  "titles": {
+    "home": "Zur Startseite",
+    "about": "Über mich erfahren",
+    "services": "Meine Leistungen ansehen", 
+    "process": "Wie der Prozess abläuft",
+    "help": "Kostenlose Bewerbungshilfe anfragen",
+    "reviews": "Kundenbewertungen lesen",
+    "faq": "Häufig gestellte Fragen",
+    "blog": "Blog-Artikel lesen",
+    "contact": "Kontakt aufnehmen"
+  },
+  "requestButton": "Jetzt Anfragen",
+  "skipLink": "Zum Inhalt springen"
+}
