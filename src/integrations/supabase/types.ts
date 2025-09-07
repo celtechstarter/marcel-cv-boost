@@ -183,6 +183,13 @@ export type Database = {
             foreignKeyName: "review_verifications_review_id_fkey"
             columns: ["review_id"]
             isOneToOne: true
+            referencedRelation: "public_reviews_safe"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "review_verifications_review_id_fkey"
+            columns: ["review_id"]
+            isOneToOne: true
             referencedRelation: "reviews"
             referencedColumns: ["id"]
           },
@@ -295,6 +302,33 @@ export type Database = {
           name?: string | null
           rating?: number | null
           title?: string | null
+        }
+        Relationships: []
+      }
+      public_reviews_safe: {
+        Row: {
+          body: string | null
+          display_name: string | null
+          id: string | null
+          published_at: string | null
+          rating: number | null
+          title: string | null
+        }
+        Insert: {
+          body?: string | null
+          display_name?: never
+          id?: string | null
+          published_at?: string | null
+          rating?: number | null
+          title?: never
+        }
+        Update: {
+          body?: string | null
+          display_name?: never
+          id?: string | null
+          published_at?: string | null
+          rating?: number | null
+          title?: never
         }
         Relationships: []
       }
