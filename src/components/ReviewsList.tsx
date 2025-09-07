@@ -7,11 +7,11 @@ import { supabase } from '@/integrations/supabase/client';
 
 interface Review {
   id: string;
-  name: string;
+  display_name: string;
   rating: number;
   title: string;
   body: string;
-  date_published: string;
+  published_at: string;
 }
 
 export const ReviewsList = () => {
@@ -37,9 +37,9 @@ export const ReviewsList = () => {
     try {
       setIsLoading(true);
       const { data, error } = await supabase
-        .from('public_reviews')
+        .from('public_reviews_safe')
         .select('*')
-        .order('date_published', { ascending: false });
+        .order('published_at', { ascending: false });
 
       if (error) {
         console.error('Error fetching reviews:', error);
@@ -72,11 +72,7 @@ export const ReviewsList = () => {
     setCurrentPage(1);
   };
 
-  const formatName = (fullName: string) => {
-    const parts = fullName.trim().split(' ');
-    if (parts.length === 1) return parts[0];
-    return `${parts[0]} ${parts[parts.length - 1].charAt(0)}.`;
-  };
+  // No longer needed as display_name is already formatted securely
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -165,15 +161,15 @@ export const ReviewsList = () => {
               <CardContent className="pt-6">
                 <div className="space-y-3">
                   <div className="flex items-start justify-between">
-                    <div className="space-y-1">
-                      <div className="flex items-center space-x-2">
-                        <span className="font-medium">{formatName(review.name)}</span>
-                        <div className="flex">{renderStars(review.rating)}</div>
+                      <div className="space-y-1">
+                        <div className="flex items-center space-x-2">
+                          <span className="font-medium">{review.display_name}</span>
+                          <div className="flex">{renderStars(review.rating)}</div>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          {new Date(review.published_at).toLocaleDateString('de-DE')}
+                        </p>
                       </div>
-                      <p className="text-sm text-muted-foreground">
-                        {new Date(review.date_published).toLocaleDateString('de-DE')}
-                      </p>
-                    </div>
                   </div>
                   
                   {review.title && (
