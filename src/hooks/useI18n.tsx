@@ -77,7 +77,8 @@ export function I18nProvider(props: I18nProviderProps) {
     const searchNamespaces = ['home', 'common', 'cta', 'navigation', 'about', 'services'];
     
     for (const namespace of searchNamespaces) {
-      const result = findTranslation(key, locale, namespace);
+      const normalizedKey = key.startsWith(namespace + '.') ? key.slice(namespace.length + 1) : key;
+      const result = findTranslation(normalizedKey, locale, namespace);
       if (result !== null) {
         if (typeof result !== 'string') continue;
         
@@ -100,7 +101,8 @@ export function I18nProvider(props: I18nProviderProps) {
     // If not found in current locale, try German fallback
     if (locale !== 'de') {
       for (const namespace of searchNamespaces) {
-        const result = findTranslation(key, 'de', namespace);
+        const normalizedKey = key.startsWith(namespace + '.') ? key.slice(namespace.length + 1) : key;
+        const result = findTranslation(normalizedKey, 'de', namespace);
         if (result !== null && typeof result === 'string') {
           if (params) {
             let processedResult = result;
