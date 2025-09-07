@@ -1,8 +1,40 @@
+import { useEffect } from 'react';
 import Layout from '@/components/Layout';
 import { ReviewForm } from '@/components/ReviewForm';
 import { ReviewsList } from '@/components/ReviewsList';
 
 const Reviews = () => {
+  useEffect(() => {
+    // SEO Meta Tags - only update if missing or incorrect
+    document.title = "Kundenbewertungen - Kostenlose Bewerbungshilfe Erfahrungen | Marcel Welk";
+    
+    // Update meta description for Reviews page
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'Lesen Sie echte Bewertungen zur kostenlosen Bewerbungshilfe. Erfahrungen mit KI-gestützter Lebenslauf-Erstellung und professionellem Bewerbungscoaching.');
+    
+    // Add Open Graph tags for social sharing
+    const ogTags = [
+      { property: 'og:title', content: 'Kundenbewertungen - Kostenlose Bewerbungshilfe' },
+      { property: 'og:description', content: 'Echte Erfahrungen mit kostenloser Bewerbungshilfe und KI-gestützter Lebenslauf-Erstellung.' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://marcel-cv-boost.lovable.dev/reviews' }
+    ];
+    
+    ogTags.forEach(tag => {
+      let existingTag = document.querySelector(`meta[property="${tag.property}"]`);
+      if (!existingTag) {
+        existingTag = document.createElement('meta');
+        existingTag.setAttribute('property', tag.property);
+        document.head.appendChild(existingTag);
+      }
+      existingTag.setAttribute('content', tag.content);
+    });
+  }, []);
   return (
     <Layout>
       <div className="container mx-auto px-4 py-16 space-y-16">

@@ -16,7 +16,16 @@ const Blog = () => {
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Expertentipps für Bewerbungen 2025: KI-Lebenslauf erstellen, psychische Belastungen meistern, ATS-optimierte CVs und moderne Bewerbungsstrategien.');
+    metaDescription.setAttribute('content', 'Expertentipps für Bewerbungen 2025: KI-Lebenslauf erstellen, psychische Belastungen meistern, ATS-optimierte CVs und moderne Bewerbungsstrategien. Expert tips for applications 2025: AI resume creation, overcoming mental health challenges, ATS-optimized CVs.');
+    
+    // Add keywords for AI search
+    let keywords = document.querySelector('meta[name="keywords"]');
+    if (!keywords) {
+      keywords = document.createElement('meta');
+      keywords.setAttribute('name', 'keywords');
+      document.head.appendChild(keywords);
+    }
+    keywords.setAttribute('content', 'KI Bewerbung, Lebenslauf KI erstellen, ATS optimiert, psychische Belastungen Bewerbung, AI resume, CV AI optimization, mental health job application, accessible job applications');
     
     // Open Graph Tags
     const ogTags = [

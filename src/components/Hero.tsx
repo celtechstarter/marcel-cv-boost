@@ -56,7 +56,7 @@ const Hero = () => {
             <div className="relative z-10">
               <img
                 src="/lovable-uploads/b88262de-c305-473a-a997-7014c75c09ae.png"
-                alt="Porträt von Marcel, Bewerbungshelfer"
+                alt="Marcel Welk - professioneller Bewerbungshelfer für kostenlose Lebenslauf Hilfe und KI-gestützte CV Optimierung für Menschen mit psychischen Belastungen"
                 className="rounded-2xl shadow-large w-full h-auto"
                 loading="eager"
               />

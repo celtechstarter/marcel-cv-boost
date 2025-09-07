@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,46 @@ import { CvDropzone } from "@/components/CvDropzone";
 import Layout from "@/components/Layout";
 
 const Bewerbungshilfe = () => {
+  useEffect(() => {
+    // SEO optimization for main service page
+    document.title = "Bewerbungshilfe kostenlos - Lebenslauf erstellen lassen | Marcel Welk";
+    
+    // Set meta description for this critical landing page
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'Kostenlose Bewerbungshilfe: Lebenslauf erstellen lassen mit KI-Unterstützung. Professionelle CV Hilfe für Menschen mit psychischen Belastungen. Jetzt Termin buchen!');
+    
+    // Add canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', 'https://marcel-cv-boost.lovable.dev/bewerbungshilfe');
+    
+    // Open Graph tags for social sharing
+    const ogTags = [
+      { property: 'og:title', content: 'Bewerbungshilfe kostenlos - Lebenslauf erstellen lassen' },
+      { property: 'og:description', content: 'Kostenlose Bewerbungshilfe mit KI-Unterstützung. Professionelle CV Hilfe für Menschen mit besonderen Herausforderungen.' },
+      { property: 'og:type', content: 'service' },
+      { property: 'og:url', content: 'https://marcel-cv-boost.lovable.dev/bewerbungshilfe' }
+    ];
+    
+    ogTags.forEach(tag => {
+      let existingTag = document.querySelector(`meta[property="${tag.property}"]`);
+      if (!existingTag) {
+        existingTag = document.createElement('meta');
+        existingTag.setAttribute('property', tag.property);
+        document.head.appendChild(existingTag);
+      }
+      existingTag.setAttribute('content', tag.content);
+    });
+  }, []);
   const [activeSection, setActiveSection] = useState<'anfrage' | 'termin'>('anfrage');
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const [isSubmittingBooking, setIsSubmittingBooking] = useState(false);
@@ -453,6 +493,55 @@ const Bewerbungshilfe = () => {
           </section>
         </div>
       </main>
+
+      {/* Structured Data for Service Page - AI Search Optimization */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["Service", "HowTo"],
+            "name": "Kostenlose Bewerbungshilfe und Lebenslauf Erstellung",
+            "description": "Professionelle, barrierefreie Bewerbungshilfe mit KI-Unterstützung für Menschen mit psychischen Belastungen, Schwerbehinderung oder anderen Herausforderungen",
+            "provider": {
+              "@type": "Person",
+              "name": "Marcel Welk",
+              "email": "marcel.welk87@gmail.com"
+            },
+            "areaServed": "Deutschland",
+            "availableLanguage": ["de", "en", "tr", "ru", "ar", "uk", "pl"],
+            "isAccessibleForFree": true,
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "Menschen mit besonderen Herausforderungen"
+            },
+            "serviceType": "Bewerbungsberatung",
+            "serviceArea": {
+              "@type": "Country",
+              "name": "Deutschland"
+            },
+            "url": "https://marcel-cv-boost.lovable.dev/bewerbungshilfe",
+            "keywords": ["kostenlose Bewerbungshilfe", "Lebenslauf Hilfe", "KI Bewerbung", "barrierefreie Bewerbung", "CV erstellen kostenlos", "psychische Belastungen Bewerbung"],
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Anfrage senden oder Termin buchen",
+                "text": "Senden Sie eine kurze Anfrage oder buchen Sie direkt einen kostenlosen Beratungstermin"
+              },
+              {
+                "@type": "HowToStep", 
+                "name": "Persönliche Beratung",
+                "text": "Erhalten Sie individuelle Unterstützung via Discord mit KI-gestützter Optimierung"
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Professioneller Lebenslauf",
+                "text": "Bekommen Sie einen ATS-optimierten, professionellen Lebenslauf komplett kostenlos"
+              }
+            ]
+          })
+        }}
+      />
     </Layout>
   );
 };
