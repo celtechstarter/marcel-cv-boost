@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useI18n } from "@/hooks/useI18n";
 
 const ThemeToggle = () => {
+  const { t } = useI18n();
   const [isDark, setIsDark] = useState(true); // Default to dark mode
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const ThemeToggle = () => {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      aria-label="Darstellung umschalten: Hell/Dunkel"
+      aria-label={t('theme.toggle')}
       aria-pressed={isDark}
       className="relative h-9 w-9 focus:ring-2 focus:ring-primary focus:ring-offset-2"
     >

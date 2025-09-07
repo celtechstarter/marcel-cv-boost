@@ -53,6 +53,7 @@ interface I18nProviderProps {
 export function I18nProvider(props: I18nProviderProps) {
   const [locale, setLocaleState] = useState<Locale>('de');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [version, setVersion] = useState(0); // Force re-renders
 
   useEffect(() => {
     const saved = localStorage.getItem('locale') as Locale;
@@ -72,42 +73,64 @@ export function I18nProvider(props: I18nProviderProps) {
   };
 
   const t = (key: string, params?: Record<string, any>): string => {
+    // Search across both 'home' and 'common' namespaces
+    const searchNamespaces = ['home', 'common'];
+    
+    for (const namespace of searchNamespaces) {
+      const result = findTranslation(key, locale, namespace);
+      if (result !== null) {
+        if (typeof result !== 'string') continue;
+        
+        if (params) {
+          let processedResult = result;
+          for (const paramKey in params) {
+            const placeholder = '{{' + paramKey + '}}';
+            const replacement = String(params[paramKey]);
+            while (processedResult.indexOf(placeholder) !== -1) {
+              processedResult = processedResult.replace(placeholder, replacement);
+            }
+          }
+          return processedResult;
+        }
+        
+        return result;
+      }
+    }
+    
+    // If not found in current locale, try German fallback
+    if (locale !== 'de') {
+      for (const namespace of searchNamespaces) {
+        const result = findTranslation(key, 'de', namespace);
+        if (result !== null && typeof result === 'string') {
+          if (params) {
+            let processedResult = result;
+            for (const paramKey in params) {
+              const placeholder = '{{' + paramKey + '}}';
+              const replacement = String(params[paramKey]);
+              while (processedResult.indexOf(placeholder) !== -1) {
+                processedResult = processedResult.replace(placeholder, replacement);
+              }
+            }
+            return processedResult;
+          }
+          return result;
+        }
+      }
+    }
+    
+    return key; // Return key if nothing found
+  };
+
+  const findTranslation = (key: string, targetLocale: Locale, namespace: string): any => {
     const keys = key.split('.');
-    let value: any = translations[locale];
+    let value: any = translations[targetLocale]?.[namespace];
     
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
         value = value[k];
       } else {
-        // Fallback to German if key not found in current locale
-        if (locale !== 'de') {
-          let germanValue: any = translations['de'];
-          for (const k of keys) {
-            if (germanValue && typeof germanValue === 'object' && k in germanValue) {
-              germanValue = germanValue[k];
-            } else {
-              return key;
-            }
-          }
-          value = germanValue;
-          break;
-        }
-        return key;
+        return null;
       }
-    }
-    
-    if (typeof value !== 'string') return key;
-    
-    if (params) {
-      let result = value;
-      for (const paramKey in params) {
-        const placeholder = '{{' + paramKey + '}}';
-        const replacement = String(params[paramKey]);
-        while (result.indexOf(placeholder) !== -1) {
-          result = result.replace(placeholder, replacement);
-        }
-      }
-      return result;
     }
     
     return value;
@@ -116,11 +139,23 @@ export function I18nProvider(props: I18nProviderProps) {
   useEffect(() => {
     const loadTranslations = async () => {
       setIsLoaded(false);
+      
+      // Always load German as fallback first
       await Promise.all([
-        loadTranslation(locale, 'common'),
-        loadTranslation(locale, 'home')
+        loadTranslation('de', 'common'),
+        loadTranslation('de', 'home')
       ]);
+      
+      // Then load current locale if different from German
+      if (locale !== 'de') {
+        await Promise.all([
+          loadTranslation(locale, 'common'),
+          loadTranslation(locale, 'home')
+        ]);
+      }
+      
       setIsLoaded(true);
+      setVersion(prev => prev + 1); // Force re-render
     };
     loadTranslations();
   }, [locale]);
