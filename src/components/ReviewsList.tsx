@@ -37,9 +37,10 @@ export const ReviewsList = () => {
     try {
       setIsLoading(true);
       const { data, error } = await supabase
-        .from('public_reviews_safe')
-        .select('*')
-        .order('published_at', { ascending: false });
+        .rpc('get_published_reviews_safe', { 
+          p_limit: 1000, 
+          p_offset: 0 
+        });
 
       if (error) {
         console.error('Error fetching reviews:', error);
