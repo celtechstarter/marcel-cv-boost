@@ -74,7 +74,7 @@ export function I18nProvider(props: I18nProviderProps) {
 
   const t = (key: string, params?: Record<string, any>): string => {
     // Search across multiple namespaces
-    const searchNamespaces = ['home', 'common', 'cta', 'navigation'];
+    const searchNamespaces = ['home', 'common', 'cta', 'navigation', 'about', 'services'];
     
     for (const namespace of searchNamespaces) {
       const result = findTranslation(key, locale, namespace);
@@ -145,7 +145,9 @@ export function I18nProvider(props: I18nProviderProps) {
         loadTranslation('de', 'common'),
         loadTranslation('de', 'home'),
         loadTranslation('de', 'cta'),
-        loadTranslation('de', 'navigation')
+        loadTranslation('de', 'navigation'),
+        loadTranslation('de', 'about'),
+        loadTranslation('de', 'services')
       ]);
       
       // Then load current locale if different from German
@@ -154,7 +156,9 @@ export function I18nProvider(props: I18nProviderProps) {
           loadTranslation(locale, 'common'),
           loadTranslation(locale, 'home'),
           loadTranslation(locale, 'cta'),
-          loadTranslation(locale, 'navigation')
+          loadTranslation(locale, 'navigation'),
+          loadTranslation(locale, 'about'),
+          loadTranslation(locale, 'services')
         ]);
       }
       

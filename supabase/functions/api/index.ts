@@ -31,7 +31,8 @@ const allowedOrigins = [
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const supabase = createClient(supabaseUrl, supabaseServiceKey);
-const resend = new Resend(Deno.env.get('RESEND_API_KEY'));
+const resendApiKey = Deno.env.get('RESEND_API_KEY');
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 const SITE_URL = 'https://marcel-cv-boost.lovable.dev';
 const ADMIN_PASS = Deno.env.get('ADMIN_PASS');
