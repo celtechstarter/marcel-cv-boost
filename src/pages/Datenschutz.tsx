@@ -4,11 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 const Datenschutz = () => {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16">
+      <main className="container mx-auto px-4 py-16" role="main">
         <div className="max-w-3xl mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle className="text-3xl">Datenschutzerklärung</CardTitle>
+              {/* Main H1 for SEO */}
+              <h1 className="text-3xl font-bold">Datenschutzerklärung</h1>
             </CardHeader>
             <CardContent className="space-y-6">
               <section>
@@ -117,7 +118,7 @@ const Datenschutz = () => {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </main>
 
       {/* SEO Meta Tags */}
       <script
@@ -128,7 +129,7 @@ const Datenschutz = () => {
             "@type": "WebPage",
             "name": "Datenschutzerklärung - Marcel CV Boost",
             "description": "Datenschutzerklärung für Marcel CV Boost Service - DSGVO-konform",
-            "url": "https://marcel-cv-boost.lovable.dev/datenschutz"
+            "url": "https://marcel-cv-boost.lovable.app/datenschutz"
           })
         }}
       />

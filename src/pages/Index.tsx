@@ -16,7 +16,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <main className="pt-16">
+      <main className="pt-16" role="main">
+        {/* H1 is in Hero component */}
         <Hero />
         <div className="py-8">
           <div className="container mx-auto px-4">

@@ -27,7 +27,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Navigation</h4>
             <nav className="space-y-2">
-              <a href="#home" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/" className="block text-background/80 hover:text-background transition-colors">
                 Start
               </a>
               <a href="/#about" className="block text-background/80 hover:text-background transition-colors">
@@ -50,6 +50,10 @@ const Footer = () => {
               </a>
               <a href="/#contact" className="block text-background/80 hover:text-background transition-colors">
                 Kontakt
+              </a>
+              {/* Additional internal links for SEO */}
+              <a href="/bewerbungshilfe" className="block text-background/80 hover:text-background transition-colors">
+                Bewerbungshilfe
               </a>
             </nav>
           </div>

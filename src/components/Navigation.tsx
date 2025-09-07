@@ -91,9 +91,9 @@ const Navigation = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <a 
-                href="#home" 
+                 href="/" 
                 className="text-xl font-semibold gradient-text focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm"
-                title="Zur Startseite"
+                title="Zur Startseite - Marcel Bewerbungshilfe"
               >
                 Marcel
               </a>

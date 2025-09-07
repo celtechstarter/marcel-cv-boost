@@ -4,11 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 const Impressum = () => {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16">
+      <main className="container mx-auto px-4 py-16" role="main">
         <div className="max-w-3xl mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle className="text-3xl">Impressum</CardTitle>
+              {/* Main H1 for SEO */}
+              <h1 className="text-3xl font-bold">Impressum</h1>
             </CardHeader>
             <CardContent className="space-y-6">
               <section>
@@ -62,7 +63,7 @@ const Impressum = () => {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </main>
 
       {/* SEO Meta Tags */}
       <script
@@ -73,7 +74,7 @@ const Impressum = () => {
             "@type": "WebPage",
             "name": "Impressum - Marcel CV Boost",
             "description": "Impressum und rechtliche Angaben für Marcel CV Boost Service",
-            "url": "https://marcel-cv-boost.lovable.dev/impressum"
+            "url": "https://marcel-cv-boost.lovable.app/impressum"
           })
         }}
       />
