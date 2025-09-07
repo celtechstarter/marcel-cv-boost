@@ -1,73 +1,101 @@
-# Welcome to your Lovable project
+# marcel-cv-boost
 
-## Project info
+**Moderne, barrierearme Portfolio- und Bewerbungshilfe-Plattform.**  
+Gebaut mit Vite, React, TypeScript, shadcn-ui, Tailwind CSS und Supabase.
 
-**URL**: https://lovable.dev/projects/542cf94b-6c9e-4ab7-93f7-aaeacf7a41b9
+---
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+- Hochmodernes, responsives UI  
+- Bewerbungsunterlagen-Upload mit sicherem File-Handling
+- Buchungssystem für individuelle Bewerbungshilfe (mit Kontingenten & Admin-Review)
+- Reviews/Funktionen zur Bewertung deiner Dienstleistung integriert
+- Blog-/FAQ-Sections für Tipps und Support
+- Multilinguale Unterstützung und Theme Toggle
+- DSGVO-gerechte Datenhaltung & erhöhter Datenschutz
+- Barrierefreiheit (ARIA, Farbkontraste, Tastaturbedienung etc.)
+- Admin-Dashboard für Slot-/Benutzerverwaltung
+- Supabase-Datenbank- und Auth-Integration
+- Sicherheitsfeatures (RLS, Sicherheitsheader, Policies)
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/542cf94b-6c9e-4ab7-93f7-aaeacf7a41b9) and start prompting.
+## 🧑‍💻 Projekt Live anschauen
 
-Changes made via Lovable will be committed automatically to this repo.
+- [Meine Homepage](https://marcel-cv-boost.lovable.app/)
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## ⚡️ Schneller Einstieg
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Klonen & lokal starten:**
 
-Follow these steps:
+1. Repository klonen
+git clone https://github.com/celtechstarter/marcel-cv-boost.git
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Ins Projektverzeichnis wechseln
+cd marcel-cv-boost
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+3. Abhängigkeiten installieren
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+4. Dev-Server starten (mit auto-reload & Preview)
 npm run dev
-```
 
-**Edit a file directly in GitHub**
+text
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+**.env:**  
+Supabase-Keys und weitere Variablen findest du in `.env` (siehe Template im Repo).
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🧩 Technologien & Libraries
 
-## What technologies are used for this project?
+- **Frontend:** Vite, React, TypeScript, Tailwind CSS, shadcn-ui, Lucide, Radix UI, Zod, Date-fns, React-Query uvm.
+- **Backend:** Supabase (Postgres, Auth, Edge Functions, Storage)
+- **Testing/Codequalität:** ESLint, TypeScript-Konfiguration
+- **Security:** RLS/Policies, Secure File Uploads, Sicherheits-Header
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🌍 Wichtige Ordner/Dateien
 
-## How can I deploy this project?
+- `/src` – Quellcode, Komponenten, Seiten, Hooks, Styles
+- `/public` – Statische Assets
+- `/supabase` – Datenbanken, Migrations, Policies
+- `/components`, `/pages` – UI & Hauptseiten (incl. Accessibility)
+- `.env` – Umgebungsvariablen (Supabase)
 
-Simply open [Lovable](https://lovable.dev/projects/542cf94b-6c9e-4ab7-93f7-aaeacf7a41b9) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 📝 Deployment
 
-Yes, you can!
+- Einfach auf [Lovable.dev](https://lovable.dev) im Projekt auf **Share → Publish** klicken.
+- Alternativ Standard-Vercel/Netlify Build:  
+npm run build
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+---
+
+## 📢 Domains & Custom Domains
+
+- Im Projekt unter Settings > Domains auf Lovable.dev eine eigene Domain verbinden
+
+---
+
+## 🤝 Mitwirken & Feedback
+
+- Pull Requests, Issues & Ideen sind willkommen!
+- Projekt ist aktuell als Referenz/Showcase für moderne (barrierearme) Web-Anwendungen gedacht.
+
+---
+
+## 🛡️ Lizenzen & Credits
+
+- Siehe `package.json` und jeweiligen Bibliotheken.
+
+---
+
+**Made with ❤️ by Marcel Welk**
