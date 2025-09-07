@@ -1,5 +1,17 @@
 {
   "title": "About Me",
-  "subtitle": "Your partner for successful applications",
-  "description": "With years of experience, I help you optimize your application and maximize your chances of landing your dream job."
+  "subtitle": "Your personal career helper",
+  "description": "Hi, I'm Marcel! I help people create professional resumes and optimize their application documents. With many years of experience and modern AI support, I offer you completely free help - especially for people with psychological challenges or disabilities.",
+  "motivation": {
+    "title": "My Motivation",
+    "text": "I believe everyone deserves a fair chance at their dream job. That's why I offer my help completely free and focus particularly on people who face additional challenges in the application process."
+  },
+  "approach": {
+    "title": "My Approach", 
+    "text": "Personal, empathetic, and solution-oriented. Together we create your individual application strategy and optimize your documents until they convince."
+  },
+  "experience": {
+    "title": "Experience & Expertise",
+    "text": "Years of experience in HR, knowledge of modern AI tools and a deep understanding of what recruiters are looking for."
+  }
 }

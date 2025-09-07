@@ -1,0 +1,19 @@
+{
+  "title": "Blog & Tipps",
+  "subtitle": "Wertvolle Tipps rund um Bewerbungen, Lebenslauf-Design, KI-Tools und Motivation für deinen beruflichen Erfolg",
+  "featured": "Neuester Artikel",
+  "readMore": "Weiterlesen",
+  "category": {
+    "aiApplication": "KI & Bewerbung",
+    "mentalHealth": "Mental Health",
+    "productivityTools": "Productivity Tools",
+    "photos": "Bewerbungsfotos",
+    "methods": "Methoden",
+    "accessibility": "Barrierefreiheit"
+  },
+  "newsletter": {
+    "title": "Bleib auf dem Laufenden",
+    "description": "Erhalte die neuesten Tipps und Updates rund um Bewerbungen und Karriere direkt per E-Mail",
+    "subscribe": "Newsletter abonnieren"
+  }
+}

@@ -19,7 +19,7 @@ export const BookingForm = () => {
     privacyAccepted: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [result, setResult] = useState<{ success: boolean; bookingId?: string; error?: string } | null>(null);
+  const [result, setResult] = useState<{ success: boolean; bookingId?: string; error?: string; emailSent?: boolean } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,9 +55,13 @@ export const BookingForm = () => {
         }),
       });
 
+      // Check if email was actually sent successfully
+      const emailSent = data.emailSent !== false;
+      
       setResult({ 
         success: true, 
-        bookingId: data.bookingId 
+        bookingId: data.bookingId,
+        emailSent: emailSent
       });
       
       // Reset form
@@ -219,7 +223,11 @@ export const BookingForm = () => {
                   <div>
                     <p className="font-medium">✅ Termin erfolgreich gebucht!</p>
                     <p>Ihre Buchungs-ID: <strong>{result.bookingId}</strong></p>
-                    <p>Sie erhalten in Kürze eine Bestätigungs-E-Mail.</p>
+                    {result.emailSent ? (
+                      <p>✅ Bestätigungs-E-Mail wurde erfolgreich versendet.</p>
+                    ) : (
+                      <p>⚠️ Termin gebucht, aber E-Mail konnte nicht versendet werden. Bitte notieren Sie sich Ihre Buchungs-ID.</p>
+                    )}
                   </div>
                 ) : (
                   <p>❌ Fehler: {result.error}</p>

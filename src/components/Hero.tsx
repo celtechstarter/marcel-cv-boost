@@ -28,14 +28,14 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button size="lg" className="btn-accent text-lg px-8 py-3" asChild>
+              <Button size="lg" className="btn-accent text-base sm:text-lg px-6 sm:px-8 py-3 w-full sm:w-auto" asChild>
                 <a href="#contact">
-                  <FileText className="mr-2 h-5 w-5" />
-                  {t('hero.cta.primary')}
+                  <FileText className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
+                  <span className="truncate">{t('hero.cta.primary')}</span>
                 </a>
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3" asChild>
-                <a href="#about">{t('hero.cta.secondary')}</a>
+              <Button variant="outline" size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-3 w-full sm:w-auto" asChild>
+                <a href="#about"><span className="truncate">{t('hero.cta.secondary')}</span></a>
               </Button>
             </div>
 

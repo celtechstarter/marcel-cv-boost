@@ -35,6 +35,15 @@ const AdminDashboard = () => {
   const [dashboardData, setDashboardData] = useState<{
     pendingReviews: PendingReview[];
     upcomingBookings: UpcomingBooking[];
+    helpRequests?: Array<{
+      id: string;
+      name: string;
+      email: string;
+      discord_name: string;
+      message: string;
+      cv_path: string;
+      created_at: string;
+    }>;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -275,6 +284,82 @@ const AdminDashboard = () => {
             )}
           </CardContent>
         </Card>
+
+        {/* Help Requests with CVs */}
+        {dashboardData?.helpRequests && dashboardData.helpRequests.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Hilfsanfragen mit CVs ({dashboardData.helpRequests.length})</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Name</TableHead>
+                      <TableHead>E-Mail</TableHead>
+                      <TableHead>Discord</TableHead>
+                      <TableHead>Nachricht</TableHead>
+                      <TableHead>CV</TableHead>
+                      <TableHead>Datum</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {dashboardData.helpRequests.map((request) => (
+                      <TableRow key={request.id}>
+                        <TableCell className="font-medium">{request.name}</TableCell>
+                        <TableCell>{request.email}</TableCell>
+                        <TableCell>{request.discord_name || '-'}</TableCell>
+                        <TableCell className="max-w-xs truncate" title={request.message}>
+                          {request.message}
+                        </TableCell>
+                        <TableCell>
+                          {request.cv_path ? (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={async () => {
+                                try {
+                                  // Call admin function to get signed URL for CV
+                                  const response = await fetch('https://grryxotfastfmgrrfrun.supabase.co/functions/v1/api/admin/cv-download', {
+                                    method: 'POST',
+                                    headers: {
+                                      'Authorization': `Bearer ${adminPassword}`,
+                                      'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ cvPath: request.cv_path }),
+                                  });
+                                  
+                                  if (response.ok) {
+                                    const { downloadUrl } = await response.json();
+                                    window.open(downloadUrl, '_blank');
+                                  } else {
+                                    setError('CV konnte nicht geladen werden');
+                                  }
+                                } catch (error) {
+                                  setError('Fehler beim Laden des CVs');
+                                }
+                              }}
+                            >
+                              CV anzeigen
+                            </Button>
+                          ) : (
+                            <span className="text-muted-foreground">Kein CV</span>
+                          )}
+                        </TableCell>
+                        <TableCell>
+                          <div className="text-sm">
+                            {new Date(request.created_at).toLocaleDateString('de-DE')}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Upcoming Bookings */}
         <Card>

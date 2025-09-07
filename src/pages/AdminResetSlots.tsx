@@ -48,6 +48,11 @@ const AdminResetSlots = () => {
         
         // Trigger slots invalidation for immediate frontend refresh
         window.dispatchEvent(new CustomEvent('slots:invalidate'));
+        
+        // Also trigger a custom event that the SlotsBadge component listens to
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent('slots:invalidate'));
+        }, 100);
       } else {
         throw new Error('Unerwartete Antwort vom Server');
       }

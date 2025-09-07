@@ -3,8 +3,11 @@ import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, ArrowRight, FileText, Lightbulb, Heart, Zap, Target, Users, Palette } from "lucide-react";
+import { useI18n } from "@/hooks/useI18n";
 
 const Blog = () => {
+  const { t } = useI18n();
+  
   useEffect(() => {
     // SEO Meta Tags
     document.title = "Blog - Bewerbungstipps & KI-Karriereberatung | Marcel Welk";
@@ -280,10 +283,10 @@ const Blog = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Blog & <span className="gradient-text">Tipps</span>
+              {t('blog.title') || 'Blog & Tipps'} <span className="gradient-text">{t('blog.title')?.split(' ')[1] || 'Tipps'}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Wertvolle Tipps rund um Bewerbungen, Lebenslauf-Design, KI-Tools und Motivation für deinen beruflichen Erfolg
+              {t('blog.subtitle') || 'Wertvolle Tipps rund um Bewerbungen, Lebenslauf-Design, KI-Tools und Motivation für deinen beruflichen Erfolg'}
             </p>
           </div>
 
@@ -292,7 +295,7 @@ const Blog = () => {
             <CardContent className="p-8">
               <div className="flex items-center gap-2 mb-4">
                 <Zap className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium text-primary">Neuester Artikel</span>
+                <span className="text-sm font-medium text-primary">{t('blog.featured') || 'Neuester Artikel'}</span>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold mb-4">
                 {blogPosts[0].title}
@@ -310,8 +313,17 @@ const Blog = () => {
                   <span>Marcel</span>
                 </div>
               </div>
-              <Button className="btn-primary">
-                Weiterlesen <ArrowRight className="h-4 w-4 ml-2" />
+              <Button 
+                className="btn-primary"
+                onClick={() => {
+                  // Show full article content or navigate to article page
+                  const article = document.getElementById(`article-${blogPosts[0].title.replace(/\s+/g, '-').toLowerCase()}`);
+                  if (article) {
+                    article.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                {t('blog.readMore') || 'Weiterlesen'} <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             </CardContent>
           </Card>
@@ -340,8 +352,31 @@ const Blog = () => {
                       <Calendar className="h-3 w-3" />
                       <span>{new Date(post.date).toLocaleDateString('de-DE')}</span>
                     </div>
-                    <Button variant="ghost" size="sm" className="text-primary hover:bg-primary/10">
-                      Lesen <ArrowRight className="h-3 w-3 ml-1" />
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="text-primary hover:bg-primary/10"
+                      onClick={() => {
+                        // Show full article content by scrolling to it or expanding it
+                        const fullContent = document.createElement('div');
+                        fullContent.innerHTML = post.content;
+                        fullContent.className = 'fixed inset-0 z-50 bg-background/95 backdrop-blur-sm overflow-y-auto p-8';
+                        
+                        const container = document.createElement('div');
+                        container.className = 'max-w-4xl mx-auto bg-card rounded-lg shadow-lg p-8 my-8';
+                        
+                        const closeBtn = document.createElement('button');
+                        closeBtn.textContent = '× Schließen';
+                        closeBtn.className = 'float-right mb-4 text-muted-foreground hover:text-foreground';
+                        closeBtn.onclick = () => document.body.removeChild(fullContent);
+                        
+                        container.appendChild(closeBtn);
+                        container.appendChild(document.createElement('div')).innerHTML = post.content;
+                        fullContent.appendChild(container);
+                        document.body.appendChild(fullContent);
+                      }}
+                    >
+                      {t('blog.readMore') || 'Lesen'} <ArrowRight className="h-3 w-3 ml-1" />
                     </Button>
                   </div>
                 </CardContent>
@@ -353,17 +388,17 @@ const Blog = () => {
           <Card className="card-soft mt-12 bg-accent/5 border-accent/20">
             <CardContent className="p-8 text-center">
               <h3 className="text-2xl font-bold mb-4">
-                Bleib auf dem Laufenden
+                {t('blog.newsletter.title') || 'Bleib auf dem Laufenden'}
               </h3>
               <p className="text-muted-foreground mb-6">
-                Erhalte die neuesten Tipps und Updates rund um Bewerbungen und Karriere direkt per E-Mail
+                {t('blog.newsletter.description') || 'Erhalte die neuesten Tipps und Updates rund um Bewerbungen und Karriere direkt per E-Mail'}
               </p>
               <Button 
                 className="btn-accent"
                 onClick={() => window.location.href = 'mailto:marcel.welk87@gmail.com?subject=Newsletter Anmeldung'}
-                aria-label="Newsletter abonnieren"
+                aria-label={t('blog.newsletter.subscribe') || 'Newsletter abonnieren'}
               >
-                Newsletter abonnieren
+                {t('blog.newsletter.subscribe') || 'Newsletter abonnieren'}
               </Button>
             </CardContent>
           </Card>

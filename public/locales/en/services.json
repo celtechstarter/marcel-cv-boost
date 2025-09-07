@@ -1,4 +1,35 @@
 {
   "title": "My Services",
-  "subtitle": "Professional application support for your success"
+  "subtitle": "Everything around your successful application",
+  "cta": {
+    "title": "Ready to get started?",
+    "subtitle": "Choose your preferred way:",
+    "booking": {
+      "text": "Direct booking - Upload your CV if you have one",
+      "aria": "Go directly to appointment booking"
+    },
+    "contact": {
+      "text": "If you have questions first, feel free to write to me!",
+      "aria": "Go to contact form"
+    },
+    "button": "Secure free slot now"
+  },
+  "services": [
+    {
+      "title": "CV Creation & Optimization",
+      "description": "Professional resume creation with AI support and personal consultation"
+    },
+    {
+      "title": "Cover Letter Optimization", 
+      "description": "Convincing cover letters tailored to your target position"
+    },
+    {
+      "title": "Application Strategy",
+      "description": "Individual strategy for your successful job search"
+    },
+    {
+      "title": "Interview Preparation",
+      "description": "Targeted preparation for your job interview"
+    }
+  ]
 }

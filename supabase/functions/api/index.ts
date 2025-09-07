@@ -723,7 +723,11 @@ const handler = async (req: Request): Promise<Response> => {
         console.log(`[BOOKING-EMAIL-SUCCESS] Both emails sent successfully for booking ${bookingId}`);
       }
 
-      return new Response(JSON.stringify({ ok: true, booking_id: bookingId, mail: mailStatus }), {
+      return new Response(JSON.stringify({ 
+        ok: true, 
+        bookingId: bookingId, 
+        emailSent: mailStatus === 'sent'
+      }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
@@ -884,8 +888,14 @@ const handler = async (req: Request): Promise<Response> => {
         .lte('starts_at', nextWeek.toISOString())
         .order('starts_at', { ascending: true });
 
-      if (reviewsError || bookingsError) {
-        console.error('Dashboard data error:', { reviewsError, bookingsError });
+      // Get help requests with CVs (last 30 days)
+      const { data: helpRequests, error: helpError } = await supabase.rpc('admin_list_help_requests', {
+        p_limit: 50,
+        p_offset: 0
+      });
+
+      if (reviewsError || bookingsError || helpError) {
+        console.error('Dashboard data error:', { reviewsError, bookingsError, helpError });
         return new Response(JSON.stringify({ error: 'Failed to fetch dashboard data' }), {
           status: 500,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -894,7 +904,8 @@ const handler = async (req: Request): Promise<Response> => {
 
       return new Response(JSON.stringify({
         pendingReviews: pendingReviews || [],
-        upcomingBookings: upcomingBookings || []
+        upcomingBookings: upcomingBookings || [],
+        helpRequests: helpRequests || []
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -989,6 +1000,56 @@ const handler = async (req: Request): Promise<Response> => {
         });
       } catch (error) {
         console.error('Error in booking rejection:', error);
+        return new Response(JSON.stringify({ error: error.message || 'Internal server error' }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
+    // Route: POST /admin/cv-download
+    if (path === '/admin/cv-download' && req.method === 'POST') {
+      const authHeader = req.headers.get('Authorization');
+      const adminPassword = authHeader?.replace('Bearer ', '');
+
+      const expectedPassword = Deno.env.get('ADMIN_PASS');
+      if (adminPassword !== expectedPassword) {
+        return new Response(JSON.stringify({ error: 'Ungültiges Admin-Passwort' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      try {
+        const body = await req.json();
+        const { cvPath } = body;
+
+        if (!cvPath) {
+          return new Response(JSON.stringify({ error: 'CV path is required' }), {
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        // Generate signed URL for CV download
+        const { data, error } = await supabase.rpc('admin_cv_signed_url', {
+          p_path: cvPath,
+          p_expires_sec: 300 // 5 minutes
+        });
+
+        if (error || !data) {
+          console.error('Error generating signed URL:', error);
+          return new Response(JSON.stringify({ error: 'CV nicht gefunden oder nicht verfügbar' }), {
+            status: 404,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        return new Response(JSON.stringify({ downloadUrl: data }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      } catch (error) {
+        console.error('Error in CV download:', error);
         return new Response(JSON.stringify({ error: error.message || 'Internal server error' }), {
           status: 500,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },

@@ -1,0 +1,19 @@
+{
+  "title": "Blog & Tips",
+  "subtitle": "Valuable tips around applications, CV design, AI tools and motivation for your professional success",
+  "featured": "Latest Article",
+  "readMore": "Read more",
+  "category": {
+    "aiApplication": "AI & Application",
+    "mentalHealth": "Mental Health",
+    "productivityTools": "Productivity Tools",
+    "photos": "Application Photos",
+    "methods": "Methods",
+    "accessibility": "Accessibility"
+  },
+  "newsletter": {
+    "title": "Stay up to date",
+    "description": "Get the latest tips and updates about applications and career directly via email",
+    "subscribe": "Subscribe newsletter"
+  }
+}
