@@ -58,6 +58,18 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
 			},
+			fontSize: {
+				'xs': ['clamp(0.75rem, 0.7rem + 0.2vw, 0.8rem)', { lineHeight: '1.5' }],
+				'sm': ['clamp(0.875rem, 0.8rem + 0.3vw, 0.95rem)', { lineHeight: '1.5' }],
+				'base': ['clamp(1rem, 0.9rem + 0.4vw, 1.1rem)', { lineHeight: '1.6' }],
+				'lg': ['clamp(1.125rem, 1rem + 0.5vw, 1.25rem)', { lineHeight: '1.6' }],
+				'xl': ['clamp(1.25rem, 1.1rem + 0.6vw, 1.4rem)', { lineHeight: '1.5' }],
+				'2xl': ['clamp(1.5rem, 1.3rem + 0.8vw, 1.7rem)', { lineHeight: '1.4' }],
+				'3xl': ['clamp(1.875rem, 1.6rem + 1vw, 2.2rem)', { lineHeight: '1.3' }],
+				'4xl': ['clamp(2.25rem, 1.9rem + 1.5vw, 2.8rem)', { lineHeight: '1.2' }],
+				'5xl': ['clamp(3rem, 2.5rem + 2vw, 3.5rem)', { lineHeight: '1.1' }],
+				'6xl': ['clamp(3.75rem, 3rem + 3vw, 4.5rem)', { lineHeight: '1' }],
+			},
 			backgroundImage: {
 				'gradient-hero': 'var(--gradient-hero)',
 				'gradient-card': 'var(--gradient-card)',

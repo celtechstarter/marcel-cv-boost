@@ -90,6 +90,9 @@ const Footer = () => {
               <a href="/datenschutz" className="text-background/60 hover:text-background transition-colors">
                 Datenschutz
               </a>
+              <a href="/barrierefreiheit" className="text-background/60 hover:text-background transition-colors">
+                Barrierefreiheit
+              </a>
             </div>
           </div>
         </div>
