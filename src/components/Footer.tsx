@@ -1,4 +1,4 @@
-import { Heart, Mail, Phone, MapPin } from "lucide-react";
+import { Heart, Mail, Phone, MapPin, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -48,8 +48,8 @@ const Footer = () => {
               <a href="/blog" className="block text-background/80 hover:text-background transition-colors">
                 Blog
               </a>
-              <a href="/#contact" className="block text-background/80 hover:text-background transition-colors">
-                Kontakt
+              <a href="/tools" className="block text-background/80 hover:text-background transition-colors">
+                Tools
               </a>
               {/* Additional internal links for SEO */}
               <a href="/bewerbungshilfe" className="block text-background/80 hover:text-background transition-colors">
@@ -77,6 +77,19 @@ const Footer = () => {
               <div className="flex items-center gap-2 text-sm">
                 <MapPin className="h-4 w-4 text-background/60" />
                 <span className="text-background/80">Deutschland, Remote</span>
+              </div>
+              {/* LinkedIn link as requested */}
+              <div className="flex items-center gap-2 text-sm mt-3">
+                <Linkedin className="h-4 w-4 text-background/60" />
+                <a 
+                  href="https://www.linkedin.com/in/marcel-welk-572a412ab/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-background/80 hover:text-background transition-colors"
+                  aria-label="LinkedIn-Profil von Marcel (öffnet in neuem Tab)"
+                >
+                  LinkedIn
+                </a>
               </div>
             </div>
           </div>

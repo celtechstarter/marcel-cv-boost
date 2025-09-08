@@ -58,7 +58,8 @@ const Blog = () => {
       "author": {
         "@type": "Person",
         "name": "Marcel Welk",
-        "url": "https://marcel-cv-boost.lovable.dev"
+        "url": "https://marcel-cv-boost.lovable.dev",
+        "sameAs": ["https://www.linkedin.com/in/marcel-welk-572a412ab/"]
       },
       "blogPost": blogPosts.slice(0, 3).map(post => ({
         "@type": "BlogPosting",
@@ -306,14 +307,14 @@ const Blog = () => {
               <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
-                  <span>{new Date(blogPosts[0].date).toLocaleDateString('de-DE')}</span>
+                  <span>{new Date(blogPosts[0].date).toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4" />
                   <span>Marcel</span>
                 </div>
               </div>
-              <Button 
+                <Button 
                 className="btn-primary"
                 onClick={() => {
                   // Show full article content or navigate to article page
@@ -350,7 +351,7 @@ const Blog = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <Calendar className="h-3 w-3" />
-                      <span>{new Date(post.date).toLocaleDateString('de-DE')}</span>
+                      <span>{new Date(post.date).toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                     </div>
                     <Button 
                       variant="ghost" 
@@ -376,7 +377,7 @@ const Blog = () => {
                         document.body.appendChild(fullContent);
                       }}
                     >
-                      {t('blog.readMore') || 'Lesen'} <ArrowRight className="h-3 w-3 ml-1" />
+                      {t('blog.readMore') || 'Weiterlesen'} <ArrowRight className="h-3 w-3 ml-1" />
                     </Button>
                   </div>
                 </CardContent>

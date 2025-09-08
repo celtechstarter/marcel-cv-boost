@@ -8,7 +8,7 @@
     "reviews": "Reviews",
     "faq": "FAQ",
     "blog": "Blog",
-    "contact": "Contact"
+    "tools": "Tools"
   },
   "titles": {
     "home": "Go to homepage",
@@ -19,7 +19,7 @@
     "reviews": "Read customer reviews",
     "faq": "Frequently asked questions",
     "blog": "Read blog articles",
-    "contact": "Get in touch"
+    "tools": "View tools"
   },
   "requestButton": "Get Started",
   "skipLink": "Skip to content"

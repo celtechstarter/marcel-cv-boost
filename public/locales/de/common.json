@@ -15,7 +15,7 @@
     "polish": "Polski"
   },
   "slots": {
-    "remaining": "Noch {{remaining}} von 5 kostenlose Slots verfügbar",
+    "remaining": "Noch {{remaining}} von 5 kostenlose Plätze verfügbar",
     "loading": "Lade verfügbare Plätze...",
     "error": "Fehler: {{error}}"
   },

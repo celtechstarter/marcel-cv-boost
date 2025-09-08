@@ -230,7 +230,7 @@ const AdminDashboard = () => {
               variant="outline" 
               onClick={() => window.location.href = '/admin/reset-slots'}
             >
-              Slots zurücksetzen
+              Plätze zurücksetzen
             </Button>
             <Button 
               variant="outline" 

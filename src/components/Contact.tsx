@@ -74,7 +74,7 @@ const Contact = () => {
                 <div className="flex items-center gap-2 text-sm">
                   <Users className="h-4 w-4 text-accent" />
                   <span className="text-accent font-medium">
-                    Noch {availableSlots} von 5 kostenlosen Slots verfügbar
+                    Noch {availableSlots} von 5 kostenlosen Plätzen verfügbar
                   </span>
                 </div>
               </CardHeader>

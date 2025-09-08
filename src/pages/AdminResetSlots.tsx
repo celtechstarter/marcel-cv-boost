@@ -36,13 +36,13 @@ const AdminResetSlots = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Fehler beim Zurücksetzen der Slots');
+        throw new Error(data.error || 'Fehler beim Zurücksetzen der Plätze');
       }
 
       if (data.ok) {
         setResult({ 
           success: true, 
-          message: 'Slots erfolgreich zurückgesetzt' 
+          message: 'Plätze erfolgreich zurückgesetzt' 
         });
         setAdminPass('');
         
@@ -65,7 +65,7 @@ const AdminResetSlots = () => {
       } else {
         setResult({ 
           success: false, 
-          error: error instanceof Error ? error.message : 'Fehler beim Zurücksetzen der Slots' 
+          error: error instanceof Error ? error.message : 'Fehler beim Zurücksetzen der Plätze' 
         });
       }
     } finally {
@@ -80,7 +80,7 @@ const AdminResetSlots = () => {
         <div className="max-w-2xl mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle>Admin - Monats-Slots zurücksetzen</CardTitle>
+              <CardTitle>Admin - Monats-Plätze zurücksetzen</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -96,13 +96,13 @@ const AdminResetSlots = () => {
                     className="focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   />
                   <p id="password-help" className="text-sm text-muted-foreground">
-                    Geben Sie das Admin-Passwort ein, um die Monats-Slots zurückzusetzen.
+                    Geben Sie das Admin-Passwort ein, um die Monats-Plätze zurückzusetzen.
                   </p>
                 </div>
 
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 dark:bg-yellow-950 dark:border-yellow-800">
                   <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                    <strong>Warnung:</strong> Diese Aktion setzt die genutzten Slots für den aktuellen Monat auf 0 zurück. 
+                    <strong>Warnung:</strong> Diese Aktion setzt die genutzten Plätze für den aktuellen Monat auf 0 zurück. 
                     Dadurch stehen wieder alle kostenlosen Plätze zur Verfügung.
                   </p>
                 </div>
@@ -113,7 +113,7 @@ const AdminResetSlots = () => {
                   className="w-full focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   variant="destructive"
                 >
-                  {isSubmitting ? 'Slots werden zurückgesetzt...' : 'Monats-Slots zurücksetzen'}
+                  {isSubmitting ? 'Plätze werden zurückgesetzt...' : 'Monats-Plätze zurücksetzen'}
                 </Button>
 
                 <div 

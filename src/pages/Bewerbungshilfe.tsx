@@ -506,7 +506,8 @@ const Bewerbungshilfe = () => {
             "provider": {
               "@type": "Person",
               "name": "Marcel Welk",
-              "email": "marcel.welk87@gmail.com"
+              "email": "marcel.welk87@gmail.com",
+              "sameAs": ["https://www.linkedin.com/in/marcel-welk-572a412ab/"]
             },
             "areaServed": "Deutschland",
             "availableLanguage": ["de", "en", "tr", "ru", "ar", "uk", "pl"],

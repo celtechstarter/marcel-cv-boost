@@ -96,7 +96,7 @@ const Services = () => {
           <Card className="card-soft max-w-4xl mx-auto">
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold mb-4">
-                🎯 <span className="gradient-text">5 kostenlose Slots</span> pro Monat verfügbar
+                🎯 <span className="gradient-text">5 kostenlose Plätze</span> pro Monat verfügbar
               </h3>
               <p className="text-lg text-muted-foreground mb-6">
                 Du erhältst eine persönliche Betreuung und professionelle Unterstützung – 
@@ -105,7 +105,7 @@ const Services = () => {
               <Button size="lg" className="btn-accent text-lg px-8 py-3" asChild>
                 <a href="/bewerbungshilfe#termin">
                   <FileText className="mr-2 h-5 w-5" />
-                  Jetzt kostenlosen Slot sichern
+                  Jetzt kostenlosen Platz sichern
                 </a>
               </Button>
             </CardContent>

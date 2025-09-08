@@ -67,7 +67,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "Wer kann meine Bewerbungsunterlagen kostenlos prüfen oder erstellen?",
-          answer: "Ich biete jeden Monat fünf kostenlose Slots an, um Menschen beim Erstellen von Lebensläufen und Bewerbungsunterlagen zu unterstützen. Diese Hilfe ist komplett kostenfrei und richtet sich besonders an Menschen, die Unterstützung beim Bewerbungsprozess benötigen."
+          answer: "Ich biete jeden Monat fünf kostenlose Plätze an, um Menschen beim Erstellen von Lebensläufen und Bewerbungsunterlagen zu unterstützen. Diese Hilfe ist komplett kostenfrei und richtet sich besonders an Menschen, die Unterstützung beim Bewerbungsprozess benötigen."
         },
         {
           question: "Wie kann ich dich am besten erreichen?",

@@ -53,7 +53,7 @@ const Navigation = () => {
     { href: "/reviews", label: t('navigation.items.reviews'), title: t('navigation.titles.reviews') },
     { href: "/faq", label: t('navigation.items.faq'), title: t('navigation.titles.faq') },
     { href: "/blog", label: t('navigation.items.blog'), title: t('navigation.titles.blog') },
-    { href: "/#contact", label: t('navigation.items.contact'), title: t('navigation.titles.contact') },
+    { href: "/tools", label: t('navigation.items.tools'), title: t('navigation.titles.tools') },
   ];
 
   const isActiveRoute = (href: string) => {

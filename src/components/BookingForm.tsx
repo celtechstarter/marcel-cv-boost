@@ -78,7 +78,7 @@ export const BookingForm = () => {
       let errorMessage = 'Fehler beim Erstellen der Buchung';
       
       if (error.message.includes('Keine freien Slots')) {
-        errorMessage = 'Keine freien Slots mehr in diesem Monat. Bitte versuchen Sie es nächsten Monat wieder.';
+        errorMessage = 'Keine freien Plätze mehr in diesem Monat. Bitte versuchen Sie es nächsten Monat wieder.';
       } else if (error.message) {
         errorMessage = error.message;
       }

@@ -17,6 +17,7 @@ import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
 import Barrierefreiheit from "./pages/Barrierefreiheit";
 import Bewerbungshilfe from "./pages/Bewerbungshilfe";
+import Tools from "./pages/Tools";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/barrierefreiheit" element={<Barrierefreiheit />} />
           <Route path="/bewerbungshilfe" element={<Bewerbungshilfe />} />
+          <Route path="/tools" element={<Tools />} />
           {/* Redirects for old routes */}
           <Route path="/bewerbungshilfe-anfragen" element={<Bewerbungshilfe />} />
           <Route path="/termin-buchen" element={<Bewerbungshilfe />} />
