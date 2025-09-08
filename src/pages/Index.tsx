@@ -14,7 +14,7 @@ const Index = () => {
   const { t } = useI18n();
   
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <Navigation />
       <main className="pt-16" role="main">
         {/* H1 is in Hero component */}
@@ -65,6 +65,9 @@ const Index = () => {
             </div>
           </div>
         </section>
+        
+        {/* Four info boxes removed as requested - feature flagged off */}
+        {/* showHighlights: false - keeping code but not rendering for now */}
         
         <About />
         <Services />

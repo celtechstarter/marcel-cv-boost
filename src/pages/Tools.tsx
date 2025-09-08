@@ -133,8 +133,8 @@ const Tools = () => {
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Jedes Tool hat seinen spezifischen Zweck: <strong>ChatGPT Pro</strong> für intelligente Formulierungen 
-                  und ATS-Optimierung, <strong>Perplexity Pro</strong> für präzise Jobrecherche, <strong>Canva</strong> 
-                  für professionelles Design und <strong>Google Sheets</strong> für systematisches Bewerbungsmanagement. 
+                  und ATS-Optimierung, <strong>Perplexity Pro</strong> für präzise Jobrecherche, <strong>Canva&#8209;für</strong> 
+                  professionelles Design und <strong>Google Sheets</strong> für systematisches Bewerbungsmanagement. 
                   Zusammen bilden sie das perfekte Toolkit für deine erfolgreiche Bewerbung.
                 </p>
               </div>

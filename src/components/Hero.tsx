@@ -28,10 +28,11 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button size="lg" className="btn-accent text-base sm:text-lg px-6 sm:px-8 py-3 w-full sm:w-auto" asChild>
+              {/* Mobile CTA button - responsive text wrapping and no overflow */}
+              <Button size="lg" className="btn-accent text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-3 w-full sm:w-auto max-w-full inline-flex items-center justify-center whitespace-normal md:whitespace-nowrap break-words" asChild>
                 <a href="#contact">
-                  <FileText className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
-                  <span className="truncate">{t('hero.cta.primary')}</span>
+                  <FileText className="mr-2 h-4 sm:h-5 w-4 sm:w-5 flex-shrink-0" />
+                  <span className="text-center">{t('hero.cta.primary')}</span>
                 </a>
               </Button>
               <Button variant="outline" size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-3 w-full sm:w-auto" asChild>

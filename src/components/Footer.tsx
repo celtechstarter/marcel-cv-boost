@@ -4,20 +4,20 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="bg-white dark:bg-neutral-900/95 text-neutral-700 dark:text-neutral-300 border-t border-neutral-200 dark:border-neutral-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
             <h3 className="text-xl font-semibold mb-4">Marcel</h3>
-            <p className="text-background/80 mb-4 leading-relaxed">
+            <p className="text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
               Kostenlose Lebenslauf Hilfe und Bewerbungshilfe online für Menschen mit psychischen Belastungen, 
               Schwerbehinderung oder anderen Herausforderungen. Professioneller Lebenslauf kostenlos mit 
               KI-Unterstützung. Weil jeder eine faire Chance verdient.
             </p>
             <div className="flex items-center gap-2 text-sm">
               <Heart className="h-4 w-4 text-red-400" />
-              <span className="text-background/80">
+              <span className="text-neutral-600 dark:text-neutral-400">
                 Mit Herzblut für deine berufliche Zukunft
               </span>
             </div>
@@ -27,32 +27,32 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Navigation</h4>
             <nav className="space-y-2">
-              <a href="/" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Start
               </a>
-              <a href="/#about" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/#about" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Über mich
               </a>
-              <a href="/#services" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/#services" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Leistungen
               </a>
-              <a href="/#ablauf" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/#ablauf" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Ablauf
               </a>
-              <a href="/reviews" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/reviews" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Bewertungen
               </a>
-              <a href="/faq" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/faq" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 FAQ
               </a>
-              <a href="/blog" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/blog" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Blog
               </a>
-              <a href="/tools" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/tools" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Tools
               </a>
               {/* Additional internal links for SEO */}
-              <a href="/bewerbungshilfe" className="block text-background/80 hover:text-background transition-colors">
+              <a href="/bewerbungshilfe" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Bewerbungshilfe
               </a>
             </nav>
@@ -63,29 +63,29 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Kontakt</h4>
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-sm">
-                <Mail className="h-4 w-4 text-background/60" />
-                <a href="mailto:marcel.welk87@gmail.com" className="text-background/80 hover:text-background transition-colors">
+                <Mail className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
+                <a href="mailto:marcel.welk87@gmail.com" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                   marcel.welk87@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-2 text-sm">
-                <Phone className="h-4 w-4 text-background/60" />
-                <a href="tel:+491234567890" className="text-background/80 hover:text-background transition-colors">
+                <Phone className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
+                <a href="tel:+491234567890" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                   +49 (0) 123 456789
                 </a>
               </div>
               <div className="flex items-center gap-2 text-sm">
-                <MapPin className="h-4 w-4 text-background/60" />
-                <span className="text-background/80">Deutschland, Remote</span>
+                <MapPin className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
+                <span className="text-neutral-600 dark:text-neutral-400">Deutschland, Remote</span>
               </div>
               {/* LinkedIn link as requested */}
               <div className="flex items-center gap-2 text-sm mt-3">
-                <Linkedin className="h-4 w-4 text-background/60" />
+                <Linkedin className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
                 <a 
                   href="https://www.linkedin.com/in/marcel-welk-572a412ab/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-background/80 hover:text-background transition-colors"
+                  className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                   aria-label="LinkedIn-Profil von Marcel (öffnet in neuem Tab)"
                 >
                   LinkedIn
@@ -95,19 +95,19 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-background/20 mt-8 pt-8">
+        <div className="border-t border-neutral-200 dark:border-neutral-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-background/60 text-sm">
+            <p className="text-neutral-500 dark:text-neutral-400 text-sm">
               © {currentYear} Marcel. Alle Rechte vorbehalten.
             </p>
             <div className="flex gap-6 text-sm">
-              <a href="/impressum" className="text-background/60 hover:text-background transition-colors">
+              <a href="/impressum" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Impressum
               </a>
-              <a href="/datenschutz" className="text-background/60 hover:text-background transition-colors">
+              <a href="/datenschutz" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Datenschutz
               </a>
-              <a href="/barrierefreiheit" className="text-background/60 hover:text-background transition-colors">
+              <a href="/barrierefreiheit" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
                 Barrierefreiheit
               </a>
             </div>
