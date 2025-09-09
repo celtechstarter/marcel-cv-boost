@@ -66,8 +66,7 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Four info boxes removed as requested - feature flagged off */}
-        {/* showHighlights: false - keeping code but not rendering for now */}
+        {/* Four info boxes completely removed */}
         
         <About />
         <Services />

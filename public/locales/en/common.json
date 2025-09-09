@@ -15,9 +15,55 @@
     "polish": "Polski"
   },
   "slots": {
-    "remaining": "{{remaining}} of 5 free slots remaining",
-    "loading": "Loading available slots...",
+    "remaining": "{{remaining}} of 5 free places remaining",
+    "loading": "Loading available places...",
     "error": "Error: {{error}}"
+  },
+  "about": {
+    "title": "My",
+    "story": "Story",
+    "subtitle": "Why I help people with their job applications and what drives me",
+    "intro": {
+      "greeting": "My name is Marcel",
+      "story": "and through my own story I have learned how difficult it can be to write job applications and find the right path. During a difficult phase of my life, I realized how much it means to me to support others who face similar challenges.",
+      "beginning": "During a course I started creating CVs for others – and quickly realized that this fulfills me. Since then I have been supporting people with psychological stress or severe disabilities to create professional application documents. My",
+      "service": "free application help",
+      "services": "includes CV creation, cover letters and application strategy.",
+      "result": "The result made me proud every time:",
+      "example": "for example, a friend who immediately got a job with training offer after my CV. You can find more success stories in our",
+      "reviews": "reviews"
+    },
+    "expanded": {
+      "tools": "Besides my enthusiasm for IT, I use modern tools and also AI to make application processes easier and clearer. What really fulfills me is not the technology alone, but the moment when someone gains new courage with my help and realizes:",
+      "quote": "It's not that hard to have a good CV.",
+      "faq": "If you have questions about applications, our comprehensive",
+      "faq_link": "FAQ section",
+      "faq_end": "also helps.",
+      "approach": "The application process can be particularly overwhelming for people with special challenges. That's why I offer a structured, empathetic approach that takes your individual needs into account. Whether it's about presenting gaps in your CV, emphasizing your strengths despite obstacles, or developing an authentic professional identity – together we find solutions.",
+      "support": "My support is not limited to creating documents. I accompany you through the entire process: from the initial assessment through developing your application strategy to preparing for job interviews. Everyone deserves a fair chance in the job market, and I'm here to ensure your application makes the best use of that chance."
+    },
+    "toggle": {
+      "more": "Read more",
+      "less": "Show less"
+    },
+    "highlights": {
+      "experience": {
+        "title": "Personal Experience",
+        "description": "I know from my own experience how difficult applications can be"
+      },
+      "tools": {
+        "title": "Modern Tools",
+        "description": "Use of AI and Google Sheets for optimized application processes"
+      },
+      "support": {
+        "title": "Successful Guidance",
+        "description": "I successfully support people with psychological stress or severe disabilities."
+      },
+      "success": {
+        "title": "Shared Success",
+        "description": "I give my best so that we succeed together."
+      }
+    }
   },
   "buttons": {
     "submit": "Submit",

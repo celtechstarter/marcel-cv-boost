@@ -1,14 +1,14 @@
 {
   "hero": {
-    "title": "Free Application Help directly from Marcel",
-    "subtitle": "Professional CV and personal support - completely free",
-    "description": "I help you create a convincing CV and optimize your application documents. With state-of-the-art AI support and lots of personal experience, you get the help you need.",
+    "title": "Free CV Help and Application Assistance Online",
+    "subtitle": "Free Application Help", 
+    "description": "Professional CV for free for people with psychological stress, severe disabilities or other challenges. Get your CV created with AI support and personal care. 5 free places per month available.",
     "benefits": {
       "free": "100% free",
       "personal": "Personal support"
     },
     "cta": {
-      "primary": "Request free help",
+      "primary": "Secure free place now",
       "secondary": "More about me"
     }
   },
@@ -16,12 +16,12 @@
     "title": "Ready to get started?",
     "subtitle": "Choose your preferred way:",
     "booking": {
-      "text": "Direct booking - Upload your CV if you have one",
+      "text": "Direct appointment booking - Upload your CV if you have one",
       "aria": "Go directly to appointment booking"
     },
     "contact": {
       "text": "If you have questions first, feel free to write to me!",
-      "aria": "Go to contact form"
+      "aria": "Go to contact request form"
     }
   }
 }
