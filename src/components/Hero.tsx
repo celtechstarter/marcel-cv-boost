@@ -8,7 +8,7 @@ const Hero = () => {
   
   return (
     <section id="home" className="min-h-screen flex items-center bg-gradient-to-br from-background to-secondary/30">
-      <div className="max-w-7xl mx-auto section-padding">
+      <div className="max-w-7xl mx-auto section-padding px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="animate-fade-up">
@@ -29,10 +29,27 @@ const Hero = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               {/* Mobile CTA button - responsive, no overflow, proper wrapping */}
-              <Button size="lg" className="btn-accent text-base sm:text-lg px-4 py-2.5 sm:px-8 sm:py-3 w-auto max-w-full inline-flex items-center justify-center whitespace-normal md:whitespace-nowrap break-words leading-tight" asChild>
+              <Button
+                size="lg"
+                className="
+                  inline-flex items-center justify-center gap-2
+                  font-medium ring-offset-background transition-colors
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+                  disabled:pointer-events-none disabled:opacity-50
+                  [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
+                  bg-primary text-primary-foreground hover:bg-primary/90
+                  h-11 rounded-md btn-accent
+                  w-full sm:w-auto max-w-[calc(100vw-2rem)]
+                  px-4 sm:px-8 py-3 text-base sm:text-lg
+                  whitespace-normal break-words
+                "
+                aria-label="Jetzt kostenlosen Platz sichern"
+                asChild
+              >
                 <a href="#contact">
                   <FileText className="mr-2 h-4 sm:h-5 w-4 sm:w-5 flex-shrink-0" />
-                  <span className="text-center">{t('hero.cta.primary')}</span>
+                  <span className="sm:hidden">Platz sichern</span>
+                  <span className="hidden sm:inline">Jetzt kostenlosen Platz sichern</span>
                 </a>
               </Button>
               <Button variant="outline" size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-3 w-full sm:w-auto" asChild>

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Send, Clock, Users, Calendar } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Clock, Users, Calendar, Linkedin, Github } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -46,6 +46,20 @@ const Contact = () => {
       title: "Standort",
       value: "Deutschland, Remote",
       link: null
+    },
+    {
+      icon: Linkedin,
+      title: "LinkedIn",
+      value: "LinkedIn",
+      link: "https://www.linkedin.com/in/marcel-welk-572a412ab/",
+      isExternal: true
+    },
+    {
+      icon: Github,
+      title: "GitHub",
+      value: "GitHub",
+      link: "https://github.com/celtechstarter",
+      isExternal: true
     }
   ];
 
@@ -206,6 +220,12 @@ const Contact = () => {
                         <a 
                           href={item.link} 
                           className="text-primary hover:underline"
+                          {...(item.isExternal && {
+                            target: "_blank",
+                            rel: "noopener noreferrer",
+                            "aria-label": `${item.title} Profil`,
+                            title: `${item.title} Profil`
+                          })}
                         >
                           {item.value}
                         </a>
