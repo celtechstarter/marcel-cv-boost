@@ -109,25 +109,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* Highlights Cards */}
-          <div className="grid sm:grid-cols-2 gap-6 animate-scale-in">
-            {highlights.map((highlight, index) => (
-              <Card 
-                key={index} 
-                className="card-soft hover:shadow-medium transition-all duration-300 group"
-              >
-                <CardContent className="p-6 text-center">
-                  <div className="mb-4">
-                    <highlight.icon className="h-8 w-8 text-primary mx-auto group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="font-semibold mb-2 text-foreground">{highlight.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {highlight.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {/* Highlight boxes removed */}
         </div>
       </div>
     </section>

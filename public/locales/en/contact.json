@@ -1,0 +1,61 @@
+{
+  "title": "Let's talk",
+  "subtitle": "Ready for your new CV? Send me a message and secure one of the free places.",
+  "form": {
+    "title": "Request application help",
+    "slots": "{{slots}} of 5 free places remaining",
+    "fields": {
+      "name": "Name *",
+      "namePlaceholder": "Your name",
+      "email": "E-Mail *",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Phone (optional)",
+      "phonePlaceholder": "+49 123 456789",
+      "situation": "Your situation",
+      "situationPlaceholder": "Just write freely about where you see problems and I'll help you quickly.",
+      "situationHelp": "Share what's on your mind - I'm here to help.",
+      "help": "Desired help",
+      "helpPlaceholder": "What exactly do you need? (e.g. complete CV, design optimization, application tracker, etc.)",
+      "privacy": "I agree to the processing of my data for handling my request. The data will be treated confidentially and not passed on to third parties. *"
+    },
+    "submit": "Send free request",
+    "submitting": "Sending...",
+    "booking": "Go directly to appointment booking",
+    "bookingNote": "(Upload your CV if you have one)",
+    "success": {
+      "title": "Message sent! 📨",
+      "description": "I'll get back to you as soon as possible at marcel.welk87@gmail.com. Thank you for your trust!"
+    }
+  },
+  "info": {
+    "title": "Contact",
+    "email": "E-Mail",
+    "phone": "Phone",
+    "location": "Germany, Remote",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "response": {
+    "title": "Response time",
+    "description": "I usually respond to all inquiries within 24 hours.",
+    "weekdays": "Mon - Fri:",
+    "weekdaysTime": "9:00 - 18:00",
+    "weekend": "Weekend:",
+    "weekendTime": "By arrangement"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "duration": {
+      "question": "How long does CV creation take?",
+      "answer": "Depending on complexity, 2-5 days."
+    },
+    "free": {
+      "question": "Is the help really free?",
+      "answer": "Yes, completely free for 5 people per month."
+    },
+    "documents": {
+      "question": "What documents do you need?",
+      "answer": "Current data, certificates and your expectations."
+    }
+  }
+}

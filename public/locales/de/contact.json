@@ -1,0 +1,61 @@
+{
+  "title": "Lass uns sprechen",
+  "subtitle": "Bereit für deinen neuen Lebenslauf? Schreib mir eine Nachricht und sichere dir einen der kostenlosen Plätze.",
+  "form": {
+    "title": "Bewerbungshilfe anfragen",
+    "slots": "Noch {{slots}} von 5 kostenlosen Plätzen verfügbar",
+    "fields": {
+      "name": "Name *",
+      "namePlaceholder": "Dein Name",
+      "email": "E-Mail *",
+      "emailPlaceholder": "deine@email.de",
+      "phone": "Telefon (optional)",
+      "phonePlaceholder": "+49 123 456789",
+      "situation": "Deine Situation",
+      "situationPlaceholder": "Schreibe einfach ganz frei, wo du Probleme siehst und ich helfe dir schnell weiter.",
+      "situationHelp": "Teile mit, was dich beschäftigt - ich bin hier, um zu helfen.",
+      "help": "Gewünschte Hilfe",
+      "helpPlaceholder": "Was genau brauchst du? (z.B. kompletter Lebenslauf, Design-Optimierung, Bewerbungstracker, etc.)",
+      "privacy": "Ich stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu. Die Daten werden vertraulich behandelt und nicht an Dritte weitergegeben. *"
+    },
+    "submit": "Kostenlose Anfrage senden",
+    "submitting": "Wird gesendet...",
+    "booking": "Hier geht's direkt zur Terminbuchung",
+    "bookingNote": "(Lade deinen CV hoch, falls du einen hast)",
+    "success": {
+      "title": "Nachricht gesendet! 📨",
+      "description": "Ich melde mich schnellstmöglich bei dir unter marcel.welk87@gmail.com. Vielen Dank für dein Vertrauen!"
+    }
+  },
+  "info": {
+    "title": "Kontakt",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "location": "Deutschland, Remote",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "response": {
+    "title": "Antwortzeit",
+    "description": "Ich antworte normalerweise innerhalb von 24 Stunden auf alle Anfragen.",
+    "weekdays": "Mo - Fr:",
+    "weekdaysTime": "9:00 - 18:00",
+    "weekend": "Wochenende:",
+    "weekendTime": "Nach Vereinbarung"
+  },
+  "faq": {
+    "title": "Häufige Fragen",
+    "duration": {
+      "question": "Wie lange dauert die CV-Erstellung?",
+      "answer": "Je nach Komplexität 2-5 Tage."
+    },
+    "free": {
+      "question": "Ist die Hilfe wirklich kostenlos?",
+      "answer": "Ja, für 5 Personen pro Monat komplett kostenfrei."
+    },
+    "documents": {
+      "question": "Welche Unterlagen benötigst du?",
+      "answer": "Aktuelle Daten, Zeugnisse und deine Wunschvorstellungen."
+    }
+  }
+}

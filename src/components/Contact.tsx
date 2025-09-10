@@ -7,8 +7,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Send, Clock, Users, Calendar, Linkedin, Github } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useI18n } from "@/hooks/useI18n";
 
 const Contact = () => {
+  const { t } = useI18n();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [availableSlots] = useState(3); // This would come from backend
   const { toast } = useToast();
@@ -71,8 +73,7 @@ const Contact = () => {
             Lass uns <span className="gradient-text">sprechen</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Bereit für deinen neuen Lebenslauf? Schreib mir eine Nachricht und 
-            sichere dir einen der kostenlosen Plätze.
+            Bereit für deinen neuen Lebenslauf? Schreib mir eine Nachricht und sichere dir einen der kostenlosen Plätze.
           </p>
         </div>
 
