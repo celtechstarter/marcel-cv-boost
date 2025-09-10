@@ -1,4 +1,4 @@
-import { Heart, Mail, Phone, MapPin, Linkedin } from "lucide-react";
+import { Heart, Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -78,8 +78,8 @@ const Footer = () => {
                 <MapPin className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
                 <span className="text-neutral-600 dark:text-neutral-400">Deutschland, Remote</span>
               </div>
-               {/* Social links */}
-              <div className="flex items-center gap-4 text-sm mt-3">
+              {/* Social links - stacked vertically */}
+              <div className="space-y-2 text-sm mt-3">
                 <div className="flex items-center gap-2">
                   <Linkedin className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
                   <a 
@@ -90,6 +90,18 @@ const Footer = () => {
                     aria-label="LinkedIn-Profil von Marcel (öffnet in neuem Tab)"
                   >
                     LinkedIn
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Github className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
+                  <a 
+                    href="https://github.com/celtechstarter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+                    aria-label="GitHub – Profil von Marcel"
+                  >
+                    GitHub
                   </a>
                 </div>
               </div>

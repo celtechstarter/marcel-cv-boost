@@ -324,7 +324,7 @@ const Blog = () => {
                   }
                 }}
               >
-                {t('blog.readMore') || 'Weiterlesen'} <ArrowRight className="h-4 w-4 ml-2" />
+                {t('readMore') || 'Weiterlesen'} <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             </CardContent>
           </Card>
@@ -377,7 +377,7 @@ const Blog = () => {
                         document.body.appendChild(fullContent);
                       }}
                     >
-                      {t('blog.readMore') || 'Weiterlesen'} <ArrowRight className="h-3 w-3 ml-1" />
+                      {t('readMore') || 'Weiterlesen'} <ArrowRight className="h-3 w-3 ml-1" />
                     </Button>
                   </div>
                 </CardContent>

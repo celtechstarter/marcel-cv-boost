@@ -43,9 +43,9 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Story Content */}
-          <div className="animate-fade-up">
+        <div className="flex justify-center">
+          {/* Story Content - centered container */}
+          <div className="animate-fade-up mx-auto max-w-3xl lg:max-w-4xl">
             <div className="space-y-6 text-lg leading-relaxed">
               {/* Always visible intro content */}
               <div>
