@@ -19,7 +19,7 @@ export const SlotsBadge = () => {
       setSlotsRemaining(data.remaining);
       setMaxSlots(data.max_slots);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Fehler beim Laden der verfügbaren Plätze');
+      setError(err instanceof Error ? err.message : t('slots.error'));
     } finally {
       setIsLoading(false);
     }
@@ -39,23 +39,23 @@ export const SlotsBadge = () => {
       className="flex justify-center"
       role="status"
       aria-live="polite"
-      aria-label="Verfügbare kostenlose Plätze"
+      aria-label={t('slots.remaining', { remaining: 'X', max: 'Y' })}
     >
       {isLoading && (
         <Badge variant="secondary" className="text-sm">
-          {t('slots.loading') || 'Lade verfügbare Plätze...'}
+          {t('slots.loading')}
         </Badge>
       )}
       
       {error && (
         <Badge variant="destructive" className="text-sm">
-          {t('slots.error', { error }) || 'Fehler beim Laden der Plätze'}
+          {t('slots.error')}
         </Badge>
       )}
       
       {!isLoading && !error && slotsRemaining !== null && (
         <Badge variant="default" className="text-sm bg-accent hover:bg-accent-light text-accent-foreground">
-          {t('slots.remaining', { remaining: slotsRemaining }) || `${slotsRemaining} von ${maxSlots} kostenlose Plätze verfügbar`}
+          {t('slots.remaining', { remaining: slotsRemaining, max: maxSlots })}
         </Badge>
       )}
     </div>

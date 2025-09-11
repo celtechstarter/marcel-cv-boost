@@ -43,13 +43,13 @@ const Hero = () => {
                   px-4 sm:px-8 py-3 text-base sm:text-lg
                   whitespace-normal break-words
                 "
-                aria-label="Jetzt kostenlosen Platz sichern"
+                aria-label={t('cta.bookNow')}
                 asChild
               >
                 <a href="#contact">
                   <FileText className="mr-2 h-4 sm:h-5 w-4 sm:w-5 flex-shrink-0" />
-                  <span className="sm:hidden">Platz sichern</span>
-                  <span className="hidden sm:inline">Jetzt kostenlosen Platz sichern</span>
+                  <span className="sm:hidden">{t('cta.bookNowShort')}</span>
+                  <span className="hidden sm:inline">{t('cta.bookNow')}</span>
                 </a>
               </Button>
               <Button variant="outline" size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-3 w-full sm:w-auto" asChild>
@@ -60,11 +60,11 @@ const Hero = () => {
             <div className="flex items-center gap-8 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-accent" />
-                <span>{t('hero.benefits.free')}</span>
+                <span>{t('benefits.free')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Heart className="h-4 w-4 text-accent" />
-                <span>{t('hero.benefits.personal')}</span>
+                <span>{t('benefits.personal')}</span>
               </div>
             </div>
           </div>
@@ -73,8 +73,8 @@ const Hero = () => {
           <div className="relative animate-scale-in">
             <div className="relative z-10">
               <img
-                src="/lovable-uploads/b88262de-c305-473a-a997-7014c75c09ae.png"
-                alt="Marcel Welk - professioneller Bewerbungshelfer für kostenlose Lebenslauf Hilfe und KI-gestützte CV Optimierung für Menschen mit psychischen Belastungen"
+                src="/lovable-uploads/a25282f1-20be-4502-9307-ed450363e944.png"
+                alt="Porträt von Marcel, Bewerbungshelfer"
                 className="rounded-2xl shadow-large w-full h-auto"
                 loading="eager"
               />

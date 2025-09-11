@@ -1,11 +1,11 @@
 {
   "theme": {
-    "toggle": "Toggle appearance: Light/Dark",
+    "toggleMode": "Toggle appearance",
     "light": "Light",
     "dark": "Dark"
   },
   "language": {
-    "select": "Select language",
+    "selectLanguage": "Select language",
     "german": "Deutsch",
     "english": "English",
     "turkish": "Türkçe",
@@ -15,9 +15,69 @@
     "polish": "Polski"
   },
   "slots": {
-    "remaining": "{{remaining}} of 5 free places remaining",
-    "loading": "Loading available places...",
-    "error": "Error: {{error}}"
+    "remaining": "{{remaining}} of {{max}} free spots available",
+    "loading": "Loading available spots...",
+    "error": "Error loading spots"
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Germany, Remote",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "cta": {
+    "bookNow": "Secure your free spot now",
+    "bookNowShort": "Book spot",
+    "helpRequest": "Request free help",
+    "learnMore": "Learn more",
+    "readMore": "Read more",
+    "readLess": "Show less"
+  },
+  "buttons": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "loading": "Loading...",
+    "bookAppointment": "Book appointment",
+    "bookingAppointment": "Booking appointment...",
+    "emailWrite": "Write email",
+    "discordJoin": "Join Discord"
+  },
+  "form": {
+    "required": "Required field",
+    "name": "Name",
+    "email": "Email",
+    "discordName": "Discord Name",
+    "discordNameOptional": "Discord Name (optional)",
+    "discordPlaceholder": "Your Discord username",
+    "datetime": "Date and time",
+    "duration": "Duration",
+    "durationSelect": "Select duration",
+    "duration30": "30 minutes",
+    "duration45": "45 minutes",
+    "duration60": "60 minutes",
+    "notes": "Notes (optional)",
+    "notesPlaceholder": "Additional information or wishes for the appointment...",
+    "privacyAccept": "I agree to the processing of my data according to the",
+    "privacyLink": "Privacy Policy",
+    "privacyEnd": ""
+  },
+  "messages": {
+    "formRequired": "Please fill in all required fields.",
+    "privacyRequired": "Please accept the privacy policy.",
+    "durationRequired": "Please select a duration for the appointment.",
+    "bookingError": "Error creating booking",
+    "noSlotsError": "No free spots available this month. Please try again next month.",
+    "bookingSuccess": "Appointment successfully booked!",
+    "bookingId": "Your booking ID:",
+    "emailSent": "Confirmation email was successfully sent.",
+    "emailNotSent": "Appointment booked, but email could not be sent. Please note your booking ID.",
+    "errorPrefix": "Error:"
+  },
+  "benefits": {
+    "free": "100% free",
+    "personal": "Personal support"
   },
   "about": {
     "title": "My",
@@ -45,29 +105,6 @@
     "toggle": {
       "more": "Read more",
       "less": "Show less"
-    },
-    "highlights": {
-      "experience": {
-        "title": "Personal Experience",
-        "description": "I know from my own experience how difficult applications can be"
-      },
-      "tools": {
-        "title": "Modern Tools",
-        "description": "Use of AI and Google Sheets for optimized application processes"
-      },
-      "support": {
-        "title": "Successful Guidance",
-        "description": "I successfully support people with psychological stress or severe disabilities."
-      },
-      "success": {
-        "title": "Shared Success",
-        "description": "I give my best so that we succeed together."
-      }
     }
-  },
-  "buttons": {
-    "submit": "Submit",
-    "cancel": "Cancel",
-    "loading": "Loading..."
   }
 }

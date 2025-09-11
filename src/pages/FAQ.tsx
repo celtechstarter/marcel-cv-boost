@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Mail, ExternalLink, HelpCircle, Briefcase, Clock, Settings } from "lucide-react";
+import { useI18n } from "@/hooks/useI18n";
 
 const FAQ = () => {
   useEffect(() => {

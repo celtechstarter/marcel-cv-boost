@@ -1,0 +1,30 @@
+{
+  "title": "Frequently Asked Questions",
+  "subtitle": "Everything you need to know about my free application assistance",
+  "cvUpload": {
+    "dataHandling": {
+      "question": "What happens to my data and CV when I upload them?",
+      "answer": "Your documents are used exclusively for application assistance. They are stored securely and not shared with third parties. You can request deletion of your data at any time."
+    },
+    "storage": {
+      "question": "Where are my files stored?",
+      "answer": "Your documents are stored in secure storage (Supabase Storage in the EU region). Access is protected and logged."
+    },
+    "retention": {
+      "question": "How long is my data retained?",
+      "answer": "We only keep documents as long as necessary for support. We will delete your data at any time upon request."
+    },
+    "access": {
+      "question": "Who has access to my documents?",
+      "answer": "Only I have access to your documents to help you optimize your applications."
+    },
+    "deletion": {
+      "question": "Can I request deletion of my CV?",
+      "answer": "Yes, at any time. Just write to me at marcel.welk87@gmail.com and we will delete your data immediately."
+    }
+  },
+  "cta": {
+    "title": "Your question wasn't included?",
+    "description": "Just send me a message – I'm happy to help!"
+  }
+}

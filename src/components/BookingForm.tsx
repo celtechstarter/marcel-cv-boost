@@ -7,8 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { callEdge } from '@/utils/callEdge';
+import { useI18n } from '@/hooks/useI18n';
 
 export const BookingForm = () => {
+  const { t } = useI18n();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,17 +27,17 @@ export const BookingForm = () => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.startsAt) {
-      setResult({ success: false, error: 'Bitte füllen Sie alle Pflichtfelder aus.' });
+      setResult({ success: false, error: t('messages.formRequired') });
       return;
     }
     
     if (!formData.privacyAccepted) {
-      setResult({ success: false, error: 'Bitte akzeptieren Sie die Datenschutzerklärung.' });
+      setResult({ success: false, error: t('messages.privacyRequired') });
       return;
     }
 
     if (!formData.duration) {
-      setResult({ success: false, error: 'Bitte wählen Sie eine Dauer für den Termin.' });
+      setResult({ success: false, error: t('messages.durationRequired') });
       return;
     }
 
@@ -75,10 +77,10 @@ export const BookingForm = () => {
         privacyAccepted: false,
       });
     } catch (error: any) {
-      let errorMessage = 'Fehler beim Erstellen der Buchung';
+      let errorMessage = t('messages.bookingError');
       
       if (error.message.includes('Keine freien Slots')) {
-        errorMessage = 'Keine freien Plätze mehr in diesem Monat. Bitte versuchen Sie es nächsten Monat wieder.';
+        errorMessage = t('messages.noSlotsError');
       } else if (error.message) {
         errorMessage = error.message;
       }
@@ -95,13 +97,13 @@ export const BookingForm = () => {
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle>Termin buchen</CardTitle>
+        <CardTitle>{t('buttons.bookAppointment')}</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Name *</Label>
+              <Label htmlFor="name">{t('form.name')} *</Label>
               <Input
                 id="name"
                 value={formData.name}
@@ -112,7 +114,7 @@ export const BookingForm = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="email">E-Mail *</Label>
+              <Label htmlFor="email">{t('form.email')} *</Label>
               <Input
                 id="email"
                 type="email"
@@ -125,18 +127,18 @@ export const BookingForm = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="discordName">Discord Name (optional)</Label>
+            <Label htmlFor="discordName">{t('form.discordNameOptional')}</Label>
             <Input
               id="discordName"
               value={formData.discordName}
               onChange={(e) => setFormData(prev => ({ ...prev, discordName: e.target.value }))}
-              placeholder="Ihr Discord-Benutzername"
+              placeholder={t('form.discordPlaceholder')}
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="startsAt">Datum und Uhrzeit *</Label>
+              <Label htmlFor="startsAt">{t('form.datetime')} *</Label>
               <Input
                 id="startsAt"
                 type="datetime-local"
@@ -148,31 +150,31 @@ export const BookingForm = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="duration">Dauer *</Label>
+              <Label htmlFor="duration">{t('form.duration')} *</Label>
               <Select 
                 value={formData.duration} 
                 onValueChange={(value) => setFormData(prev => ({ ...prev, duration: value }))}
               >
                 <SelectTrigger id="duration" aria-describedby="duration-error">
-                  <SelectValue placeholder="Dauer wählen" />
+                  <SelectValue placeholder={t('form.durationSelect')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="30">30 Minuten</SelectItem>
-                  <SelectItem value="45">45 Minuten</SelectItem>
-                  <SelectItem value="60">60 Minuten</SelectItem>
+                  <SelectItem value="30">{t('form.duration30')}</SelectItem>
+                  <SelectItem value="45">{t('form.duration45')}</SelectItem>
+                  <SelectItem value="60">{t('form.duration60')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="note">Notizen (optional)</Label>
+            <Label htmlFor="note">{t('form.notes')}</Label>
             <Textarea
               id="note"
               value={formData.note}
               onChange={(e) => setFormData(prev => ({ ...prev, note: e.target.value }))}
               rows={3}
-              placeholder="Zusätzliche Informationen oder Wünsche für den Termin..."
+              placeholder={t('form.notesPlaceholder')}
             />
           </div>
 
@@ -185,16 +187,16 @@ export const BookingForm = () => {
               aria-describedby="privacy-error"
             />
             <Label htmlFor="privacy-accepted" className="text-sm leading-5 cursor-pointer">
-              Ich stimme der Verarbeitung meiner Daten gemäß der{' '}
+              {t('form.privacyAccept')}{' '}
               <a 
                 href="/datenschutz" 
                 className="text-primary hover:underline focus:ring-2 focus:ring-primary focus:ring-offset-1"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Datenschutzerklärung
+                {t('form.privacyLink')}
               </a>{' '}
-              zu *
+              {t('form.privacyEnd')} *
             </Label>
           </div>
 
@@ -203,7 +205,7 @@ export const BookingForm = () => {
             disabled={isSubmitting}
             className="w-full focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
-            {isSubmitting ? 'Termin wird gebucht...' : 'Termin buchen'}
+            {isSubmitting ? t('buttons.bookingAppointment') : t('buttons.bookAppointment')}
           </Button>
 
           <div 
@@ -221,16 +223,16 @@ export const BookingForm = () => {
               >
                 {result.success ? (
                   <div>
-                    <p className="font-medium">✅ Termin erfolgreich gebucht!</p>
-                    <p>Ihre Buchungs-ID: <strong>{result.bookingId}</strong></p>
+                    <p className="font-medium">✅ {t('messages.bookingSuccess')}</p>
+                    <p>{t('messages.bookingId')} <strong>{result.bookingId}</strong></p>
                     {result.emailSent ? (
-                      <p>✅ Bestätigungs-E-Mail wurde erfolgreich versendet.</p>
+                      <p>✅ {t('messages.emailSent')}</p>
                     ) : (
-                      <p>⚠️ Termin gebucht, aber E-Mail konnte nicht versendet werden. Bitte notieren Sie sich Ihre Buchungs-ID.</p>
+                      <p>⚠️ {t('messages.emailNotSent')}</p>
                     )}
                   </div>
                 ) : (
-                  <p>❌ Fehler: {result.error}</p>
+                  <p>❌ {t('messages.errorPrefix')} {result.error}</p>
                 )}
               </div>
             )}

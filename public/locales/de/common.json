@@ -1,11 +1,11 @@
 {
   "theme": {
-    "toggle": "Darstellung umschalten: Hell/Dunkel",
+    "toggleMode": "Darstellung umschalten",
     "light": "Hell",
     "dark": "Dunkel"
   },
   "language": {
-    "select": "Sprache wählen",
+    "selectLanguage": "Sprache auswählen",
     "german": "Deutsch",
     "english": "English",
     "turkish": "Türkçe",
@@ -15,9 +15,69 @@
     "polish": "Polski"
   },
   "slots": {
-    "remaining": "Noch {{remaining}} von 5 kostenlose Plätze verfügbar",
+    "remaining": "{{remaining}} von {{max}} kostenlose Plätze verfügbar",
     "loading": "Lade verfügbare Plätze...",
-    "error": "Fehler: {{error}}"
+    "error": "Fehler beim Laden der Plätze"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "location": "Deutschland, Remote",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "cta": {
+    "bookNow": "Jetzt kostenlosen Platz sichern",
+    "bookNowShort": "Platz sichern",
+    "helpRequest": "Kostenlose Hilfe anfragen",
+    "learnMore": "Mehr erfahren",
+    "readMore": "Weiterlesen",
+    "readLess": "Weniger anzeigen"
+  },
+  "buttons": {
+    "submit": "Absenden",
+    "cancel": "Abbrechen",
+    "loading": "Wird geladen...",
+    "bookAppointment": "Termin buchen",
+    "bookingAppointment": "Termin wird gebucht...",
+    "emailWrite": "E-Mail schreiben",
+    "discordJoin": "Discord beitreten"
+  },
+  "form": {
+    "required": "Pflichtfeld",
+    "name": "Name",
+    "email": "E-Mail",
+    "discordName": "Discord Name",
+    "discordNameOptional": "Discord Name (optional)",
+    "discordPlaceholder": "Ihr Discord-Benutzername",
+    "datetime": "Datum und Uhrzeit",
+    "duration": "Dauer",
+    "durationSelect": "Dauer wählen",
+    "duration30": "30 Minuten",
+    "duration45": "45 Minuten", 
+    "duration60": "60 Minuten",
+    "notes": "Notizen (optional)",
+    "notesPlaceholder": "Zusätzliche Informationen oder Wünsche für den Termin...",
+    "privacyAccept": "Ich stimme der Verarbeitung meiner Daten gemäß der",
+    "privacyLink": "Datenschutzerklärung",
+    "privacyEnd": "zu"
+  },
+  "messages": {
+    "formRequired": "Bitte füllen Sie alle Pflichtfelder aus.",
+    "privacyRequired": "Bitte akzeptieren Sie die Datenschutzerklärung.",
+    "durationRequired": "Bitte wählen Sie eine Dauer für den Termin.",
+    "bookingError": "Fehler beim Erstellen der Buchung",
+    "noSlotsError": "Keine freien Plätze mehr in diesem Monat. Bitte versuchen Sie es nächsten Monat wieder.",
+    "bookingSuccess": "Termin erfolgreich gebucht!",
+    "bookingId": "Ihre Buchungs-ID:",
+    "emailSent": "Bestätigungs-E-Mail wurde erfolgreich versendet.",
+    "emailNotSent": "Termin gebucht, aber E-Mail konnte nicht versendet werden. Bitte notieren Sie sich Ihre Buchungs-ID.",
+    "errorPrefix": "Fehler:"
+  },
+  "benefits": {
+    "free": "100% kostenlos",
+    "personal": "Persönliche Betreuung"
   },
   "about": {
     "title": "Meine",
@@ -45,29 +105,6 @@
     "toggle": {
       "more": "Weiterlesen",
       "less": "Weniger anzeigen"
-    },
-    "highlights": {
-      "experience": {
-        "title": "Persönliche Erfahrung",
-        "description": "Ich weiß aus eigener Erfahrung, wie schwer Bewerbungen sein können"
-      },
-      "tools": {
-        "title": "Moderne Tools",
-        "description": "Nutzung von KI und Google Sheets für optimierte Bewerbungsprozesse"
-      },
-      "support": {
-        "title": "Erfolgreiche Begleitung",
-        "description": "Ich unterstütze Menschen mit psychischen Belastungen oder Schwerbehinderungen erfolgreich."
-      },
-      "success": {
-        "title": "Gemeinsamer Erfolg",
-        "description": "Ich gebe mein Bestes, damit wir gemeinsam erfolgreich sind."
-      }
     }
-  },
-  "buttons": {
-    "submit": "Absenden",
-    "cancel": "Abbrechen",
-    "loading": "Lädt..."
   }
 }

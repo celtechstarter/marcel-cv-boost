@@ -1,0 +1,30 @@
+{
+  "title": "Häufig gestellte Fragen",
+  "subtitle": "Alles was du über meine kostenlose Bewerbungshilfe wissen musst",
+  "cvUpload": {
+    "dataHandling": {
+      "question": "Was passiert mit meinen Daten und meinem Lebenslauf, wenn ich sie hochlade?",
+      "answer": "Deine Unterlagen werden ausschließlich zur Bewerbungshilfe genutzt. Sie werden sicher gespeichert und nicht an Dritte weitergegeben. Du kannst jederzeit die Löschung deiner Daten verlangen."
+    },
+    "storage": {
+      "question": "Wo werden meine Dateien gespeichert?",
+      "answer": "Deine Dokumente werden in einem sicheren Speicher (Supabase Storage in der EU-Region) abgelegt. Der Zugriff ist geschützt und protokolliert."
+    },
+    "retention": {
+      "question": "Wie lange werden meine Daten aufbewahrt?",
+      "answer": "Wir bewahren Unterlagen nur so lange auf, wie sie für die Unterstützung notwendig sind. Auf Wunsch löschen wir deine Daten jederzeit."
+    },
+    "access": {
+      "question": "Wer hat Zugriff auf meine Dokumente?",
+      "answer": "Nur ich habe Zugriff auf deine Unterlagen, um dir bei der Optimierung deiner Bewerbungen zu helfen."
+    },
+    "deletion": {
+      "question": "Kann ich die Löschung meines Lebenslaufs beantragen?",
+      "answer": "Ja, jederzeit. Schreibe mir einfach an marcel.welk87@gmail.com und wir löschen deine Daten umgehend."
+    }
+  },
+  "cta": {
+    "title": "Deine Frage war nicht dabei?",
+    "description": "Schreib mir einfach eine Nachricht – ich helfe dir gerne weiter!"
+  }
+}
