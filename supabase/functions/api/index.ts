@@ -2,20 +2,64 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.0";
 import { Resend } from "npm:resend@2.0.0";
 
-// Security headers for all responses
-const securityHeaders = {
-  'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co https://marcel-cv-boost.lovable.app https://marcel-cv-boost.lovable.dev; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests",
-  'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'X-Content-Type-Options': 'nosniff',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-};
+// Helper function to detect Lovable preview environments
+function isLovablePreview(origin?: string): boolean {
+  return !!origin && (
+    origin.endsWith('.lovable.dev') ||
+    origin.endsWith('.lovable.app') ||
+    origin.includes('lovableproject.com')
+  );
+}
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  ...securityHeaders,
-};
+// Dynamic CSP builder based on environment
+function buildCSP(origin?: string): string {
+  const baseCSP = {
+    "default-src": "'self'",
+    "script-src": "'self'",
+    "style-src": "'self' 'unsafe-inline'",
+    "img-src": "'self' data: blob:",
+    "font-src": "'self'",
+    "connect-src": "'self' https://*.supabase.co https://marcel-cv-boost.lovable.app https://marcel-cv-boost.lovable.dev",
+    "frame-ancestors": "'none'",
+    "object-src": "'none'",
+    "base-uri": "'self'",
+    "form-action": "'self'",
+    "upgrade-insecure-requests": ""
+  };
+
+  // Allow Lovable editor scripts in preview environments only
+  if (isLovablePreview(origin)) {
+    baseCSP["script-src"] += " https://cdn.gpteng.co";
+    baseCSP["connect-src"] += ` ${origin} https://cdn.gpteng.co`;
+  }
+
+  return Object.entries(baseCSP)
+    .map(([directive, value]) => `${directive} ${value}`)
+    .join('; ')
+    .trim();
+}
+
+// Dynamic security headers
+function getSecurityHeaders(origin?: string) {
+  return {
+    'Content-Security-Policy': buildCSP(origin),
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'X-Content-Type-Options': 'nosniff',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  };
+}
+
+// Dynamic CORS headers with origin validation
+function getCorsHeaders(origin?: string) {
+  const securityHeaders = getSecurityHeaders(origin);
+  return {
+    'Access-Control-Allow-Origin': origin || '*',
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Vary': 'Origin',
+    ...securityHeaders,
+  };
+}
 
 // Secure CORS for GDPR compliance - restrict to authorized domains only
 const allowedOrigins = [
@@ -51,14 +95,12 @@ function validateReviewContent(body: string): string | null {
   return null;
 }
 
-// CORS validation - Enhanced security for GDPR compliance
+// Enhanced CORS validation - secure allowlist with dynamic preview support
 function validateCORS(origin: string | null): boolean {
   if (!origin) return false;
   
-  // Strict allowlist - only production and development domains
-  const isAllowed = allowedOrigins.includes(origin) || 
-                   origin.endsWith('.lovable.dev') || 
-                   origin.endsWith('.lovable.app');
+  // Strict allowlist for production and development domains
+  const isAllowed = allowedOrigins.includes(origin) || isLovablePreview(origin);
   
   return isAllowed;
 }
@@ -124,6 +166,7 @@ async function sendMailSafe({ to, subject, text, html }: { to: string | string[]
 
 const handler = async (req: Request): Promise<Response> => {
   const origin = req.headers.get('Origin');
+  const corsHeaders = getCorsHeaders(origin);
   
   // Enhanced CORS validation for GDPR compliance
   if (origin && !validateCORS(origin)) {

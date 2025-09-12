@@ -3,22 +3,46 @@ import { useEffect } from 'react';
 // Security headers component to set CSP and other security headers
 export const SecurityHeaders = () => {
   useEffect(() => {
+    // Detect if we're in a Lovable preview environment
+    const isLovablePreview = () => {
+      const hostname = window.location.hostname;
+      return hostname.endsWith('.lovable.dev') || 
+             hostname.endsWith('.lovable.app') || 
+             hostname.includes('lovableproject.com');
+    };
+
+    // Build dynamic CSP policy
+    const buildCSP = () => {
+      const baseCSP = {
+        'default-src': "'self'",
+        'img-src': "'self' data: https:",
+        'font-src': "'self'",
+        'object-src': "'none'",
+        'base-uri': "'self'",
+        'frame-ancestors': "'none'",
+        'form-action': "'self'",
+        'connect-src': `'self' https://*.supabase.co https://api.resend.com ${window.location.origin}`,
+        'style-src': "'self' 'unsafe-inline'",
+        'script-src': "'self' 'unsafe-inline'",
+        'upgrade-insecure-requests': ''
+      };
+
+      // Allow Lovable editor scripts in preview environments only
+      if (isLovablePreview()) {
+        baseCSP['script-src'] += ' https://cdn.gpteng.co';
+        baseCSP['connect-src'] += ' https://cdn.gpteng.co';
+      }
+
+      return Object.entries(baseCSP)
+        .map(([directive, value]) => `${directive} ${value}`)
+        .join('; ')
+        .trim();
+    };
+
     // Set security headers on the document
     const meta = document.createElement('meta');
     meta.httpEquiv = 'Content-Security-Policy';
-    meta.content = `
-      default-src 'self';
-      img-src 'self' data: https:;
-      font-src 'self';
-      object-src 'none';
-      base-uri 'self';
-      frame-ancestors 'none';
-      form-action 'self';
-      connect-src 'self' https://*.supabase.co https://api.resend.com;
-      style-src 'self' 'unsafe-inline';
-      script-src 'self' 'unsafe-inline';
-      upgrade-insecure-requests;
-    `.replace(/\s+/g, ' ').trim();
+    meta.content = buildCSP();
     
     // Remove existing CSP meta tag if it exists
     const existingMeta = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
