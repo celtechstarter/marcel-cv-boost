@@ -13,24 +13,27 @@ export const SecurityHeaders = () => {
 
     // Build dynamic CSP policy
     const buildCSP = () => {
+      const origin = window.location.origin;
       const baseCSP = {
         'default-src': "'self'",
-        'img-src': "'self' data: https:",
+        'img-src': "'self' data: blob: https:",
         'font-src': "'self'",
         'object-src': "'none'",
         'base-uri': "'self'",
         'frame-ancestors': "'none'",
         'form-action': "'self'",
-        'connect-src': `'self' https://*.supabase.co https://api.resend.com ${window.location.origin}`,
+        'connect-src': `'self' https://*.supabase.co wss://*.supabase.co https://api.resend.com ${origin}`,
         'style-src': "'self' 'unsafe-inline'",
         'script-src': "'self' 'unsafe-inline'",
+        'worker-src': "'self' blob:",
         'upgrade-insecure-requests': ''
       };
 
       // Allow Lovable editor scripts in preview environments only
       if (isLovablePreview()) {
         baseCSP['script-src'] += ' https://cdn.gpteng.co';
-        baseCSP['connect-src'] += ' https://cdn.gpteng.co';
+        baseCSP['connect-src'] += ` https://cdn.gpteng.co wss://cdn.gpteng.co ${origin}`;
+        baseCSP['frame-ancestors'] = "'self' https://*.lovable.dev https://*.lovable.app https://lovableproject.com";
       }
 
       return Object.entries(baseCSP)

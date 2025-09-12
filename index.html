@@ -126,8 +126,7 @@
     </script>
     
     <!-- Security Headers (Fallback) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co https://marcel-cv-boost.lovable.app https://marcel-cv-boost.lovable.dev; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
-    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.gpteng.co; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://cdn.gpteng.co wss://cdn.gpteng.co https://marcel-cv-boost.lovable.app https://marcel-cv-boost.lovable.dev; worker-src 'self' blob:; frame-ancestors 'self' https://*.lovable.dev https://*.lovable.app https://lovableproject.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
     <!-- hreflang links for SEO - Fixed canonical domain -->
     <link rel="alternate" hreflang="de" href="https://marcel-cv-boost.lovable.app/" />
     <link rel="alternate" hreflang="en" href="https://marcel-cv-boost.lovable.app/?lang=en" />
