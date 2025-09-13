@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import ProcessSection from "@/components/ProcessSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { AccessibilityTools } from "@/components/AccessibilityTools";
 import { RelatedPages } from "@/components/RelatedPages";
 import { SlotsBadge } from "@/components/SlotsBadge";
 import { Button } from "@/components/ui/button";
@@ -76,6 +77,7 @@ const Index = () => {
         
       </main>
       <Footer />
+      <AccessibilityTools />
     </div>
   );
 };
