@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Layout from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
+import { RelatedPages } from "@/components/RelatedPages";
 import { tools } from "@/data/tools";
 import { Wrench, Zap } from "lucide-react";
 
@@ -138,6 +139,9 @@ const Tools = () => {
             </div>
           </div>
         </div>
+
+        {/* Related Pages */}
+        <RelatedPages currentPage="tools" />
       </main>
     </Layout>
   );

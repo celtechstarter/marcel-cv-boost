@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Layout from "@/components/Layout";
+import { RelatedPages } from "@/components/RelatedPages";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Mail, ExternalLink, HelpCircle, Briefcase, Clock, Settings } from "lucide-react";
@@ -215,6 +216,9 @@ const FAQ = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Related Pages */}
+        <RelatedPages currentPage="faq" />
       </main>
     </Layout>
   );
