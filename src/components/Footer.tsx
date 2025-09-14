@@ -55,7 +55,7 @@ const Footer = () => {
               {/* Social links - stacked vertically */}
               <div className="space-y-2 text-sm mt-3">
                 <div className="flex items-center gap-2">
-                  <Linkedin className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/LinkedIn_Logo_2013.svg" alt="LinkedIn Icon" className="h-6 w-6" />
                   <a
                     href="https://www.linkedin.com/in/marcel-welk-572a412ab/"
                     target="_blank"
@@ -67,7 +67,7 @@ const Footer = () => {
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Github className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/GitHub_Logo_2018.svg" alt="GitHub Icon" className="h-6 w-6" />
                   <a
                     href="https://github.com/celtechstarter"
                     target="_blank"
@@ -92,7 +92,7 @@ const Footer = () => {
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/TikTok_logo_2021.svg" alt="TikTok Icon" className="h-6 w-6" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo_2020.svg" alt="TikTok Icon" className="h-6 w-6" />
                   <a
                     href="https://tiktok.com/your-profile"
                     target="_blank"
