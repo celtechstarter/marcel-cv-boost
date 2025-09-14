@@ -18,8 +18,12 @@ serve(async (req) => {
       throw new Error('Text ist erforderlich');
     }
 
-    // Log for debugging
-    console.log('TTS Request:', { textLength: text.length, voice });
+    // Log for debugging (limit log size)
+    console.log('TTS Request:', { 
+      textLength: text.length, 
+      voice, 
+      textPreview: text.substring(0, 50) + (text.length > 50 ? '...' : '')
+    });
 
     const ELEVENLABS_API_KEY = Deno.env.get('ELEVENLABS_API_KEY');
     if (!ELEVENLABS_API_KEY) {
@@ -58,8 +62,17 @@ serve(async (req) => {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('ElevenLabs API Error:', errorText);
-      throw new Error(`Sprachgenerierung fehlgeschlagen: ${response.status}`);
+      // Limit error log size to prevent stack overflow
+      const truncatedError = errorText.length > 500 ? errorText.substring(0, 500) + '...' : errorText;
+      console.error('ElevenLabs API Error:', truncatedError);
+      
+      if (response.status === 401) {
+        throw new Error('ElevenLabs API Key ungültig oder abgelaufen');
+      } else if (response.status === 429) {
+        throw new Error('ElevenLabs Rate-Limit erreicht. Bitte versuchen Sie es später erneut.');
+      } else {
+        throw new Error(`Sprachgenerierung fehlgeschlagen: ${response.status}`);
+      }
     }
 
     // Convert audio to base64
@@ -80,9 +93,15 @@ serve(async (req) => {
       },
     );
   } catch (error) {
-    console.error('TTS Error:', error);
+    // Limit error logging to prevent stack overflow
+    const errorMessage = error instanceof Error ? error.message : 'Unbekannter Fehler';
+    console.error('TTS Error:', errorMessage.substring(0, 200));
+    
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: errorMessage,
+        fallbackMessage: 'Cloud-TTS nicht verfügbar. Browser-TTS wird verwendet.'
+      }),
       {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },

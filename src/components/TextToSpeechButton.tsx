@@ -8,30 +8,41 @@ interface TextToSpeechButtonProps {
   className?: string;
   voice?: 'Liam' | 'Charlotte' | 'Daniel' | 'Laura';
   size?: 'sm' | 'md' | 'lg';
+  useCloudTTS?: boolean;
 }
 
 export const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({ 
   className = "",
   voice = 'Liam',
-  size = 'md'
+  size = 'md',
+  useCloudTTS = false
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
   const [currentSentence, setCurrentSentence] = useState(0);
   const [sentences, setSentences] = useState<string[]>([]);
+  const [speechSynthesis, setSpeechSynthesis] = useState<SpeechSynthesis | null>(null);
+  const [currentUtterance, setCurrentUtterance] = useState<SpeechSynthesisUtterance | null>(null);
   const { toast } = useToast();
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Cleanup audio on unmount
+  // Initialize speech synthesis and cleanup on unmount
   useEffect(() => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      setSpeechSynthesis(window.speechSynthesis);
+    }
+    
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
+      if (currentUtterance) {
+        window.speechSynthesis?.cancel();
+      }
     };
-  }, []);
+  }, [currentUtterance]);
 
   const extractPageText = (): string => {
     // Get main content, excluding navigation and footer
@@ -97,7 +108,65 @@ export const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({
     return combined.filter(s => s.length > 5);
   };
 
-  const playAudio = async (text: string): Promise<HTMLAudioElement> => {
+  const getGermanVoice = (): SpeechSynthesisVoice | null => {
+    if (!speechSynthesis) return null;
+    
+    const voices = speechSynthesis.getVoices();
+    
+    // Try to find German voices
+    const germanVoices = voices.filter(voice => 
+      voice.lang.includes('de') || voice.name.toLowerCase().includes('german')
+    );
+    
+    if (germanVoices.length > 0) {
+      // Prefer female voices for better accessibility
+      const femaleGerman = germanVoices.find(voice => 
+        voice.name.toLowerCase().includes('female') || 
+        voice.name.toLowerCase().includes('anna') ||
+        voice.name.toLowerCase().includes('petra')
+      );
+      return femaleGerman || germanVoices[0];
+    }
+    
+    // Fallback to any available voice
+    return voices.find(voice => voice.default) || voices[0] || null;
+  };
+
+  const playWithBrowserTTS = (text: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      if (!speechSynthesis) {
+        reject(new Error('Browser TTS nicht verfügbar'));
+        return;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      const germanVoice = getGermanVoice();
+      
+      if (germanVoice) {
+        utterance.voice = germanVoice;
+        utterance.lang = 'de-DE';
+      }
+      
+      utterance.rate = 0.9;
+      utterance.pitch = 1.0;
+      utterance.volume = 1.0;
+
+      utterance.onend = () => {
+        setCurrentUtterance(null);
+        resolve();
+      };
+      
+      utterance.onerror = (event) => {
+        setCurrentUtterance(null);
+        reject(new Error(`Browser TTS Fehler: ${event.error}`));
+      };
+
+      setCurrentUtterance(utterance);
+      speechSynthesis.speak(utterance);
+    });
+  };
+
+  const playWithCloudTTS = async (text: string): Promise<HTMLAudioElement> => {
     try {
       const { data, error } = await supabase.functions.invoke('text-to-speech', {
         body: { text, voice }
@@ -124,7 +193,7 @@ export const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({
         audio.load();
       });
     } catch (error) {
-      console.error('TTS Error:', error);
+      console.error('Cloud TTS Error:', error);
       throw error;
     }
   };
@@ -167,25 +236,40 @@ export const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({
     }
 
     try {
-      const audio = await playAudio(sentenceList[index]);
-      audioRef.current = audio;
-      setCurrentAudio(audio);
-      setIsPlaying(true);
       setCurrentSentence(index);
+      setIsPlaying(true);
 
-      audio.onended = () => {
+      if (useCloudTTS) {
+        // Use cloud TTS with throttling
+        await new Promise(resolve => setTimeout(resolve, 500)); // Throttle requests
+        const audio = await playWithCloudTTS(sentenceList[index]);
+        audioRef.current = audio;
+        setCurrentAudio(audio);
+
+        audio.onended = () => {
+          playNextSentence(sentenceList, index + 1);
+        };
+
+        audio.onerror = () => {
+          console.error('Cloud TTS error for sentence:', index);
+          // Fallback to browser TTS
+          playWithBrowserTTS(sentenceList[index])
+            .then(() => playNextSentence(sentenceList, index + 1))
+            .catch(() => playNextSentence(sentenceList, index + 1));
+        };
+
+        audio.play().catch(error => {
+          console.error('Audio play error:', error);
+          // Fallback to browser TTS
+          playWithBrowserTTS(sentenceList[index])
+            .then(() => playNextSentence(sentenceList, index + 1))
+            .catch(() => playNextSentence(sentenceList, index + 1));
+        });
+      } else {
+        // Use browser TTS
+        await playWithBrowserTTS(sentenceList[index]);
         playNextSentence(sentenceList, index + 1);
-      };
-
-      audio.onerror = () => {
-        console.error('Audio playback error for sentence:', index);
-        playNextSentence(sentenceList, index + 1); // Skip to next sentence
-      };
-
-      audio.play().catch(error => {
-        console.error('Audio play error:', error);
-        playNextSentence(sentenceList, index + 1);
-      });
+      }
 
     } catch (error) {
       console.error('Error playing sentence:', error);
@@ -199,6 +283,10 @@ export const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({
       audioRef.current.pause();
       audioRef.current = null;
     }
+    if (currentUtterance && speechSynthesis) {
+      speechSynthesis.cancel();
+      setCurrentUtterance(null);
+    }
     setCurrentAudio(null);
     setIsPlaying(false);
     setCurrentSentence(0);
@@ -206,12 +294,20 @@ export const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({
   };
 
   const pauseResumeReading = () => {
-    if (audioRef.current) {
+    if (useCloudTTS && audioRef.current) {
       if (audioRef.current.paused) {
         audioRef.current.play();
         setIsPlaying(true);
       } else {
         audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    } else if (!useCloudTTS && speechSynthesis) {
+      if (speechSynthesis.paused) {
+        speechSynthesis.resume();
+        setIsPlaying(true);
+      } else {
+        speechSynthesis.pause();
         setIsPlaying(false);
       }
     }
@@ -222,6 +318,9 @@ export const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({
       if (audioRef.current) {
         audioRef.current.pause();
       }
+      if (currentUtterance && speechSynthesis) {
+        speechSynthesis.cancel();
+      }
       playNextSentence(sentences, currentSentence + 1);
     }
   };
@@ -230,6 +329,9 @@ export const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({
     if (sentences.length > 0 && currentSentence > 0) {
       if (audioRef.current) {
         audioRef.current.pause();
+      }
+      if (currentUtterance && speechSynthesis) {
+        speechSynthesis.cancel();
       }
       playNextSentence(sentences, currentSentence - 1);
     }
@@ -255,9 +357,13 @@ export const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({
           onClick={pauseResumeReading}
           size={buttonSize}
           variant="outline"
-          aria-label={audioRef.current?.paused ? "Vorlesen fortsetzen" : "Vorlesen pausieren"}
+          aria-label={
+            useCloudTTS 
+              ? (audioRef.current?.paused ? "Vorlesen fortsetzen" : "Vorlesen pausieren")
+              : (speechSynthesis?.paused ? "Vorlesen fortsetzen" : "Vorlesen pausieren")
+          }
         >
-          {audioRef.current?.paused ? (
+          {(useCloudTTS ? audioRef.current?.paused : speechSynthesis?.paused) ? (
             <Play className={iconSize} />
           ) : (
             <Pause className={iconSize} />

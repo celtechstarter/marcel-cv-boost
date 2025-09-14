@@ -9,13 +9,16 @@ import {
   Volume2,
   Settings,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Cloud,
+  Monitor
 } from 'lucide-react';
 
 export const AccessibilityTools: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [fontSize, setFontSize] = useState(100);
   const [highContrast, setHighContrast] = useState(false);
+  const [useCloudTTS, setUseCloudTTS] = useState(false);
 
   const increaseFontSize = () => {
     const newSize = Math.min(fontSize + 10, 150);
@@ -77,16 +80,48 @@ export const AccessibilityTools: React.FC = () => {
         <Card className="shadow-xl border-2 border-primary/20 bg-background/95 backdrop-blur">
           <CardContent className="p-4 space-y-4 min-w-[280px]">
             {/* Text-to-Speech Section */}
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-center gap-2 text-sm font-medium">
                 <Volume2 className="h-4 w-4 text-primary" />
                 Vorlesen
               </div>
+              
+              {/* TTS Mode Toggle */}
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => setUseCloudTTS(false)}
+                  size="sm"
+                  variant={!useCloudTTS ? "default" : "outline"}
+                  className="flex-1"
+                  aria-label="Browser-Vorlesen verwenden"
+                >
+                  <Monitor className="h-3 w-3 mr-1" />
+                  Standard
+                </Button>
+                <Button
+                  onClick={() => setUseCloudTTS(true)}
+                  size="sm"
+                  variant={useCloudTTS ? "default" : "outline"}
+                  className="flex-1"
+                  aria-label="Studio-Qualität verwenden"
+                >
+                  <Cloud className="h-3 w-3 mr-1" />
+                  Studio
+                </Button>
+              </div>
+              
               <TextToSpeechButton 
                 className="w-full"
                 voice="Liam"
                 size="md"
+                useCloudTTS={useCloudTTS}
               />
+              
+              {useCloudTTS && (
+                <p className="text-xs text-muted-foreground">
+                  Studio-Qualität verwendet externe KI-Dienste. Datenschutzerklärung beachten.
+                </p>
+              )}
             </div>
 
             {/* Font Size Controls */}
