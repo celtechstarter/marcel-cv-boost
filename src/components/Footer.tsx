@@ -2,7 +2,7 @@ import { Heart, Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
+
   return (
     <footer className="bg-white dark:bg-neutral-900/95 text-neutral-700 dark:text-neutral-300 border-t border-neutral-200 dark:border-neutral-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
