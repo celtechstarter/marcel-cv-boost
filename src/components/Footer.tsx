@@ -1,4 +1,4 @@
-import { Heart, Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
+import { Heart, Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -55,7 +55,7 @@ const Footer = () => {
               {/* Social links - stacked vertically */}
               <div className="space-y-2 text-sm mt-3">
                 <div className="flex items-center gap-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/LinkedIn_Logo_2013.svg" alt="LinkedIn Icon" className="h-6 w-6" />
+                  <Linkedin className="h-5 w-5 text-neutral-500 dark:text-neutral-400" aria-hidden="true" />
                   <a
                     href="https://www.linkedin.com/in/marcel-welk-572a412ab/"
                     target="_blank"
@@ -67,7 +67,7 @@ const Footer = () => {
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/GitHub_Logo_2018.svg" alt="GitHub Icon" className="h-6 w-6" />
+                  <Github className="h-5 w-5 text-neutral-500 dark:text-neutral-400" aria-hidden="true" />
                   <a
                     href="https://github.com/celtechstarter"
                     target="_blank"
@@ -92,7 +92,7 @@ const Footer = () => {
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo_2020.svg" alt="TikTok Icon" className="h-6 w-6" />
+                  <img src="/icons/tiktok.svg" alt="TikTok Icon" className="h-5 w-5 opacity-80" aria-hidden="true" />
                   <a
                     href="https://tiktok.com/your-profile"
                     target="_blank"
@@ -116,7 +116,7 @@ const Footer = () => {
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Twitter_Logo_2021.svg" alt="X (Twitter) Icon" className="h-6 w-6" />
+                  <Twitter className="h-5 w-5 text-neutral-500 dark:text-neutral-400" aria-hidden="true" />
                   <a
                     href="https://twitter.com/your-profile"
                     target="_blank"
