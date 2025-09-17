@@ -102,7 +102,7 @@ const Navigation = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <a href="/" className="text-xl font-semibold gradient-text focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm" title="Zur Startseite - Marcel Bewerbungshilfe">fillertext</a>
+              <a href="/" className="text-xl font-semibold gradient-text focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm" title="Zur Startseite - Marcel Bewerbungshilfe">Bewerbungs Mensch</a>
             </div>
 
             {/* Desktop Navigation - show only on lg+ for tablet overflow fix */}
