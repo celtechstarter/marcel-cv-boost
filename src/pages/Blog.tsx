@@ -397,7 +397,7 @@ const Blog = () => {
               </p>
               <Button 
                 className="btn-accent"
-                onClick={() => window.location.href = 'mailto:marcel.welk87@gmail.com?subject=Newsletter Anmeldung'}
+                onClick={() => window.location.href = 'mailto:marcel.welk@bewerbungsmensch.de?subject=Newsletter Anmeldung'}
                 aria-label={t('blog.newsletter.subscribe') || 'Newsletter abonnieren'}
               >
                 {t('blog.newsletter.subscribe') || 'Newsletter abonnieren'}

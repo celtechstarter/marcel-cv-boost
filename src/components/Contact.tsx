@@ -24,7 +24,7 @@ const Contact = () => {
     
     toast({
       title: "Nachricht gesendet! 📨",
-      description: "Ich melde mich schnellstmöglich bei dir unter marcel.welk87@gmail.com. Vielen Dank für dein Vertrauen!",
+      description: "Ich melde mich schnellstmöglich bei dir unter marcel.welk@bewerbungsmensch.de. Vielen Dank für dein Vertrauen!",
     });
     
     setIsSubmitting(false);
@@ -34,8 +34,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "E-Mail",
-      value: "marcel.welk87@gmail.com",
-      link: "mailto:marcel.welk87@gmail.com"
+      value: "marcel.welk@bewerbungsmensch.de",
+      link: "mailto:marcel.welk@bewerbungsmensch.de"
     },
     {
       icon: Phone,

@@ -42,7 +42,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-sm">
                 <Mail className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
-                <a href="mailto:marcel.welk87@gmail.com" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">marcel.welk87@gmail.com</a>
+                <a href="mailto:marcel.welk@bewerbungsmensch.de" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">marcel.welk@bewerbungsmensch.de</a>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <Phone className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />

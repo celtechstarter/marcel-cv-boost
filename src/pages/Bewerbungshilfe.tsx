@@ -112,7 +112,7 @@ const Bewerbungshilfe = () => {
     } catch (error) {
       toast({
         title: "Fehler beim Senden",
-        description: "Bitte versuche es später erneut oder schreibe direkt an marcel.welk87@gmail.com",
+        description: "Bitte versuche es später erneut oder schreibe direkt an marcel.welk@bewerbungsmensch.de",
         variant: "destructive",
       });
     } finally {
@@ -465,7 +465,7 @@ const Bewerbungshilfe = () => {
                         <span className="font-medium text-yellow-800 dark:text-yellow-200">Hinweis zum E-Mail-Versand:</span>
                       </div>
                       <p className="text-sm text-yellow-700 dark:text-yellow-300 mt-1">
-                        Buchung erfolgreich, aber E-Mail konnte nicht gesendet werden. Bitte prüfe später dein Postfach oder kontaktiere mich direkt unter marcel.welk87@gmail.com.
+                        Buchung erfolgreich, aber E-Mail konnte nicht gesendet werden. Bitte prüfe später dein Postfach oder kontaktiere mich direkt unter marcel.welk@bewerbungsmensch.de.
                       </p>
                     </div>
                   )}
@@ -506,7 +506,7 @@ const Bewerbungshilfe = () => {
             "provider": {
               "@type": "Person",
               "name": "Marcel Welk",
-              "email": "marcel.welk87@gmail.com",
+              "email": "marcel.welk@bewerbungsmensch.de",
               "sameAs": ["https://www.linkedin.com/in/marcel-welk-572a412ab/"]
             },
             "areaServed": "Deutschland",

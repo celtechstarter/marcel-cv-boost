@@ -73,7 +73,7 @@ const FAQ = () => {
         },
         {
           question: "Wie kann ich dich am besten erreichen?",
-          answer: "Am einfachsten per E-Mail an marcel.welk87@gmail.com oder über meinen Discord-Server, den du direkt über den Link auf der Webseite betreten kannst. Ich antworte normalerweise innerhalb von 24 Stunden."
+          answer: "Am einfachsten per E-Mail an marcel.welk@bewerbungsmensch.de oder über meinen Discord-Server, den du direkt über den Link auf der Webseite betreten kannst. Ich antworte normalerweise innerhalb von 24 Stunden."
         },
         {
           question: "Welche Unterlagen benötigst du von mir?",
@@ -197,7 +197,7 @@ const FAQ = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   className="btn-primary"
-                  onClick={() => window.location.href = 'mailto:marcel.welk87@gmail.com'}
+                  onClick={() => window.location.href = 'mailto:marcel.welk@bewerbungsmensch.de'}
                   aria-label="E-Mail an Marcel senden"
                 >
                   <Mail className="h-4 w-4 mr-2" />

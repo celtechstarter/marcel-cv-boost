@@ -16,7 +16,7 @@ const Impressum = () => {
                 <h2 className="text-xl font-semibold mb-3">Angaben gemäß § 5 TMG</h2>
                 <div className="space-y-2">
                   <p><strong>Name:</strong> Marcel Welk</p>
-                  <p><strong>E-Mail:</strong> marcel.welk87@gmail.com</p>
+                  <p><strong>E-Mail:</strong> marcel.welk@bewerbungsmensch.de</p>
                   <p><strong>Adresse:</strong> Musterstraße 123<br />12345 Musterstadt<br />Deutschland</p>
                   <p><strong>Website:</strong> https://marcel-cv-boost.lovable.dev</p>
                 </div>
@@ -24,13 +24,13 @@ const Impressum = () => {
 
               <section>
                 <h2 className="text-xl font-semibold mb-3">Kontakt</h2>
-                <p>E-Mail: marcel.welk87@gmail.com</p>
+                <p>E-Mail: marcel.welk@bewerbungsmensch.de</p>
               </section>
 
               <section>
                 <h2 className="text-xl font-semibold mb-3">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
                 <p>Marcel Welk<br />
-                E-Mail: marcel.welk87@gmail.com</p>
+                E-Mail: marcel.welk@bewerbungsmensch.de</p>
               </section>
 
               <section>

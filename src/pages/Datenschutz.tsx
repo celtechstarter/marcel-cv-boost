@@ -100,7 +100,7 @@ const Datenschutz = () => {
                   <br />
                   <strong>Marcel Welk</strong>
                   <br />
-                  E-Mail: marcel.welk87@gmail.com
+                  E-Mail: marcel.welk@bewerbungsmensch.de
                 </p>
               </section>
 

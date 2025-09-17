@@ -391,7 +391,7 @@ const handler = async (req: Request): Promise<Response> => {
 
       // Send notification to Marcel using sendMailSafe
       const adminMail = await sendMailSafe({
-        to: 'marcel.welk87@gmail.com',
+        to: 'marcel.welk@bewerbungsmensch.de',
         subject: 'Neue Bewerbungshilfe-Anfrage',
         html: `
           <h1>Neue Bewerbungshilfe-Anfrage</h1>
@@ -728,7 +728,7 @@ const handler = async (req: Request): Promise<Response> => {
       });
 
       const adminMail = await sendMailSafe({
-        to: 'marcel.welk87@gmail.com',
+        to: 'marcel.welk@bewerbungsmensch.de',
         subject: 'Neue Terminbuchung',
         html: `
           <h1>Neue Terminbuchung</h1>
