@@ -19,7 +19,7 @@ function buildCSP(origin?: string): string {
     "style-src": "'self' 'unsafe-inline'",
     "img-src": "'self' data: blob:",
     "font-src": "'self'",
-    "connect-src": "'self' https://*.supabase.co https://marcel-cv-boost.lovable.app https://marcel-cv-boost.lovable.dev",
+    "connect-src": "'self' https://*.supabase.co https://bewerbungsmensch.de https://www.bewerbungsmensch.de",
     "frame-ancestors": "'none'",
     "object-src": "'none'",
     "base-uri": "'self'",
@@ -63,11 +63,11 @@ function getCorsHeaders(origin?: string) {
 
 // Secure CORS for GDPR compliance - restrict to authorized domains only
 const allowedOrigins = [
-  'https://marcel-cv-boost.lovable.dev',
-  'https://marcel-cv-boost.lovable.app',
+  'https://bewerbungsmensch.de',
+  'https://www.bewerbungsmensch.de',
   'http://localhost:3000',
   'http://localhost:5173',
-  // Keep preview domain for development (will be removed in production)
+  // Keep preview domain for development
   'https://542cf94b-6c9e-4ab7-93f7-aaeacf7a41b9.sandbox.lovable.dev'
 ];
 
@@ -78,7 +78,7 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey);
 const resendApiKey = Deno.env.get('RESEND_API_KEY');
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
-const SITE_URL = 'https://marcel-cv-boost.lovable.dev';
+const SITE_URL = 'https://bewerbungsmensch.de';
 const ADMIN_PASS = Deno.env.get('ADMIN_PASS');
 
 // Spam protection function
