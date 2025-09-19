@@ -1,67 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://marcel-cv-boost.lovable.dev/</loc>
-    <lastmod>2025-01-07</lastmod>
+    <loc>https://bewerbungsmensch.de/</loc>
+    <lastmod>2025-01-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://marcel-cv-boost.lovable.dev/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://marcel-cv-boost.lovable.dev/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://marcel-cv-boost.lovable.dev/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://marcel-cv-boost.lovable.dev/?lang=tr" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://marcel-cv-boost.lovable.dev/?lang=ru" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://marcel-cv-boost.lovable.dev/?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="uk" href="https://marcel-cv-boost.lovable.dev/?lang=uk" />
-    <xhtml:link rel="alternate" hreflang="pl" href="https://marcel-cv-boost.lovable.dev/?lang=pl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bewerbungsmensch.de/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://bewerbungsmensch.de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bewerbungsmensch.de/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://bewerbungsmensch.de/?lang=tr" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://bewerbungsmensch.de/?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://bewerbungsmensch.de/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://bewerbungsmensch.de/?lang=uk" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://bewerbungsmensch.de/?lang=pl" />
   </url>
   <url>
-    <loc>https://marcel-cv-boost.lovable.dev/reviews</loc>
-    <lastmod>2025-01-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://marcel-cv-boost.lovable.dev/faq</loc>
-    <lastmod>2025-01-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://marcel-cv-boost.lovable.dev/blog</loc>
-    <lastmod>2025-01-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://marcel-cv-boost.lovable.dev/tools</loc>
-    <lastmod>2025-01-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://marcel-cv-boost.lovable.dev/impressum</loc>
-    <lastmod>2025-01-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://marcel-cv-boost.lovable.dev/datenschutz</loc>
-    <lastmod>2025-01-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://marcel-cv-boost.lovable.dev/barrierefreiheit</loc>
-    <lastmod>2025-01-07</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://marcel-cv-boost.lovable.dev/bewerbungshilfe</loc>
-    <lastmod>2025-01-07</lastmod>
+    <loc>https://bewerbungsmensch.de/bewerbungshilfe</loc>
+    <lastmod>2025-01-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="de" href="https://marcel-cv-boost.lovable.dev/bewerbungshilfe" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://marcel-cv-boost.lovable.dev/bewerbungshilfe?lang=en" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://bewerbungsmensch.de/bewerbungshilfe" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bewerbungsmensch.de/bewerbungshilfe?lang=en" />
+  </url>
+  <url>
+    <loc>https://bewerbungsmensch.de/faq</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bewerbungsmensch.de/blog</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bewerbungsmensch.de/tools</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bewerbungsmensch.de/impressum</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://bewerbungsmensch.de/datenschutz</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://bewerbungsmensch.de/barrierefreiheit</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

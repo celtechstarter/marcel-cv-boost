@@ -1,14 +1,9 @@
 User-agent: *
 Allow: /
 
-# Disallow admin pages
-Disallow: /admin/
-Disallow: /review-verify
-
 # Allow important pages
 Allow: /
 Allow: /bewerbungshilfe
-Allow: /reviews
 Allow: /faq
 Allow: /blog
 Allow: /impressum
@@ -16,4 +11,4 @@ Allow: /datenschutz
 Allow: /barrierefreiheit
 
 # Sitemap
-Sitemap: https://marcel-cv-boost.lovable.dev/sitemap.xml
+Sitemap: https://bewerbungsmensch.de/sitemap.xml

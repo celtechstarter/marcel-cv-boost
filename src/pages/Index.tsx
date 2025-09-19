@@ -7,7 +7,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { AccessibilityTools } from "@/components/AccessibilityTools";
 import { RelatedPages } from "@/components/RelatedPages";
-import { SlotsBadge } from "@/components/SlotsBadge";
+
 import { Button } from "@/components/ui/button";
 import { Calendar, Mail } from "lucide-react";
 import { useI18n } from "@/hooks/useI18n";
@@ -21,11 +21,6 @@ const Index = () => {
       <main className="pt-16" role="main">
         {/* H1 is in Hero component */}
         <Hero />
-        <div className="py-8">
-          <div className="container mx-auto px-4">
-            <SlotsBadge />
-          </div>
-        </div>
         
         {/* CTA Section replacing duplicate form */}
         <section className="py-16 bg-muted/50">
@@ -34,33 +29,18 @@ const Index = () => {
               <h2 className="text-3xl font-bold mb-4">{t('cta.title')}</h2>
               <p className="text-xl text-muted-foreground mb-8">{t('cta.subtitle')}</p>
               
-              <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              <div className="flex justify-center">
                 <Button 
                   asChild
                   size="lg"
-                  className="h-auto p-6 flex-col gap-3 text-left w-full whitespace-normal break-words"
-                >
-                  <a 
-                    href="/bewerbungshilfe#termin"
-                    aria-label={t('cta.booking.aria')}
-                  >
-                    <Calendar className="h-8 w-8 mb-2" />
-                    <span className="font-semibold text-base">{t('cta.booking.text')}</span>
-                  </a>
-                </Button>
-                
-                <Button 
-                  asChild
-                  variant="secondary"
-                  size="lg"
-                  className="h-auto p-6 flex-col gap-3 text-left w-full whitespace-normal break-words"
+                  className="h-auto p-6 flex-col gap-3 text-center"
                 >
                   <a 
                     href="/bewerbungshilfe#anfrage"
-                    aria-label={t('cta.contact.aria')}
+                    aria-label="Jetzt kostenlose Bewerbungshilfe anfragen"
                   >
                     <Mail className="h-8 w-8 mb-2" />
-                    <span className="font-semibold text-base">{t('cta.contact.text')}</span>
+                    <span className="font-semibold text-base">Jetzt Anfrage senden</span>
                   </a>
                 </Button>
               </div>

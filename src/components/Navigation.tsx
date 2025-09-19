@@ -65,10 +65,6 @@ const Navigation = () => {
     label: t('navigation.items.help'),
     title: t('navigation.titles.help')
   }, {
-    href: "/reviews",
-    label: t('navigation.items.reviews'),
-    title: t('navigation.titles.reviews')
-  }, {
     href: "/faq",
     label: t('navigation.items.faq'),
     title: t('navigation.titles.faq')
