@@ -4,12 +4,11 @@ import { ToolCard } from "@/components/ToolCard";
 import { RelatedPages } from "@/components/RelatedPages";
 import { tools } from "@/data/tools";
 import { Wrench, Zap } from "lucide-react";
-
 const Tools = () => {
   useEffect(() => {
     // SEO Meta Tags
     document.title = "Tools für ATS-optimierte Bewerbungen | Marcel Welk";
-    
+
     // Update or create meta description
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
@@ -18,7 +17,7 @@ const Tools = () => {
       document.head.appendChild(metaDescription);
     }
     metaDescription.setAttribute('content', 'KI-Tools für professionelle Bewerbungen: ChatGPT Pro, Perplexity Pro, Canva & Google Sheets. Erstelle ATS-optimierte Lebensläufe mit modernsten Tools.');
-    
+
     // Add keywords for AI search
     let keywords = document.querySelector('meta[name="keywords"]');
     if (!keywords) {
@@ -27,7 +26,7 @@ const Tools = () => {
       document.head.appendChild(keywords);
     }
     keywords.setAttribute('content', 'ChatGPT Bewerbung, Perplexity Jobsuche, Canva Lebenslauf, Google Sheets Bewerbungstracker, KI Tools Bewerbung, ATS optimiert');
-    
+
     // Canonical tag
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -36,15 +35,21 @@ const Tools = () => {
       document.head.appendChild(canonical);
     }
     canonical.setAttribute('href', 'https://marcel-cv-boost.lovable.dev/tools');
-    
+
     // Open Graph Tags
-    const ogTags = [
-      { property: 'og:title', content: 'Tools für ATS-optimierte Bewerbungen | Marcel Welk' },
-      { property: 'og:description', content: 'KI-Tools für professionelle Bewerbungen: ChatGPT Pro, Perplexity Pro, Canva & Google Sheets für ATS-optimierte Lebensläufe.' },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: 'https://marcel-cv-boost.lovable.dev/tools' }
-    ];
-    
+    const ogTags = [{
+      property: 'og:title',
+      content: 'Tools für ATS-optimierte Bewerbungen | Marcel Welk'
+    }, {
+      property: 'og:description',
+      content: 'KI-Tools für professionelle Bewerbungen: ChatGPT Pro, Perplexity Pro, Canva & Google Sheets für ATS-optimierte Lebensläufe.'
+    }, {
+      property: 'og:type',
+      content: 'website'
+    }, {
+      property: 'og:url',
+      content: 'https://marcel-cv-boost.lovable.dev/tools'
+    }];
     ogTags.forEach(tag => {
       let metaTag = document.querySelector(`meta[property="${tag.property}"]`);
       if (!metaTag) {
@@ -54,14 +59,18 @@ const Tools = () => {
       }
       metaTag.setAttribute('content', tag.content);
     });
-    
+
     // Twitter Card Tags
-    const twitterTags = [
-      { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:title', content: 'Tools für ATS-optimierte Bewerbungen | Marcel Welk' },
-      { name: 'twitter:description', content: 'KI-Tools für professionelle Bewerbungen: ChatGPT Pro, Perplexity Pro, Canva & Google Sheets für ATS-optimierte Lebensläufe.' }
-    ];
-    
+    const twitterTags = [{
+      name: 'twitter:card',
+      content: 'summary'
+    }, {
+      name: 'twitter:title',
+      content: 'Tools für ATS-optimierte Bewerbungen | Marcel Welk'
+    }, {
+      name: 'twitter:description',
+      content: 'KI-Tools für professionelle Bewerbungen: ChatGPT Pro, Perplexity Pro, Canva & Google Sheets für ATS-optimierte Lebensläufe.'
+    }];
     twitterTags.forEach(tag => {
       let metaTag = document.querySelector(`meta[name="${tag.name}"]`);
       if (!metaTag) {
@@ -71,7 +80,7 @@ const Tools = () => {
       }
       metaTag.setAttribute('content', tag.content);
     });
-    
+
     // Optional JSON-LD ItemList schema
     const toolsSchema = {
       "@context": "https://schema.org",
@@ -87,7 +96,6 @@ const Tools = () => {
         "url": tool.url
       }))
     };
-    
     let script = document.querySelector('script[type="application/ld+json"][data-tools]') as HTMLScriptElement;
     if (!script) {
       script = document.createElement('script');
@@ -97,10 +105,10 @@ const Tools = () => {
     }
     script.textContent = JSON.stringify(toolsSchema);
   }, []);
-
-  return (
-    <Layout>
-      <main className="section-padding" style={{ marginTop: '4rem' }}>
+  return <Layout>
+      <main className="section-padding" style={{
+      marginTop: '4rem'
+    }}>
         <div className="container mx-auto max-w-6xl">
           {/* Header */}
           <div className="text-center mb-12">
@@ -119,13 +127,11 @@ const Tools = () => {
 
           {/* Tools Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {tools.map((tool, index) => (
-              <ToolCard key={index} tool={tool} />
-            ))}
+            {tools.map((tool, index) => <ToolCard key={index} tool={tool} />)}
           </div>
 
           {/* Additional Info */}
-          <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg p-8 border border-primary/20">
+          <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg p-8 border border-primary/20 py-[32px] mx-0 my-[40px]">
             <div className="flex items-start gap-4">
               <Zap className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
               <div>
@@ -143,8 +149,6 @@ const Tools = () => {
         {/* Related Pages */}
         <RelatedPages currentPage="tools" />
       </main>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Tools;
