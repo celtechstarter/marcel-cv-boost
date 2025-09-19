@@ -44,8 +44,8 @@ export const RelatedPages = ({
   if (relatedPages.length === 0) return null;
   return <section className="bg-gradient-to-r from-secondary/20 to-accent/20 border-t border-border/50 py-[64px] my-[40px]">
       <div className="container mx-auto max-w-6xl px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+        <div className="text-center mb-12 px-0 py-0 my-0 mx-0">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 mx-[10px] px-0 my-0">
             Das könnte dich auch interessieren
           </h2>
           <p className="text-muted-foreground">
