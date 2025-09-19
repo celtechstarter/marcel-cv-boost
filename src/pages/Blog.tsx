@@ -5,14 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, ArrowRight, FileText, Lightbulb, Heart, Zap, Target, Users, Palette } from "lucide-react";
 import { useI18n } from "@/hooks/useI18n";
-
 const Blog = () => {
-  const { t } = useI18n();
-  
+  const {
+    t
+  } = useI18n();
   useEffect(() => {
     // SEO Meta Tags
     document.title = "Blog - Bewerbungstipps & KI-Karriereberatung | Marcel Welk";
-    
+
     // Update or create meta description
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
@@ -21,7 +21,7 @@ const Blog = () => {
       document.head.appendChild(metaDescription);
     }
     metaDescription.setAttribute('content', 'Expertentipps für Bewerbungen 2025: KI-Lebenslauf erstellen, psychische Belastungen meistern, ATS-optimierte CVs und moderne Bewerbungsstrategien. Expert tips for applications 2025: AI resume creation, overcoming mental health challenges, ATS-optimized CVs.');
-    
+
     // Add keywords for AI search
     let keywords = document.querySelector('meta[name="keywords"]');
     if (!keywords) {
@@ -30,15 +30,21 @@ const Blog = () => {
       document.head.appendChild(keywords);
     }
     keywords.setAttribute('content', 'KI Bewerbung, Lebenslauf KI erstellen, ATS optimiert, psychische Belastungen Bewerbung, AI resume, CV AI optimization, mental health job application, accessible job applications');
-    
+
     // Open Graph Tags
-    const ogTags = [
-      { property: 'og:title', content: 'Blog - Bewerbungstipps & KI-Karriereberatung' },
-      { property: 'og:description', content: 'Expertentipps für Bewerbungen 2025: KI-Lebenslauf erstellen, psychische Belastungen meistern und moderne Bewerbungsstrategien.' },
-      { property: 'og:type', content: 'blog' },
-      { property: 'og:url', content: 'https://marcel-cv-boost.lovable.dev/blog' }
-    ];
-    
+    const ogTags = [{
+      property: 'og:title',
+      content: 'Blog - Bewerbungstipps & KI-Karriereberatung'
+    }, {
+      property: 'og:description',
+      content: 'Expertentipps für Bewerbungen 2025: KI-Lebenslauf erstellen, psychische Belastungen meistern und moderne Bewerbungsstrategien.'
+    }, {
+      property: 'og:type',
+      content: 'blog'
+    }, {
+      property: 'og:url',
+      content: 'https://marcel-cv-boost.lovable.dev/blog'
+    }];
     ogTags.forEach(tag => {
       let metaTag = document.querySelector(`meta[property="${tag.property}"]`);
       if (!metaTag) {
@@ -48,7 +54,7 @@ const Blog = () => {
       }
       metaTag.setAttribute('content', tag.content);
     });
-    
+
     // Blog Schema structured data
     const blogSchema = {
       "@context": "https://schema.org",
@@ -76,7 +82,6 @@ const Blog = () => {
         "articleSection": post.category
       }))
     };
-    
     let script = document.querySelector('script[type="application/ld+json"][data-blog]') as HTMLScriptElement;
     if (!script) {
       script = document.createElement('script');
@@ -86,15 +91,13 @@ const Blog = () => {
     }
     script.textContent = JSON.stringify(blogSchema);
   }, []);
-
-  const blogPosts = [
-    {
-      title: "KI-Lebenslauf 2025: Der komplette Guide für ATS-optimierte Bewerbungen",
-      excerpt: "Erfahre, wie du ChatGPT, Claude und andere KI-Tools strategisch einsetzt, um ATS-optimierte Lebensläufe zu erstellen, die sowohl Algorithmen als auch Personaler überzeugen.",
-      date: "2025-01-06",
-      category: "KI & Bewerbung",
-      icon: <Zap className="h-5 w-5" />,
-      content: `
+  const blogPosts = [{
+    title: "KI-Lebenslauf 2025: Der komplette Guide für ATS-optimierte Bewerbungen",
+    excerpt: "Erfahre, wie du ChatGPT, Claude und andere KI-Tools strategisch einsetzt, um ATS-optimierte Lebensläufe zu erstellen, die sowohl Algorithmen als auch Personaler überzeugen.",
+    date: "2025-01-06",
+    category: "KI & Bewerbung",
+    icon: <Zap className="h-5 w-5" />,
+    content: `
         <h2>KI-Revolution im Bewerbungsprozess 2025</h2>
         <p>Die Arbeitswelt hat sich dramatisch verändert. Über 90% aller großen Unternehmen nutzen mittlerweile Applicant Tracking Systems (ATS), die Bewerbungen automatisch vorsortieren. Gleichzeitig ermöglichen KI-Tools wie ChatGPT und Claude eine völlig neue Herangehensweise an die Bewerbungserstellung.</p>
         
@@ -119,15 +122,14 @@ const Blog = () => {
         
         <p><strong>Mein Tipp:</strong> KI ist ein mächtiges Werkzeug, aber die finale Entscheidung und der persönliche Touch müssen von dir kommen. Nutze KI als Sparringspartner, nicht als Ghostwriter.</p>
       `,
-      keywords: ["KI-Lebenslauf", "ATS-optimiert", "ChatGPT Bewerbung", "Claude AI", "Bewerbung 2025", "Applicant Tracking System"]
-    },
-    {
-      title: "Bewerbungen mit Depression & Angststörungen: Praxisguide für den Neustart",
-      excerpt: "Konkrete Strategien für Menschen mit psychischen Belastungen: Wie du Lücken im Lebenslauf erklärst, deine Stärken findest und den Bewerbungsprozess meisterst.",
-      date: "2024-12-28",
-      category: "Mental Health",
-      icon: <Heart className="h-5 w-5" />,
-      content: `
+    keywords: ["KI-Lebenslauf", "ATS-optimiert", "ChatGPT Bewerbung", "Claude AI", "Bewerbung 2025", "Applicant Tracking System"]
+  }, {
+    title: "Bewerbungen mit Depression & Angststörungen: Praxisguide für den Neustart",
+    excerpt: "Konkrete Strategien für Menschen mit psychischen Belastungen: Wie du Lücken im Lebenslauf erklärst, deine Stärken findest und den Bewerbungsprozess meisterst.",
+    date: "2024-12-28",
+    category: "Mental Health",
+    icon: <Heart className="h-5 w-5" />,
+    content: `
         <h2>Du bist nicht allein – und du bist stärker als du denkst</h2>
         <p>Als jemand, der selbst durch schwere Zeiten gegangen ist, weiß ich: Bewerbungen können überwältigend sein, besonders wenn du mit Depression, Angststörungen oder anderen psychischen Belastungen kämpfst. Aber lass mich dir etwas sagen: Deine Erfahrungen machen dich nicht schwächer – sie machen dich menschlicher, empathischer und oft auch belastbarer.</p>
         
@@ -177,15 +179,14 @@ const Blog = () => {
         
         <p><strong>Denk daran:</strong> Viele der besten Mitarbeiter haben schwere Zeiten durchlebt. Unternehmen schätzen Menschen, die authentisch, reflektiert und menschlich sind. Du hast mehr zu bieten, als du vielleicht denkst.</p>
       `,
-      keywords: ["Bewerbung Depression", "Lebenslauf Lücken erklären", "Angststörung Bewerbung", "psychische Belastung Job", "Neustart Karriere"]
-    },
-    {
-      title: "Bewerbungstracker 2025: Kostenlose Google Sheets Vorlage für den Jobsuch-Erfolg",
-      excerpt: "Professioneller Bewerbungstracker mit Follow-up Automatisierung, Erfolgsanalyse und Gehaltsverhandlungs-Tracker. Inklusive kostenloser Vorlage.",
-      date: "2024-12-20",
-      category: "Productivity Tools",
-      icon: <Target className="h-5 w-5" />,
-      content: `
+    keywords: ["Bewerbung Depression", "Lebenslauf Lücken erklären", "Angststörung Bewerbung", "psychische Belastung Job", "Neustart Karriere"]
+  }, {
+    title: "Bewerbungstracker 2025: Kostenlose Google Sheets Vorlage für den Jobsuch-Erfolg",
+    excerpt: "Professioneller Bewerbungstracker mit Follow-up Automatisierung, Erfolgsanalyse und Gehaltsverhandlungs-Tracker. Inklusive kostenloser Vorlage.",
+    date: "2024-12-20",
+    category: "Productivity Tools",
+    icon: <Target className="h-5 w-5" />,
+    content: `
         <h2>Warum ein Bewerbungstracker dein Game-Changer ist</h2>
         <p>Die durchschnittliche Jobsuche dauert 6-8 Monate. Ohne System verlierst du schnell den Überblick über deine Bewerbungen, verpasst Follow-ups und machst dieselben Fehler immer wieder. Mein Bewerbungstracker hilft dir dabei, professionell und strategisch vorzugehen.</p>
         
@@ -246,41 +247,36 @@ const Blog = () => {
         
         <p><strong>Ergebnis:</strong> Mit diesem System erhöhst du deine Antwortquote um durchschnittlich 40% und verkürzt deine Jobsuche um 2-3 Monate.</p>
       `,
-      keywords: ["Bewerbungstracker", "Google Sheets Vorlage", "Jobsuche organisieren", "Follow-up Bewerbung", "Bewerbungsmanagement"]
-    },
-    {
-      title: "Bewerbungsfotos im Jahr 2024 - Was wirklich wichtig ist",
-      excerpt: "Moderne Bewerbungsfotos müssen nicht teuer sein. Erfahre, worauf es wirklich ankommt und wie du auch mit kleinem Budget professionell wirkst.",
-      date: "2024-02-28",
-      category: "Bewerbungsfotos",
-      icon: <Lightbulb className="h-5 w-5" />,
-      content: "Ein gutes Bewerbungsfoto muss nicht die Welt kosten. Hier zeige ich dir, wie du auch mit einfachen Mitteln ein professionelles Ergebnis erzielst...",
-      keywords: ["Bewerbungsfotos", "professionelle Fotos günstig", "Bewerbungsfoto Tipps", "Kleidung Bewerbungsfoto"]
-    },
-    {
-      title: "Discord für Bewerbungshilfe - Warum ich auf diese Plattform setze",
-      excerpt: "Discord bietet ideale Voraussetzungen für effektive Bewerbungsberatung. Screen-Sharing, Voice-Chat und eine entspannte Atmosphäre.",
-      date: "2024-02-20",
-      category: "Methoden",
-      icon: <FileText className="h-5 w-5" />,
-      content: "Discord ist mehr als nur eine Gaming-Plattform. Für die Bewerbungsberatung bietet es ideale Funktionen...",
-      keywords: ["Discord Bewerbungshilfe", "Online Bewerbungsberatung", "Screen Sharing Beratung", "digitale Bewerbungshilfe"]
-    },
-    {
-      title: "Barrierefreie Bewerbungen - Zugänglichkeit für alle",
-      excerpt: "Wie du Bewerbungsunterlagen erstellst, die für alle Menschen zugänglich sind und dabei professionell und ansprechend wirken.",
-      date: "2024-02-15",
-      category: "Barrierefreiheit",
-      icon: <Heart className="h-5 w-5" />,
-      content: "Barrierefreiheit beginnt schon bei den Bewerbungsunterlagen. Hier erfährst du, wie du deine Bewerbung für alle zugänglich machst...",
-      keywords: ["barrierefreie Bewerbung", "inklusive Bewerbung", "Bewerbung Schwerbehinderung", "Accessibility CV"]
-    }
-  ];
-
-  return (
-    <Layout>
-      <main className="section-padding"
-        style={{ marginTop: '4rem' }}>
+    keywords: ["Bewerbungstracker", "Google Sheets Vorlage", "Jobsuche organisieren", "Follow-up Bewerbung", "Bewerbungsmanagement"]
+  }, {
+    title: "Bewerbungsfotos im Jahr 2024 - Was wirklich wichtig ist",
+    excerpt: "Moderne Bewerbungsfotos müssen nicht teuer sein. Erfahre, worauf es wirklich ankommt und wie du auch mit kleinem Budget professionell wirkst.",
+    date: "2024-02-28",
+    category: "Bewerbungsfotos",
+    icon: <Lightbulb className="h-5 w-5" />,
+    content: "Ein gutes Bewerbungsfoto muss nicht die Welt kosten. Hier zeige ich dir, wie du auch mit einfachen Mitteln ein professionelles Ergebnis erzielst...",
+    keywords: ["Bewerbungsfotos", "professionelle Fotos günstig", "Bewerbungsfoto Tipps", "Kleidung Bewerbungsfoto"]
+  }, {
+    title: "Discord für Bewerbungshilfe - Warum ich auf diese Plattform setze",
+    excerpt: "Discord bietet ideale Voraussetzungen für effektive Bewerbungsberatung. Screen-Sharing, Voice-Chat und eine entspannte Atmosphäre.",
+    date: "2024-02-20",
+    category: "Methoden",
+    icon: <FileText className="h-5 w-5" />,
+    content: "Discord ist mehr als nur eine Gaming-Plattform. Für die Bewerbungsberatung bietet es ideale Funktionen...",
+    keywords: ["Discord Bewerbungshilfe", "Online Bewerbungsberatung", "Screen Sharing Beratung", "digitale Bewerbungshilfe"]
+  }, {
+    title: "Barrierefreie Bewerbungen - Zugänglichkeit für alle",
+    excerpt: "Wie du Bewerbungsunterlagen erstellst, die für alle Menschen zugänglich sind und dabei professionell und ansprechend wirken.",
+    date: "2024-02-15",
+    category: "Barrierefreiheit",
+    icon: <Heart className="h-5 w-5" />,
+    content: "Barrierefreiheit beginnt schon bei den Bewerbungsunterlagen. Hier erfährst du, wie du deine Bewerbung für alle zugänglich machst...",
+    keywords: ["barrierefreie Bewerbung", "inklusive Bewerbung", "Bewerbung Schwerbehinderung", "Accessibility CV"]
+  }];
+  return <Layout>
+      <main className="section-padding" style={{
+      marginTop: '4rem'
+    }}>
         <div className="container mx-auto max-w-6xl">
           {/* Header */}
           <div className="text-center mb-12">
@@ -308,23 +304,26 @@ const Blog = () => {
               <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
-                  <span>{new Date(blogPosts[0].date).toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                  <span>{new Date(blogPosts[0].date).toLocaleDateString('de-DE', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4" />
                   <span>Marcel</span>
                 </div>
               </div>
-                <Button 
-                className="btn-primary"
-                onClick={() => {
-                  // Show full article content or navigate to article page
-                  const article = document.getElementById(`article-${blogPosts[0].title.replace(/\s+/g, '-').toLowerCase()}`);
-                  if (article) {
-                    article.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-              >
+                <Button className="btn-primary" onClick={() => {
+              // Show full article content or navigate to article page
+              const article = document.getElementById(`article-${blogPosts[0].title.replace(/\s+/g, '-').toLowerCase()}`);
+              if (article) {
+                article.scrollIntoView({
+                  behavior: 'smooth'
+                });
+              }
+            }}>
                 {t('readMore') || 'Weiterlesen'} <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             </CardContent>
@@ -332,8 +331,7 @@ const Blog = () => {
 
           {/* Blog Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.slice(1).map((post, index) => (
-              <Card key={index} className="card-soft hover:shadow-medium transition-all duration-300 group">
+            {blogPosts.slice(1).map((post, index) => <Card key={index} className="card-soft hover:shadow-medium transition-all duration-300 group">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2 text-primary">
@@ -352,54 +350,45 @@ const Blog = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <Calendar className="h-3 w-3" />
-                      <span>{new Date(post.date).toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                      <span>{new Date(post.date).toLocaleDateString('de-DE', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}</span>
                     </div>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="text-primary hover:bg-primary/10"
-                      onClick={() => {
-                        // Show full article content by scrolling to it or expanding it
-                        const fullContent = document.createElement('div');
-                        fullContent.innerHTML = post.content;
-                        fullContent.className = 'fixed inset-0 z-50 bg-background/95 backdrop-blur-sm overflow-y-auto p-8';
-                        
-                        const container = document.createElement('div');
-                        container.className = 'max-w-4xl mx-auto bg-card rounded-lg shadow-lg p-8 my-8';
-                        
-                        const closeBtn = document.createElement('button');
-                        closeBtn.textContent = '× Schließen';
-                        closeBtn.className = 'float-right mb-4 text-muted-foreground hover:text-foreground';
-                        closeBtn.onclick = () => document.body.removeChild(fullContent);
-                        
-                        container.appendChild(closeBtn);
-                        container.appendChild(document.createElement('div')).innerHTML = post.content;
-                        fullContent.appendChild(container);
-                        document.body.appendChild(fullContent);
-                      }}
-                    >
+                    <Button variant="ghost" size="sm" className="text-primary hover:bg-primary/10" onClick={() => {
+                  // Show full article content by scrolling to it or expanding it
+                  const fullContent = document.createElement('div');
+                  fullContent.innerHTML = post.content;
+                  fullContent.className = 'fixed inset-0 z-50 bg-background/95 backdrop-blur-sm overflow-y-auto p-8';
+                  const container = document.createElement('div');
+                  container.className = 'max-w-4xl mx-auto bg-card rounded-lg shadow-lg p-8 my-8';
+                  const closeBtn = document.createElement('button');
+                  closeBtn.textContent = '× Schließen';
+                  closeBtn.className = 'float-right mb-4 text-muted-foreground hover:text-foreground';
+                  closeBtn.onclick = () => document.body.removeChild(fullContent);
+                  container.appendChild(closeBtn);
+                  container.appendChild(document.createElement('div')).innerHTML = post.content;
+                  fullContent.appendChild(container);
+                  document.body.appendChild(fullContent);
+                }}>
                       {t('readMore') || 'Weiterlesen'} <ArrowRight className="h-3 w-3 ml-1" />
                     </Button>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
 
           {/* Newsletter CTA */}
           <Card className="card-soft mt-12 bg-accent/5 border-accent/20">
-            <CardContent className="p-8 text-center">
+            <CardContent className="p-8 text-center my-0 py-[32px] mx-0">
               <h3 className="text-2xl font-bold mb-4">
                 {t('blog.newsletter.title') || 'Bleib auf dem Laufenden'}
               </h3>
               <p className="text-muted-foreground mb-6">
                 {t('blog.newsletter.description') || 'Erhalte die neuesten Tipps und Updates rund um Bewerbungen und Karriere direkt per E-Mail'}
               </p>
-              <Button 
-                className="btn-accent"
-                onClick={() => window.location.href = 'mailto:marcel.welk@bewerbungsmensch.de?subject=Newsletter Anmeldung'}
-                aria-label={t('blog.newsletter.subscribe') || 'Newsletter abonnieren'}
-              >
+              <Button className="btn-accent" onClick={() => window.location.href = 'mailto:marcel.welk@bewerbungsmensch.de?subject=Newsletter Anmeldung'} aria-label={t('blog.newsletter.subscribe') || 'Newsletter abonnieren'}>
                 {t('blog.newsletter.subscribe') || 'Newsletter abonnieren'}
               </Button>
             </CardContent>
@@ -409,8 +398,6 @@ const Blog = () => {
         {/* Related Pages */}
         <RelatedPages currentPage="blog" />
       </main>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Blog;
