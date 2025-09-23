@@ -1,35 +1,27 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Laptop, Headphones, Camera, ExternalLink } from "lucide-react";
+import { useI18n } from "@/hooks/useI18n";
 
 const ProcessSection = () => {
-  const requirements = [
-    {
-      icon: <Laptop className="h-6 w-6" />,
-      title: "PC oder Laptop",
-      description: "Ein funktionsfähiger Computer für unsere gemeinsame Arbeit"
-    },
-    {
-      icon: <Headphones className="h-6 w-6" />,
-      title: "Headset",
-      description: "Für klare Kommunikation während unserer Gespräche"
-    },
-    {
-      icon: <Camera className="h-6 w-6" />,
-      title: "Kamera (optional)",
-      description: "Falls du persönlichen Kontakt bevorzugst"
-    }
-  ];
+  const { t } = useI18n();
+  
+  const requirementIcons = [<Laptop className="h-6 w-6" />, <Headphones className="h-6 w-6" />, <Camera className="h-6 w-6" />];
+  const requirementsData = t('process.requirements.items', []);
+  const requirements = Array.isArray(requirementsData) ? requirementsData.map((req: any, index: number) => ({
+    ...req,
+    icon: requirementIcons[index]
+  })) : [];
 
   return (
     <section className="section-padding bg-muted/30" id="ablauf">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ablauf & Was wird benötigt
+            {t('process.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            So einfach funktioniert unsere Zusammenarbeit
+            {t('process.subtitle')}
           </p>
         </div>
 
@@ -38,28 +30,27 @@ const ProcessSection = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-3">
                 <MessageCircle className="h-6 w-6 text-primary" />
-                Kommunikation über Discord
+                {t('process.communication.title')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-muted-foreground">
-                Wir arbeiten hauptsächlich über Discord zusammen. Das ermöglicht uns eine 
-                schnelle und unkomplizierte Kommunikation während des gesamten Prozesses.
+                {t('process.communication.description')}
               </p>
               <Button 
                 className="w-full btn-primary"
                 onClick={() => window.open("https://discord.gg/your-server-link", "_blank")}
-                aria-label="Discord Server beitreten"
+                aria-label={t('process.communication.button')}
               >
                 <ExternalLink className="h-4 w-4 mr-2" />
-                Discord Server beitreten
+                {t('process.communication.button')}
               </Button>
             </CardContent>
           </Card>
 
           <Card className="card-soft">
             <CardHeader>
-              <CardTitle>Was du benötigst</CardTitle>
+              <CardTitle>{t('process.requirements.title')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -77,20 +68,19 @@ const ProcessSection = () => {
               </div>
               <div className="mt-6 p-4 bg-accent/10 rounded-lg">
                 <p className="text-sm">
-                  <strong>Wichtig:</strong> Eine funktionierende Internetverbindung ist 
-                  Voraussetzung für unsere Zusammenarbeit.
+                  <strong>Wichtig:</strong> {t('process.requirements.important')}
                 </p>
               </div>
               
               <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg">
                 <p className="text-sm text-blue-800 dark:text-blue-200">
-                  Falls du keinen Laptop oder PC hast, können wir das auch ganz bequem über andere Medien machen. Wie z.B. schriftlich über WhatsApp oder E-Mail. So wie es für dich am angenehmsten ist.
+                  {t('process.requirements.alternatives.text1')}
                 </p>
                 <p className="text-sm text-blue-800 dark:text-blue-200 mt-3">
-                  Außerdem nutze ich Discord für die Kommunikation. Das kannst du dir ganz einfach herunterladen und dir einen Account erstellen. Danach kannst du meinem Discord-Server beitreten, indem du auf den blauen Button „Discord Server beitreten" klickst.
+                  {t('process.requirements.alternatives.text2')}
                 </p>
                 <p className="text-sm text-blue-800 dark:text-blue-200 mt-3">
-                  Weitere Fragen können wir gerne per E-Mail klären. Mach dir keinen Stress, wir bekommen das alles gemeinsam hin!
+                  {t('process.requirements.alternatives.text3')}
                 </p>
               </div>
             </CardContent>

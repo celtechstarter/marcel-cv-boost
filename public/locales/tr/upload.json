@@ -1,0 +1,25 @@
+{
+  "title": "CV'yi PDF olarak yükle (isteğe bağlı)",
+  "description": "Zaten bir CV'niz varsa, onu buraya PDF olarak yükleyebilirsiniz. Bu şekilde önceden okuyabilir ve size daha hızlı yardım edebilirim.",
+  "warning": {
+    "title": "Lütfen belgelere tanı veya tıbbi ayrıntılar dahil etmeyin.",
+    "subtitle": "10 MB'a kadar PDF. Hassas sağlık verileri veya üçüncü taraf belgeleri yok."
+  },
+  "dropzone": {
+    "drag": "Dosyayı buraya sürükleyin veya seçmek için tıklayın",
+    "maxSize": "Maks. 10 MB",
+    "uploading": "Dosya yükleniyor...",
+    "aria": "PDF dosyası yükle - Tıklayın veya dosyayı buraya sürükleyin"
+  },
+  "success": {
+    "uploaded": "Başarıyla yüklendi",
+    "remove": "Kaldır",
+    "status": "Dosya başarıyla yüklendi."
+  },
+  "errors": {
+    "fileType": "Lütfen maksimum 10 MB'lık bir PDF dosyası yükleyin.",
+    "fileSize": "Lütfen maksimum 10 MB'lık bir PDF dosyası yükleyin.",
+    "uploadFailed": "Yükleme başarısız",
+    "general": "Dosya yüklenirken hata"
+  }
+}

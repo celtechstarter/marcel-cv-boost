@@ -1,35 +1,41 @@
 {
   "title": "My Services",
-  "subtitle": "Everything around your successful application",
+  "subtitle": "Professional application documents created for free with AI support and personal assistance. Comprehensive support for your successful application process.",
   "cta": {
-    "title": "Ready to get started?",
-    "subtitle": "Choose your preferred way:",
-    "booking": {
-      "text": "Direct booking - Upload your CV if you have one",
-      "aria": "Go directly to appointment booking"
-    },
-    "contact": {
-      "text": "If you have questions first, feel free to write to me!",
-      "aria": "Go to contact form"
-    },
-    "button": "Secure free slot now"
+    "title": "🎯 5 free spots available per month",
+    "subtitle": "You receive personal support and professional assistance – completely free. Secure one of the limited spots now.",
+    "button": "Secure free spot now"
   },
   "services": [
     {
-      "title": "CV Creation & Optimization",
-      "description": "Professional resume creation with AI support and personal consultation"
+      "title": "CV Creation",
+      "description": "Professional resumes that perfectly showcase your strengths and immediately catch the attention of recruiters.",
+      "features": ["Modern Layouts", "ATS-optimized", "Industry-specific"]
     },
     {
-      "title": "Cover Letter Optimization", 
-      "description": "Convincing cover letters tailored to your target position"
+      "title": "Application Design",
+      "description": "Appealing visual design of your complete application documents for a lasting impression.",
+      "features": ["Corporate Design", "Consistent Layout", "Print & Digital"]
     },
     {
-      "title": "Application Strategy",
-      "description": "Individual strategy for your successful job search"
+      "title": "AI Support",
+      "description": "Modern AI tools help formulate convincing texts and optimize your application.",
+      "features": ["Text optimization", "Keyword analysis", "Automation"]
     },
     {
-      "title": "Interview Preparation",
-      "description": "Targeted preparation for your job interview"
+      "title": "Application Tracker",
+      "description": "Google Sheets tables that automatically document when applications were sent.",
+      "features": ["Automatic tracking", "Appointment reminders", "Clear overview"]
+    },
+    {
+      "title": "Application Photos",
+      "description": "Advice and support in creating professional application photos that look authentic.",
+      "features": ["Photo selection", "Image editing", "Format adjustment"]
+    },
+    {
+      "title": "Job Search",
+      "description": "Help finding suitable job postings and strategies for a successful application.",
+      "features": ["Job research", "Application strategy", "Market analysis"]
     }
   ]
 }

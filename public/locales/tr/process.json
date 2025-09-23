@@ -1,0 +1,32 @@
+{
+  "title": "Süreç ve Gereksinimler",
+  "subtitle": "İşbirliğimiz nasıl çalışır - bu kadar basit",
+  "communication": {
+    "title": "Discord üzerinden İletişim",
+    "description": "Esas olarak Discord üzerinden birlikte çalışıyoruz. Bu, tüm süreç boyunca hızlı ve kolay iletişim kurmamızı sağlar.",
+    "button": "Discord Sunucusuna Katıl"
+  },
+  "requirements": {
+    "title": "İhtiyacınız olanlar",
+    "items": [
+      {
+        "title": "PC veya Laptop",
+        "description": "Ortak çalışmamız için çalışan bir bilgisayar"
+      },
+      {
+        "title": "Kulaklık",
+        "description": "Konuşmalarımız sırasında net iletişim için"
+      },
+      {
+        "title": "Kamera (isteğe bağlı)",
+        "description": "Kişisel temas tercih ediyorsanız"
+      }
+    ],
+    "important": "Çalışan bir internet bağlantısı işbirliğimiz için ön koşuldur.",
+    "alternatives": {
+      "text1": "Laptop veya PC'niz yoksa, bunu diğer medyalar üzerinden de rahatça yapabiliriz. WhatsApp veya e-posta ile yazılı olarak. Size en rahat olanı.",
+      "text2": "İletişim için Discord da kullanıyorum. Bunu kolayca indirebilir ve hesap oluşturabilirsiniz. Ardından mavi \"Discord Sunucusuna Katıl\" düğmesine tıklayarak Discord sunucuma katılabilirsiniz.",
+      "text3": "Diğer soruları e-posta ile çözebiliriz. Kendinizi strese sokmayın, hepsini birlikte halledeceğiz!"
+    }
+  }
+}

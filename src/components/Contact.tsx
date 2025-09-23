@@ -23,8 +23,8 @@ const Contact = () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     toast({
-      title: "Nachricht gesendet! 📨",
-      description: "Ich melde mich schnellstmöglich bei dir unter marcel.welk@bewerbungsmensch.de. Vielen Dank für dein Vertrauen!",
+      title: t('contact.form.success.title'),
+      description: t('contact.form.success.description'),
     });
     
     setIsSubmitting(false);
@@ -70,10 +70,10 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Lass uns <span className="gradient-text">sprechen</span>
+            {t('contact.title').split(' ').slice(0, 2).join(' ')} <span className="gradient-text">{t('contact.title').split(' ').slice(2).join(' ')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Bereit für deinen neuen Lebenslauf? Schreib mir eine Nachricht und sichere dir einen der kostenlosen Plätze.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -84,12 +84,12 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Send className="h-5 w-5 text-primary" />
-                  Bewerbungshilfe anfragen
+                  {t('contact.form.title')}
                 </CardTitle>
                 <div className="flex items-center gap-2 text-sm">
                   <Users className="h-4 w-4 text-accent" />
                   <span className="text-accent font-medium">
-                    Noch {availableSlots} von 5 kostenlosen Plätzen verfügbar
+                    {t('contact.form.slots').replace('{{slots}}', availableSlots.toString())}
                   </span>
                 </div>
               </CardHeader>
@@ -97,22 +97,22 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="name">Name *</Label>
+                      <Label htmlFor="name">{t('contact.form.fields.name')}</Label>
                       <Input
                         id="name"
                         name="name"
-                        placeholder="Dein Name"
+                        placeholder={t('contact.form.fields.namePlaceholder')}
                         required
                         className="mt-1"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email">E-Mail *</Label>
+                      <Label htmlFor="email">{t('contact.form.fields.email')}</Label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="deine@email.de"
+                        placeholder={t('contact.form.fields.emailPlaceholder')}
                         required
                         className="mt-1"
                       />

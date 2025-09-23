@@ -1,0 +1,32 @@
+{
+  "title": "Ablauf & Was wird benötigt",
+  "subtitle": "So einfach funktioniert unsere Zusammenarbeit",
+  "communication": {
+    "title": "Kommunikation über Discord",
+    "description": "Wir arbeiten hauptsächlich über Discord zusammen. Das ermöglicht uns eine schnelle und unkomplizierte Kommunikation während des gesamten Prozesses.",
+    "button": "Discord Server beitreten"
+  },
+  "requirements": {
+    "title": "Was du benötigst",
+    "items": [
+      {
+        "title": "PC oder Laptop",
+        "description": "Ein funktionsfähiger Computer für unsere gemeinsame Arbeit"
+      },
+      {
+        "title": "Headset",
+        "description": "Für klare Kommunikation während unserer Gespräche"
+      },
+      {
+        "title": "Kamera (optional)",
+        "description": "Falls du persönlichen Kontakt bevorzugst"
+      }
+    ],
+    "important": "Eine funktionierende Internetverbindung ist Voraussetzung für unsere Zusammenarbeit.",
+    "alternatives": {
+      "text1": "Falls du keinen Laptop oder PC hast, können wir das auch ganz bequem über andere Medien machen. Wie z.B. schriftlich über WhatsApp oder E-Mail. So wie es für dich am angenehmsten ist.",
+      "text2": "Außerdem nutze ich Discord für die Kommunikation. Das kannst du dir ganz einfach herunterladen und dir einen Account erstellen. Danach kannst du meinem Discord-Server beitreten, indem du auf den blauen Button „Discord Server beitreten" klickst.",
+      "text3": "Weitere Fragen können wir gerne per E-Mail klären. Mach dir keinen Stress, wir bekommen das alles gemeinsam hin!"
+    }
+  }
+}

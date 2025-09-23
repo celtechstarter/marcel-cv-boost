@@ -1,4 +1,41 @@
 {
   "title": "Meine Leistungen",
-  "subtitle": "Professionelle Bewerbungshilfe für deinen Erfolg"
+  "subtitle": "Professionelle Bewerbungsunterlagen kostenlos erstellen mit KI-Unterstützung und persönlicher Betreuung. Umfassende Unterstützung für deinen erfolgreichen Bewerbungsprozess.",
+  "cta": {
+    "title": "🎯 5 kostenlose Plätze pro Monat verfügbar",
+    "subtitle": "Du erhältst eine persönliche Betreuung und professionelle Unterstützung – komplett kostenfrei. Sichere dir jetzt einen der limitierten Plätze.",
+    "button": "Jetzt kostenlosen Platz sichern"
+  },
+  "services": [
+    {
+      "title": "CV Erstellung",
+      "description": "Professionelle Lebensläufe, die deine Stärken perfekt in Szene setzen und Personalern sofort ins Auge fallen.",
+      "features": ["Moderne Layouts", "ATS-optimiert", "Branchenspezifisch"]
+    },
+    {
+      "title": "Bewerbungsdesign",
+      "description": "Ansprechende visuelle Gestaltung deiner kompletten Bewerbungsunterlagen für einen bleibenden Eindruck.",
+      "features": ["Corporate Design", "Einheitliches Layout", "Print & Digital"]
+    },
+    {
+      "title": "KI-Unterstützung",
+      "description": "Moderne KI-Tools helfen beim Formulieren überzeugender Texte und beim Optimieren deiner Bewerbung.",
+      "features": ["Textoptimierung", "Keyword-Analyse", "Automatisierung"]
+    },
+    {
+      "title": "Bewerbungstracker",
+      "description": "Google Sheets Tabellen, die automatisch dokumentieren, wann Bewerbungen verschickt wurden.",
+      "features": ["Automatische Verfolgung", "Terminerinnerungen", "Übersichtlich"]
+    },
+    {
+      "title": "Bewerbungsfotos",
+      "description": "Beratung und Unterstützung beim Erstellen professioneller Bewerbungsfotos, die authentisch wirken.",
+      "features": ["Fotoauswahl", "Bildbearbeitung", "Formatanpassung"]
+    },
+    {
+      "title": "Stellensuche",
+      "description": "Hilfe beim Finden passender Stellenanzeigen und Strategien für eine erfolgreiche Bewerbung.",
+      "features": ["Stellenrecherche", "Bewerbungsstrategie", "Marktanalyse"]
+    }
+  ]
 }

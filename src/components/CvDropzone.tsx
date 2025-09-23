@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Upload, X, FileText, AlertCircle } from 'lucide-react';
 import { callEdge } from '@/utils/callEdge';
+import { useI18n } from '@/hooks/useI18n';
 
 interface CvDropzoneProps {
   onFileUploaded: (path: string, fileName: string) => void;
@@ -10,6 +11,7 @@ interface CvDropzoneProps {
 }
 
 export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) => {
+  const { t } = useI18n();
   const [isDragOver, setIsDragOver] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<{ name: string; path: string } | null>(null);
@@ -18,10 +20,10 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
 
   const validateFile = (file: File): string | null => {
     if (file.type !== 'application/pdf') {
-      return 'Bitte lade eine PDF-Datei bis maximal 10 MB hoch.';
+      return t('upload.errors.fileType');
     }
     if (file.size > 10 * 1024 * 1024) {
-      return 'Bitte lade eine PDF-Datei bis maximal 10 MB hoch.';
+      return t('upload.errors.fileSize');
     }
     return null;
   };
@@ -57,14 +59,14 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
       });
 
       if (!uploadResponse.ok) {
-        throw new Error('Upload fehlgeschlagen');
+        throw new Error(t('upload.errors.uploadFailed'));
       }
 
       setUploadedFile({ name: file.name, path });
       onFileUploaded(path, file.name);
       setError(null); // Clear any previous errors
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Fehler beim Hochladen der Datei';
+      const errorMessage = err instanceof Error ? err.message : t('upload.errors.general');
       setError(errorMessage);
     } finally {
       setIsUploading(false);
@@ -116,16 +118,16 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-lg font-medium mb-2">Lebenslauf als PDF hochladen (optional)</h3>
+        <h3 className="text-lg font-medium mb-2">{t('upload.title')}</h3>
         <p className="text-sm text-muted-foreground mb-4">
-          Wenn du schon einen Lebenslauf hast, kannst du ihn hier als PDF hochladen. So kann ich mich vorab einlesen und dir schneller helfen.
+          {t('upload.description')}
         </p>
         <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 p-3 rounded-lg mb-4">
           <p className="text-xs text-yellow-800 dark:text-yellow-200">
-            <strong>Bitte keine Diagnosen oder medizinischen Details in Unterlagen aufnehmen.</strong>
+            <strong>{t('upload.warning.title')}</strong>
           </p>
           <p className="text-xs text-yellow-700 dark:text-yellow-300 mt-1">
-            PDF bis 10 MB. Keine sensiblen Gesundheitsdaten oder Dokumente Dritter.
+            {t('upload.warning.subtitle')}
           </p>
         </div>
       </div>
@@ -144,7 +146,7 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
           onKeyDown={handleKeyDown}
           role="button"
           tabIndex={0}
-          aria-label="PDF-Datei hochladen - Klicken oder Datei hierher ziehen"
+          aria-label={t('upload.dropzone.aria')}
         >
           <CardContent className="flex flex-col items-center justify-center py-8 px-4">
             <Upload className={`h-8 w-8 mb-4 ${
@@ -154,14 +156,14 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
             {isUploading ? (
               <div className="text-center">
                 <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary mx-auto mb-2"></div>
-                <p className="text-sm text-muted-foreground">Datei wird hochgeladen...</p>
+                <p className="text-sm text-muted-foreground">{t('upload.dropzone.uploading')}</p>
               </div>
             ) : (
               <div className="text-center">
                 <p className="text-sm font-medium mb-1">
-                  Ziehe die Datei hierher oder klicke, um zu wählen
+                  {t('upload.dropzone.drag')}
                 </p>
-                <p className="text-xs text-muted-foreground">Max. 10 MB</p>
+                <p className="text-xs text-muted-foreground">{t('upload.dropzone.maxSize')}</p>
               </div>
             )}
           </CardContent>
@@ -176,7 +178,7 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
                   {uploadedFile.name}
                 </p>
                 <p className="text-xs text-green-600 dark:text-green-400">
-                  Erfolgreich hochgeladen
+                  {t('upload.success.uploaded')}
                 </p>
               </div>
             </div>
@@ -185,10 +187,10 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
               size="sm"
               onClick={handleRemoveFile}
               className="text-green-600 hover:text-green-800 hover:bg-green-100 dark:text-green-400 dark:hover:text-green-200 dark:hover:bg-green-900"
-              aria-label="Datei entfernen"
+              aria-label={t('upload.success.remove')}
             >
               <X className="h-4 w-4" />
-              Entfernen
+              {t('upload.success.remove')}
             </Button>
           </CardContent>
         </Card>
@@ -209,7 +211,7 @@ export const CvDropzone = ({ onFileUploaded, onFileRemoved }: CvDropzoneProps) =
           role="status"
           aria-live="polite"
         >
-          Datei erfolgreich hochgeladen.
+          {t('upload.success.status')}
         </div>
       )}
 

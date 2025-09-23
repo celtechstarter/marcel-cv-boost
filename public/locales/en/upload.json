@@ -1,0 +1,25 @@
+{
+  "title": "Upload CV as PDF (optional)",
+  "description": "If you already have a CV, you can upload it here as a PDF. This way I can read it in advance and help you faster.",
+  "warning": {
+    "title": "Please do not include diagnoses or medical details in documents.",
+    "subtitle": "PDF up to 10 MB. No sensitive health data or third-party documents."
+  },
+  "dropzone": {
+    "drag": "Drag the file here or click to select",
+    "maxSize": "Max. 10 MB",
+    "uploading": "File is being uploaded...",
+    "aria": "Upload PDF file - Click or drag file here"
+  },
+  "success": {
+    "uploaded": "Successfully uploaded",
+    "remove": "Remove",
+    "status": "File successfully uploaded."
+  },
+  "errors": {
+    "fileType": "Please upload a PDF file up to maximum 10 MB.",
+    "fileSize": "Please upload a PDF file up to maximum 10 MB.",
+    "uploadFailed": "Upload failed",
+    "general": "Error uploading file"
+  }
+}

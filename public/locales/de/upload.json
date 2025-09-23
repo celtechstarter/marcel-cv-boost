@@ -1,0 +1,25 @@
+{
+  "title": "Lebenslauf als PDF hochladen (optional)",
+  "description": "Wenn du schon einen Lebenslauf hast, kannst du ihn hier als PDF hochladen. So kann ich mich vorab einlesen und dir schneller helfen.",
+  "warning": {
+    "title": "Bitte keine Diagnosen oder medizinischen Details in Unterlagen aufnehmen.",
+    "subtitle": "PDF bis 10 MB. Keine sensiblen Gesundheitsdaten oder Dokumente Dritter."
+  },
+  "dropzone": {
+    "drag": "Ziehe die Datei hierher oder klicke, um zu wählen",
+    "maxSize": "Max. 10 MB",
+    "uploading": "Datei wird hochgeladen...",
+    "aria": "PDF-Datei hochladen - Klicken oder Datei hierher ziehen"
+  },
+  "success": {
+    "uploaded": "Erfolgreich hochgeladen",
+    "remove": "Entfernen",
+    "status": "Datei erfolgreich hochgeladen."
+  },
+  "errors": {
+    "fileType": "Bitte lade eine PDF-Datei bis maximal 10 MB hoch.",
+    "fileSize": "Bitte lade eine PDF-Datei bis maximal 10 MB hoch.",
+    "uploadFailed": "Upload fehlgeschlagen",
+    "general": "Fehler beim Hochladen der Datei"
+  }
+}

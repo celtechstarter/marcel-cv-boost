@@ -1,0 +1,32 @@
+{
+  "title": "Process & Requirements",
+  "subtitle": "How our collaboration works - it's that simple",
+  "communication": {
+    "title": "Communication via Discord",
+    "description": "We mainly work together via Discord. This enables us to have quick and uncomplicated communication throughout the entire process.",
+    "button": "Join Discord Server"
+  },
+  "requirements": {
+    "title": "What you need",
+    "items": [
+      {
+        "title": "PC or Laptop",
+        "description": "A functioning computer for our joint work"
+      },
+      {
+        "title": "Headset",
+        "description": "For clear communication during our conversations"
+      },
+      {
+        "title": "Camera (optional)",
+        "description": "If you prefer personal contact"
+      }
+    ],
+    "important": "A functioning internet connection is a prerequisite for our collaboration.",
+    "alternatives": {
+      "text1": "If you don't have a laptop or PC, we can also do this comfortably via other media. Such as in writing via WhatsApp or email. Whatever is most comfortable for you.",
+      "text2": "I also use Discord for communication. You can simply download it and create an account. Then you can join my Discord server by clicking on the blue \"Join Discord Server\" button.",
+      "text3": "We can gladly clarify further questions via email. Don't stress yourself, we'll get it all done together!"
+    }
+  }
+}

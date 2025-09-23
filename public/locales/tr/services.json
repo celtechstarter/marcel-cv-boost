@@ -1,0 +1,41 @@
+{
+  "title": "Hizmetlerim",
+  "subtitle": "Yapay zeka desteği ve kişisel yardım ile ücretsiz profesyonel başvuru belgeleri. Başarılı başvuru süreciniz için kapsamlı destek.",
+  "cta": {
+    "title": "🎯 Ayda 5 ücretsiz yer mevcut",
+    "subtitle": "Kişisel destek ve profesyonel yardım alırsınız – tamamen ücretsiz. Sınırlı yerlerden birini şimdi güvence altına alın.",
+    "button": "Ücretsiz yer ayırt"
+  },
+  "services": [
+    {
+      "title": "CV Oluşturma",
+      "description": "Güçlü yönlerinizi mükemmel şekilde öne çıkaran ve işverenlerin dikkatini çeken profesyonel özgeçmişler.",
+      "features": ["Modern Tasarımlar", "ATS-optimize", "Sektöre özel"]
+    },
+    {
+      "title": "Başvuru Tasarımı",
+      "description": "Kalıcı bir izlenim bırakmak için tüm başvuru belgelerinizin çekici görsel tasarımı.",
+      "features": ["Kurumsal Tasarım", "Tutarlı Düzen", "Baskı ve Dijital"]
+    },
+    {
+      "title": "Yapay Zeka Desteği",
+      "description": "Modern yapay zeka araçları ikna edici metinler formüle etmeye ve başvurunuzu optimize etmeye yardımcı olur.",
+      "features": ["Metin optimizasyonu", "Anahtar kelime analizi", "Otomasyon"]
+    },
+    {
+      "title": "Başvuru Takipçisi",
+      "description": "Başvuruların ne zaman gönderildiğini otomatik olarak belgeleyen Google Sheets tabloları.",
+      "features": ["Otomatik takip", "Randevu hatırlatıcıları", "Net genel bakış"]
+    },
+    {
+      "title": "Başvuru Fotoğrafları",
+      "description": "Otantik görünen profesyonel başvuru fotoğrafları oluşturmada danışmanlık ve destek.",
+      "features": ["Fotoğraf seçimi", "Görüntü düzenleme", "Format ayarlama"]
+    },
+    {
+      "title": "İş Arama",
+      "description": "Uygun iş ilanları bulma ve başarılı bir başvuru için stratejiler konusunda yardım.",
+      "features": ["İş araştırması", "Başvuru stratejisi", "Pazar analizi"]
+    }
+  ]
+}
