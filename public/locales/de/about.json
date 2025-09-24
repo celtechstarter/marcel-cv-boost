@@ -1,5 +1,28 @@
 {
   "title": "Über mich",
-  "subtitle": "Dein Partner für erfolgreiche Bewerbungen",
-  "description": "Mit jahrelanger Erfahrung helfe ich dir dabei, deine Bewerbung zu optimieren und deine Chancen auf deinen Traumjob zu maximieren."
+  "story": "& meine Geschichte",
+  "subtitle": "Dein persönlicher Karrierehelfer",
+  "intro": {
+    "greeting": "Hi, ich bin Marcel!",
+    "story": "Ich helfe Menschen dabei, professionelle Lebensläufe zu erstellen und ihre Bewerbungsunterlagen zu optimieren. Mit langjähriger Erfahrung und moderner KI-Unterstützung biete ich dir komplett kostenlose Hilfe an – besonders für Menschen mit psychischen Belastungen oder Behinderungen.",
+    "beginning": "Alles begann, als ich selbst Schwierigkeiten bei Bewerbungen hatte. Heute biete ich",
+    "service": "kostenlose Bewerbungshilfe",
+    "services": "wie CV-Erstellung, Design-Optimierung und Bewerbungstracker an.",
+    "result": "Das Ergebnis:",
+    "example": "Professionelle, individuelle Bewerbungsunterlagen, die überzeugen. Schau dir die",
+    "reviews": "Erfahrungsberichte"
+  },
+  "expanded": {
+    "tools": "Ich nutze moderne KI-Tools wie ChatGPT und Google Sheets, um dir zu helfen. Mein Motto:",
+    "quote": "Gemeinsam schaffen wir das!",
+    "faq": "Alle häufigen Fragen beantworte ich in den",
+    "faq_link": "FAQs",
+    "faq_end": "– dort findest du alle wichtigen Informationen.",
+    "approach": "Mein Ansatz ist persönlich, einfühlsam und lösungsorientiert. Gemeinsam erarbeiten wir deine individuelle Bewerbungsstrategie und optimieren deine Unterlagen, bis sie überzeugen.",
+    "support": "Besonders wichtig ist mir die Unterstützung von Menschen, die zusätzliche Herausforderungen im Bewerbungsprozess haben. Jeder verdient eine faire Chance auf seinen Traumjob."
+  },
+  "toggle": {
+    "more": "Mehr über mich erfahren",
+    "less": "Weniger anzeigen"
+  }
 }

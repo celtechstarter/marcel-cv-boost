@@ -1,0 +1,32 @@
+{
+  "title": "Proces i Wymagania",
+  "subtitle": "Jak działa nasza współpraca - to takie proste",
+  "communication": {
+    "title": "Komunikacja przez Discord",
+    "description": "Głównie współpracujemy przez Discord. To umożliwia nam szybką i nieskomplikowaną komunikację przez cały proces.",
+    "button": "Dołącz do serwera Discord"
+  },
+  "requirements": {
+    "title": "Czego potrzebujesz",
+    "items": [
+      {
+        "title": "PC lub laptop",
+        "description": "Działający komputer do naszej wspólnej pracy"
+      },
+      {
+        "title": "Słuchawki",
+        "description": "Do czystej komunikacji podczas naszych rozmów"
+      },
+      {
+        "title": "Kamera (opcjonalnie)",
+        "description": "Jeśli wolisz kontakt osobisty"
+      }
+    ],
+    "important": "Działające połączenie internetowe jest warunkiem wstępnym naszej współpracy.",
+    "alternatives": {
+      "text1": "Jeśli nie masz laptopa lub PC, możemy to zrobić wygodnie przez inne media. Na przykład pisemnie przez WhatsApp lub e-mail. Jak ci najwygodniej.",
+      "text2": "Używam też Discorda do komunikacji. Możesz go po prostu pobrać i założyć konto. Następnie możesz dołączyć do mojego serwera Discord klikając niebieski przycisk „Dołącz do serwera Discord".",
+      "text3": "Dalsze pytania możemy chętnie wyjaśnić przez e-mail. Nie stresuj się, wszystko załatwimy razem!"
+    }
+  }
+}

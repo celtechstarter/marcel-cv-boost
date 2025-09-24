@@ -74,7 +74,7 @@ export function I18nProvider(props: I18nProviderProps) {
 
   const t = (key: string, params?: Record<string, any>): string => {
     // Search across multiple namespaces
-    const searchNamespaces = ['home', 'common', 'cta', 'navigation', 'about', 'services', 'contact', 'blog', 'faq'];
+    const searchNamespaces = ['home', 'common', 'cta', 'navigation', 'about', 'services', 'contact', 'blog', 'faq', 'process', 'upload'];
     
     for (const namespace of searchNamespaces) {
       const normalizedKey = key.startsWith(namespace + '.') ? key.slice(namespace.length + 1) : key;
@@ -152,7 +152,9 @@ export function I18nProvider(props: I18nProviderProps) {
         loadTranslation('de', 'services'),
         loadTranslation('de', 'contact'),
         loadTranslation('de', 'blog'),
-        loadTranslation('de', 'faq')
+        loadTranslation('de', 'faq'),
+        loadTranslation('de', 'process'),
+        loadTranslation('de', 'upload')
       ]);
       
       // Then load current locale if different from German
@@ -166,7 +168,9 @@ export function I18nProvider(props: I18nProviderProps) {
           loadTranslation(locale, 'services'),
           loadTranslation(locale, 'contact'),
           loadTranslation(locale, 'blog'),
-          loadTranslation(locale, 'faq')
+          loadTranslation(locale, 'faq'),
+          loadTranslation(locale, 'process'),
+          loadTranslation(locale, 'upload')
         ]);
       }
       

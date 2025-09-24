@@ -1,0 +1,41 @@
+{
+  "title": "Moje Usługi",
+  "subtitle": "Profesjonalne dokumenty aplikacyjne tworzone za darmo ze wsparciem AI i osobistą opieką. Kompleksowe wsparcie dla Twojego udanego procesu aplikacyjnego.",
+  "cta": {
+    "title": "🎯 5 bezpłatnych miejsc dostępnych miesięcznie",
+    "subtitle": "Otrzymujesz osobistą opiekę i profesjonalne wsparcie – całkowicie za darmo. Zabezpiecz jedno z ograniczonych miejsc już teraz.",
+    "button": "Zabezpiecz bezpłatne miejsce teraz"
+  },
+  "services": [
+    {
+      "title": "Tworzenie CV",
+      "description": "Profesjonalne życiorysy, które doskonale prezentują Twoje mocne strony i natychmiast przykuwają uwagę rekruterów.",
+      "features": ["Nowoczesne układy", "Zoptymalizowane pod ATS", "Specyficzne dla branży"]
+    },
+    {
+      "title": "Projekt aplikacji",
+      "description": "Atrakcyjny projekt wizualny Twoich kompletnych dokumentów aplikacyjnych dla trwałego wrażenia.",
+      "features": ["Design korporacyjny", "Spójny układ", "Druk i cyfrowy"]
+    },
+    {
+      "title": "Wsparcie AI",
+      "description": "Nowoczesne narzędzia AI pomagają formułować przekonujące teksty i optymalizować Twoją aplikację.",
+      "features": ["Optymalizacja tekstu", "Analiza słów kluczowych", "Automatyzacja"]
+    },
+    {
+      "title": "Tracker aplikacji",
+      "description": "Tabele Google Sheets, które automatycznie dokumentują kiedy aplikacje zostały wysłane.",
+      "features": ["Automatyczne śledzenie", "Przypomnienia o spotkaniach", "Przejrzysty przegląd"]
+    },
+    {
+      "title": "Zdjęcia do aplikacji",
+      "description": "Doradztwo i wsparcie w tworzeniu profesjonalnych zdjęć do aplikacji, które wyglądają autentycznie.",
+      "features": ["Wybór zdjęcia", "Edycja obrazu", "Dostosowanie formatu"]
+    },
+    {
+      "title": "Poszukiwanie pracy",
+      "description": "Pomoc w znajdowaniu odpowiednich ofert pracy i strategii dla udanej aplikacji.",
+      "features": ["Badanie ofert pracy", "Strategia aplikacyjna", "Analiza rynku"]
+    }
+  ]
+}

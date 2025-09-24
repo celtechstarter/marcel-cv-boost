@@ -1,0 +1,12 @@
+{
+  "title": "Prześlij swoje CV",
+  "description": "Prześlij swoje aktualne CV (opcjonalnie), abym mógł lepiej Ci pomóc.",
+  "dragActive": "Upuść plik tutaj...",
+  "dragInactive": "Przeciągnij i upuść swoje CV tutaj lub kliknij, aby wybrać",
+  "fileTypes": "PDF, DOC, DOCX (maks. 10MB)",
+  "uploaded": "Przesłano: {{filename}}",
+  "uploading": "Przesyłanie...",
+  "error": "Błąd przesyłania: {{error}}",
+  "maxSize": "Plik jest za duży. Maksymalny rozmiar to 10MB.",
+  "invalidType": "Nieprawidłowy typ pliku. Dozwolone: PDF, DOC, DOCX"
+}

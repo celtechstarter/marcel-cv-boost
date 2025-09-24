@@ -120,37 +120,37 @@ const Contact = () => {
                   </div>
                   
                   <div>
-                    <Label htmlFor="phone">Telefon (optional)</Label>
+                    <Label htmlFor="phone">{t('contact.form.fields.phone')}</Label>
                     <Input
                       id="phone"
                       name="phone"
                       type="tel"
-                      placeholder="+49 123 456789"
+                      placeholder={t('contact.form.fields.phonePlaceholder')}
                       className="mt-1"
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="situation">Deine Situation</Label>
+                    <Label htmlFor="situation">{t('contact.form.fields.situation')}</Label>
                     <Textarea
                       id="situation"
                       name="situation"
-                      placeholder="Schreibe einfach ganz frei, wo du Probleme siehst und ich helfe dir schnell weiter."
+                      placeholder={t('contact.form.fields.situationPlaceholder')}
                       rows={4}
                       className="mt-1"
                       aria-describedby="help-description"
                     />
                     <p id="help-description" className="text-sm text-muted-foreground mt-1">
-                      Teile mit, was dich beschäftigt - ich bin hier, um zu helfen.
+                      {t('contact.form.fields.situationHelp')}
                     </p>
                   </div>
 
                   <div>
-                    <Label htmlFor="help">Gewünschte Hilfe</Label>
+                    <Label htmlFor="help">{t('contact.form.fields.help')}</Label>
                     <Textarea
                       id="help"
                       name="help"
-                      placeholder="Was genau brauchst du? (z.B. kompletter Lebenslauf, Design-Optimierung, Bewerbungstracker, etc.)"
+                      placeholder={t('contact.form.fields.helpPlaceholder')}
                       rows={3}
                       className="mt-1"
                     />
@@ -164,25 +164,24 @@ const Contact = () => {
                       className="mt-1"
                     />
                     <Label htmlFor="privacy" className="text-sm leading-relaxed cursor-pointer">
-                      Ich stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu. 
-                      Die Daten werden vertraulich behandelt und nicht an Dritte weitergegeben. *
+                      {t('contact.form.fields.privacy')}
                     </Label>
                   </div>
 
                   <Button 
                     type="submit" 
-                    className="btn-accent w-full text-lg py-3" 
+                    className="btn-accent w-full text-lg py-4 min-h-[3rem]" 
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Wird gesendet...
+                        {t('contact.form.submitting')}
                       </>
                     ) : (
                       <>
                         <Send className="mr-2 h-5 w-5" />
-                        Kostenlose Anfrage senden
+                        {t('contact.form.submit')}
                       </>
                     )}
                   </Button>
@@ -190,13 +189,13 @@ const Contact = () => {
                   <Button 
                     asChild 
                     variant="outline" 
-                    className="w-full mt-3 text-sm"
-                    aria-label="Hier geht's direkt zur Terminbuchung (CV-Upload möglich)"
-                    title="Direkt zur Terminbuchung – hier kannst du auch deinen CV hochladen"
+                    className="w-full mt-3 text-sm py-3 min-h-[2.5rem]"
+                    aria-label={t('contact.form.booking')}
+                    title={t('contact.form.booking')}
                   >
                     <Link to="/bewerbungshilfe#termin">
                       <Calendar className="mr-2 h-4 w-4" />
-                      Hier geht's direkt zur Terminbuchung <span className="text-muted-foreground">(Lade deinen CV hoch, falls du einen hast)</span>
+                      {t('contact.form.booking')} <span className="text-muted-foreground">({t('contact.form.bookingNote')})</span>
                     </Link>
                   </Button>
                 </form>
@@ -209,7 +208,7 @@ const Contact = () => {
             {/* Contact Info */}
             <Card className="card-soft">
               <CardHeader>
-                <CardTitle>Kontakt</CardTitle>
+                <CardTitle>{t('contact.info.title')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {contactInfo.map((item, index) => (
@@ -244,21 +243,21 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Clock className="h-5 w-5 text-accent" />
-                  Antwortzeit
+                  {t('contact.response.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Ich antworte normalerweise innerhalb von 24 Stunden auf alle Anfragen.
+                  {t('contact.response.description')}
                 </p>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span>Mo - Fr:</span>
-                    <span className="text-accent">9:00 - 18:00</span>
+                    <span>{t('contact.response.weekdays')}</span>
+                    <span className="text-accent">{t('contact.response.weekdaysTime')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Wochenende:</span>
-                    <span className="text-muted-foreground">Nach Vereinbarung</span>
+                    <span>{t('contact.response.weekend')}</span>
+                    <span className="text-muted-foreground">{t('contact.response.weekendTime')}</span>
                   </div>
                 </div>
               </CardContent>
@@ -267,20 +266,20 @@ const Contact = () => {
             {/* Quick FAQ */}
             <Card className="card-soft">
               <CardHeader>
-                <CardTitle>Häufige Fragen</CardTitle>
+                <CardTitle>{t('contact.faq.title')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-sm">
                 <div>
-                  <p className="font-medium mb-1">Wie lange dauert die CV-Erstellung?</p>
-                  <p className="text-muted-foreground">Je nach Komplexität 2-5 Tage.</p>
+                  <p className="font-medium mb-1">{t('contact.faq.duration.question')}</p>
+                  <p className="text-muted-foreground">{t('contact.faq.duration.answer')}</p>
                 </div>
                 <div>
-                  <p className="font-medium mb-1">Ist die Hilfe wirklich kostenlos?</p>
-                  <p className="text-muted-foreground">Ja, für 5 Personen pro Monat komplett kostenfrei.</p>
+                  <p className="font-medium mb-1">{t('contact.faq.free.question')}</p>
+                  <p className="text-muted-foreground">{t('contact.faq.free.answer')}</p>
                 </div>
                 <div>
-                  <p className="font-medium mb-1">Welche Unterlagen benötigst du?</p>
-                  <p className="text-muted-foreground">Aktuelle Daten, Zeugnisse und deine Wunschvorstellungen.</p>
+                  <p className="font-medium mb-1">{t('contact.faq.documents.question')}</p>
+                  <p className="text-muted-foreground">{t('contact.faq.documents.answer')}</p>
                 </div>
               </CardContent>
             </Card>

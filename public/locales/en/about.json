@@ -1,17 +1,28 @@
 {
   "title": "About Me",
+  "story": "& My Story", 
   "subtitle": "Your personal career helper",
-  "description": "Hi, I'm Marcel! I help people create professional resumes and optimize their application documents. With many years of experience and modern AI support, I offer you completely free help - especially for people with psychological challenges or disabilities.",
-  "motivation": {
-    "title": "My Motivation",
-    "text": "I believe everyone deserves a fair chance at their dream job. That's why I offer my help completely free and focus particularly on people who face additional challenges in the application process."
+  "intro": {
+    "greeting": "Hi, I'm Marcel!",
+    "story": "I help people create professional resumes and optimize their application documents. With many years of experience and modern AI support, I offer you completely free help – especially for people with psychological challenges or disabilities.",
+    "beginning": "It all started when I had difficulties with applications myself. Today I offer",
+    "service": "free application help",
+    "services": "like CV creation, design optimization and application tracker.",
+    "result": "The result:",
+    "example": "Professional, individual application documents that convince. Check out the",
+    "reviews": "testimonials"
   },
-  "approach": {
-    "title": "My Approach", 
-    "text": "Personal, empathetic, and solution-oriented. Together we create your individual application strategy and optimize your documents until they convince."
+  "expanded": {
+    "tools": "I use modern AI tools like ChatGPT and Google Sheets to help you. My motto:",
+    "quote": "Together we can do it!",
+    "faq": "I answer all frequently asked questions in the",
+    "faq_link": "FAQs",
+    "faq_end": "– there you'll find all important information.",
+    "approach": "My approach is personal, empathetic and solution-oriented. Together we develop your individual application strategy and optimize your documents until they convince.",
+    "support": "Particularly important to me is supporting people who face additional challenges in the application process. Everyone deserves a fair chance at their dream job."
   },
-  "experience": {
-    "title": "Experience & Expertise",
-    "text": "Years of experience in HR, knowledge of modern AI tools and a deep understanding of what recruiters are looking for."
+  "toggle": {
+    "more": "Learn more about me",
+    "less": "Show less"
   }
 }

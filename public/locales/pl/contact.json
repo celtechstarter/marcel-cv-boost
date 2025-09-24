@@ -1,0 +1,61 @@
+{
+  "title": "Porozmawiajmy",
+  "subtitle": "Gotowy na swoje nowe CV? Napisz do mnie wiadomość i zabezpiecz jedno z bezpłatnych miejsc.",
+  "form": {
+    "title": "Poproś o pomoc w aplikacji",
+    "slots": "Pozostało {{slots}} z 5 bezpłatnych miejsc",
+    "fields": {
+      "name": "Imię *",
+      "namePlaceholder": "Twoje imię",
+      "email": "E-Mail *",
+      "emailPlaceholder": "twoj@email.pl",
+      "phone": "Telefon (opcjonalnie)",
+      "phonePlaceholder": "+48 123 456789",
+      "situation": "Twoja sytuacja",
+      "situationPlaceholder": "Po prostu napisz swobodnie, gdzie widzisz problemy, a ja szybko Ci pomogę.",
+      "situationHelp": "Podziel się tym, co Cię niepokoi - jestem tutaj, aby pomóc.",
+      "help": "Pożądana pomoc",
+      "helpPlaceholder": "Czego dokładnie potrzebujesz? (np. kompletne CV, optymalizacja designu, tracker aplikacji, itp.)",
+      "privacy": "Zgadzam się na przetwarzanie moich danych w celu obsługi mojego zapytania. Dane będą traktowane poufnie i nie zostaną przekazane osobom trzecim. *"
+    },
+    "submit": "Wyślij bezpłatne zapytanie",
+    "submitting": "Wysyłanie...",
+    "booking": "Przejdź bezpośrednio do rezerwacji terminu",
+    "bookingNote": "(Prześlij swoje CV jeśli je masz)",
+    "success": {
+      "title": "Wiadomość wysłana! 📨",
+      "description": "Skontaktuję się z Tobą jak najszybciej pod marcel.welk@bewerbungsmensch.de. Dziękuję za zaufanie!"
+    }
+  },
+  "info": {
+    "title": "Kontakt",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "location": "Niemcy, Zdalnie",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "response": {
+    "title": "Czas odpowiedzi",
+    "description": "Zwykle odpowiadam na wszystkie zapytania w ciągu 24 godzin.",
+    "weekdays": "Pon - Pt:",
+    "weekdaysTime": "9:00 - 18:00",
+    "weekend": "Weekend:",
+    "weekendTime": "Po uzgodnieniu"
+  },
+  "faq": {
+    "title": "Często zadawane pytania",
+    "duration": {
+      "question": "Jak długo trwa tworzenie CV?",
+      "answer": "W zależności od złożoności 2-5 dni."
+    },
+    "free": {
+      "question": "Czy pomoc jest naprawdę bezpłatna?",
+      "answer": "Tak, całkowicie bezpłatna dla 5 osób miesięcznie."
+    },
+    "documents": {
+      "question": "Jakie dokumenty potrzebujesz?",
+      "answer": "Aktualne dane, świadectwa i Twoje oczekiwania."
+    }
+  }
+}
