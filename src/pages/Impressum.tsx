@@ -1,15 +1,27 @@
 import Layout from '@/components/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 const Impressum = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Impressum - Rechtliche Angaben | Marcel CV Boost</title>
+        <meta name="description" content="Impressum und rechtliche Angaben von Marcel Welk für kostenlose Bewerbungshilfe und Lebenslauf-Erstellung." />
+        <link rel="canonical" href="https://marcel-cv-boost.lovable.app/impressum" />
+        <link rel="alternate" hrefLang="de" href="https://marcel-cv-boost.lovable.app/impressum" />
+        <link rel="alternate" hrefLang="x-default" href="https://marcel-cv-boost.lovable.app/impressum" />
+      </Helmet>
+      
       <main className="container mx-auto px-4 py-16" role="main">
         <div className="max-w-3xl mx-auto">
           <Card>
             <CardHeader>
-              {/* Main H1 for SEO */}
-              <h1 className="text-3xl font-bold">Impressum</h1>
+              <h1 className="text-3xl font-bold mb-2">Impressum - Rechtliche Angaben</h1>
+              <p className="text-muted-foreground">
+                Rechtliche Informationen gemäß § 5 TMG für Marcel CV Boost - Ihr kostenloser Bewerbungsservice
+              </p>
             </CardHeader>
             <CardContent className="space-y-6">
               <section>
@@ -59,6 +71,36 @@ const Impressum = () => {
                   Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der 
                   Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
                 </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-semibold mb-3">Weitere Informationen</h2>
+                <nav className="space-y-2" aria-label="Zusätzliche rechtliche Seiten">
+                  <p>
+                    <Link to="/datenschutz" className="text-primary hover:underline">
+                      Datenschutzerklärung
+                    </Link>
+                    {" "}- Informationen zum Umgang mit Ihren Daten
+                  </p>
+                  <p>
+                    <Link to="/barrierefreiheit" className="text-primary hover:underline">
+                      Barrierefreiheit
+                    </Link>
+                    {" "}- Unser Engagement für zugängliche Webinhalte
+                  </p>
+                  <p>
+                    <Link to="/" className="text-primary hover:underline">
+                      Startseite
+                    </Link>
+                    {" "}- Zurück zur Hauptseite mit kostenloser Bewerbungshilfe
+                  </p>
+                  <p>
+                    <Link to="/bewerbungshilfe" className="text-primary hover:underline">
+                      Bewerbungshilfe
+                    </Link>
+                    {" "}- Kostenlose Unterstützung für Ihre Bewerbung
+                  </p>
+                </nav>
               </section>
             </CardContent>
           </Card>
