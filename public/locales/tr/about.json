@@ -1,0 +1,28 @@
+{
+  "title": "Hakkımda",
+  "story": "& Hikayem",
+  "subtitle": "Kişisel kariyer yardımcınız",
+  "intro": {
+    "greeting": "Merhaba, ben Marcel!",
+    "story": "İnsanların profesyonel özgeçmiş oluşturmalarına ve başvuru belgelerini optimize etmelerine yardım ediyorum. Uzun yıllara dayanan deneyim ve modern AI desteği ile size tamamen ücretsiz yardım sunuyorum – özellikle psikolojik zorluklarla karşılaşan veya engeli bulunan kişiler için.",
+    "beginning": "Her şey kendim başvuru zorluklarıyla karşılaştığımda başladı. Bugün",
+    "service": "ücretsiz başvuru yardımı",
+    "services": "CV oluşturma, tasarım optimizasyonu ve başvuru takibi gibi hizmetler sunuyorum.",
+    "result": "Sonuç:",
+    "example": "İkna edici, profesyonel ve bireysel başvuru belgeleri. Şuraya göz atın:",
+    "reviews": "referanslar"
+  },
+  "expanded": {
+    "tools": "Size yardım etmek için ChatGPT ve Google Sheets gibi modern AI araçları kullanıyorum. Motom:",
+    "quote": "Birlikte başarabiliriz!",
+    "faq": "Sık sorulan tüm soruları",
+    "faq_link": "SSS",
+    "faq_end": "bölümünde yanıtlıyorum – orada tüm önemli bilgileri bulacaksınız.",
+    "approach": "Yaklaşımım kişisel, empatik ve çözüm odaklıdır. Birlikte bireysel başvuru stratejinizi geliştiriyor ve belgelerinizi ikna edici olana kadar optimize ediyoruz.",
+    "support": "Benim için özellikle önemli olan, başvuru sürecinde ek zorluklarla karşılaşan insanlara destek olmaktır. Herkes hayalindeki işe adil bir şansa sahip olmalı."
+  },
+  "toggle": {
+    "more": "Hakkımda daha fazla bilgi",
+    "less": "Daha az göster"
+  }
+}

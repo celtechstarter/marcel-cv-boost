@@ -1,0 +1,28 @@
+{
+  "title": "O mnie",
+  "story": "& Moja historia",
+  "subtitle": "Twój osobisty doradca kariery",
+  "intro": {
+    "greeting": "Cześć, jestem Marcel!",
+    "story": "Pomagam ludziom tworzyć profesjonalne CV i optymalizować dokumenty aplikacyjne. Z wieloletnim doświadczeniem i nowoczesnym wsparciem AI oferuję Ci całkowicie bezpłatną pomoc – szczególnie dla osób z wyzwaniami psychicznymi lub niepełnosprawnościami.",
+    "beginning": "Wszystko zaczęło się, gdy sam miałem trudności z aplikacjami. Dziś oferuję",
+    "service": "bezpłatną pomoc z aplikacjami",
+    "services": "taką jak tworzenie CV, optymalizacja designu i śledzenie aplikacji.",
+    "result": "Wynik:",
+    "example": "Profesjonalne, indywidualne dokumenty aplikacyjne, które przekonują. Sprawdź",
+    "reviews": "referencje"
+  },
+  "expanded": {
+    "tools": "Używam nowoczesnych narzędzi AI jak ChatGPT i Google Sheets, aby Ci pomóc. Moje motto:",
+    "quote": "Razem damy radę!",
+    "faq": "Odpowiadam na wszystkie często zadawane pytania w dziale",
+    "faq_link": "FAQ",
+    "faq_end": "– tam znajdziesz wszystkie ważne informacje.",
+    "approach": "Moje podejście jest osobiste, empatyczne i zorientowane na rozwiązania. Razem opracowujemy Twoją indywidualną strategię aplikacyjną i optymalizujemy Twoje dokumenty, aż staną się przekonujące.",
+    "support": "Szczególnie ważne dla mnie jest wspieranie osób, które napotykają dodatkowe wyzwania w procesie aplikacyjnym. Każdy zasługuje na sprawiedliwą szansę na swoją wymarzoną pracę."
+  },
+  "toggle": {
+    "more": "Dowiedz się więcej o mnie",
+    "less": "Pokaż mniej"
+  }
+}
