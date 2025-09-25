@@ -106,5 +106,43 @@
       "more": "Read more",
       "less": "Show less"
     }
+  },
+  "important": "Important",
+  "footer": {
+    "brand": {
+      "title": "Marcel",
+      "description": "Free CV help and application assistance online for people with psychological stress, severe disabilities or other challenges. Professional CV for free with AI support. Because everyone deserves a fair chance.",
+      "tagline": "With passion for your professional future"
+    },
+    "navigation": {
+      "title": "Navigation",
+      "home": "Home",
+      "about": "About me",
+      "services": "Services",
+      "process": "Process",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "tools": "Tools",
+      "help": "Application Help"
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "marcel.welk@bewerbungsmensch.de",
+      "phone": "+49 (0) 123 456789",
+      "location": "Germany, Remote",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "facebook": "Facebook (Coming Soon)",
+      "tiktok": "TikTok (Coming Soon)",
+      "instagram": "Instagram (Coming Soon)",
+      "twitter": "X (Twitter) (Coming Soon)",
+      "youtube": "YouTube (Coming Soon)"
+    },
+    "legal": {
+      "copyright": "© {{year}} Marcel. All rights reserved.",
+      "imprint": "Imprint",
+      "privacy": "Privacy",
+      "accessibility": "Accessibility"
+    }
   }
 }

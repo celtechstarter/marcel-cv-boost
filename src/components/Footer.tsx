@@ -1,6 +1,8 @@
 import { Heart, Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
+import { useI18n } from "@/hooks/useI18n";
 
 const Footer = () => {
+  const { t } = useI18n();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -9,48 +11,48 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="text-xl font-semibold mb-4">Marcel</h3>
+            <h3 className="text-xl font-semibold mb-4">{t('footer.brand.title')}</h3>
             <p className="text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
-              Kostenlose Lebenslauf Hilfe und Bewerbungshilfe online für Menschen mit psychischen Belastungen, Schwerbehinderung oder anderen Herausforderungen. Professioneller Lebenslauf kostenlos mit KI-Unterstützung. Weil jeder eine faire Chance verdient.
+              {t('footer.brand.description')}
             </p>
             <div className="flex items-center gap-2 text-sm">
               <Heart className="h-4 w-4 text-red-400" />
-              <span className="text-neutral-600 dark:text-neutral-400">Mit Herzblut für deine berufliche Zukunft</span>
+              <span className="text-neutral-600 dark:text-neutral-400">{t('footer.brand.tagline')}</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Navigation</h4>
+            <h4 className="font-semibold mb-4">{t('footer.navigation.title')}</h4>
             <nav className="space-y-2">
-              <a href="/" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Start</a>
-              <a href="/#about" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Über mich</a>
-              <a href="/#services" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Leistungen</a>
-              <a href="/#ablauf" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Ablauf</a>
+              <a href="/" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.navigation.home')}</a>
+              <a href="/#about" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.navigation.about')}</a>
+              <a href="/#services" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.navigation.services')}</a>
+              <a href="/#ablauf" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.navigation.process')}</a>
               
-              <a href="/faq" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">FAQ</a>
-              <a href="/blog" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Blog</a>
-              <a href="/tools" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Tools</a>
+              <a href="/faq" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.navigation.faq')}</a>
+              <a href="/blog" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.navigation.blog')}</a>
+              <a href="/tools" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.navigation.tools')}</a>
               {/* Additional internal links for SEO */}
-              <a href="/bewerbungshilfe" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Bewerbungshilfe</a>
+              <a href="/bewerbungshilfe" className="block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.navigation.help')}</a>
             </nav>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-4">Kontakt</h4>
+            <h4 className="font-semibold mb-4">{t('footer.contact.title')}</h4>
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-sm">
                 <Mail className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
-                <a href="mailto:marcel.welk@bewerbungsmensch.de" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">marcel.welk@bewerbungsmensch.de</a>
+                <a href="mailto:marcel.welk@bewerbungsmensch.de" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.contact.email')}</a>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <Phone className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
-                <a href="tel:+491234567890" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">+49 (0) 123 456789</a>
+                <a href="tel:+491234567890" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.contact.phone')}</a>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <MapPin className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
-                <span className="text-neutral-600 dark:text-neutral-400">Deutschland, Remote</span>
+                <span className="text-neutral-600 dark:text-neutral-400">{t('footer.contact.location')}</span>
               </div>
               {/* Social links - stacked vertically */}
               <div className="space-y-2 text-sm mt-3">
@@ -63,7 +65,7 @@ const Footer = () => {
                     className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                     aria-label="LinkedIn-Profil von Marcel (öffnet in neuem Tab)"
                   >
-                    LinkedIn
+                    {t('footer.contact.linkedin')}
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
@@ -75,7 +77,7 @@ const Footer = () => {
                     className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                     aria-label="GitHub – Profil von Marcel"
                   >
-                    GitHub
+                    {t('footer.contact.github')}
                   </a>
                 </div>
                 {/* Additional Social Media Links */}
@@ -88,7 +90,7 @@ const Footer = () => {
                     className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                     aria-label="Facebook-Profil (Coming Soon)"
                   >
-                    Facebook (Coming Soon)
+                    {t('footer.contact.facebook')}
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
@@ -100,7 +102,7 @@ const Footer = () => {
                     className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                     aria-label="TikTok-Profil (Coming Soon)"
                   >
-                    TikTok (Coming Soon)
+                    {t('footer.contact.tiktok')}
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
@@ -112,7 +114,7 @@ const Footer = () => {
                     className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                     aria-label="Instagram-Profil (Coming Soon)"
                   >
-                    Instagram (Coming Soon)
+                    {t('footer.contact.instagram')}
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
@@ -124,7 +126,7 @@ const Footer = () => {
                     className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                     aria-label="X (Twitter)-Profil (Coming Soon)"
                   >
-                    X (Twitter) (Coming Soon)
+                    {t('footer.contact.twitter')}
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
@@ -136,7 +138,7 @@ const Footer = () => {
                     className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                     aria-label="YouTube-Profil (Coming Soon)"
                   >
-                    YouTube (Coming Soon)
+                    {t('footer.contact.youtube')}
                   </a>
                 </div>
               </div>
@@ -147,11 +149,11 @@ const Footer = () => {
         {/* Footer Bottom */}
         <div className="border-t border-neutral-200 dark:border-neutral-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-neutral-500 dark:text-neutral-400 text-sm">© {currentYear} Marcel. Alle Rechte vorbehalten.</p>
+            <p className="text-neutral-500 dark:text-neutral-400 text-sm">{t('footer.legal.copyright', { year: currentYear })}</p>
             <div className="flex gap-6 text-sm">
-              <a href="/impressum" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Impressum</a>
-              <a href="/datenschutz" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Datenschutz</a>
-              <a href="/barrierefreiheit" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Barrierefreiheit</a>
+              <a href="/impressum" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.legal.imprint')}</a>
+              <a href="/datenschutz" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.legal.privacy')}</a>
+              <a href="/barrierefreiheit" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">{t('footer.legal.accessibility')}</a>
             </div>
           </div>
         </div>

@@ -121,7 +121,7 @@ const Navigation = () => {
             <div className="lg:hidden flex items-center gap-2">
               <LanguageSwitcher />
               <ThemeToggle />
-              <Button variant="ghost" size="icon" onClick={handleMenuToggle} aria-label={isOpen ? "Menü schließen" : "Menü öffnen"} aria-expanded={isOpen} aria-controls="mobile-menu" className="focus:ring-2 focus:ring-primary">
+              <Button variant="ghost" size="icon" onClick={handleMenuToggle} aria-label={isOpen ? t('navigation.closeMenu') : t('navigation.openMenu')} aria-expanded={isOpen} aria-controls="mobile-menu" className="focus:ring-2 focus:ring-primary">
                 {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
             </div>

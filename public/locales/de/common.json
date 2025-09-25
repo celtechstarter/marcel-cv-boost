@@ -106,5 +106,43 @@
       "more": "Weiterlesen",
       "less": "Weniger anzeigen"
     }
+  },
+  "important": "Wichtig",
+  "footer": {
+    "brand": {
+      "title": "Marcel",
+      "description": "Kostenlose Lebenslauf Hilfe und Bewerbungshilfe online für Menschen mit psychischen Belastungen, Schwerbehinderung oder anderen Herausforderungen. Professioneller Lebenslauf kostenlos mit KI-Unterstützung. Weil jeder eine faire Chance verdient.",
+      "tagline": "Mit Herzblut für deine berufliche Zukunft"
+    },
+    "navigation": {
+      "title": "Navigation",
+      "home": "Start",
+      "about": "Über mich",
+      "services": "Leistungen",
+      "process": "Ablauf",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "tools": "Tools",
+      "help": "Bewerbungshilfe"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "email": "marcel.welk@bewerbungsmensch.de",
+      "phone": "+49 (0) 123 456789",
+      "location": "Deutschland, Remote",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "facebook": "Facebook (Coming Soon)",
+      "tiktok": "TikTok (Coming Soon)",
+      "instagram": "Instagram (Coming Soon)",
+      "twitter": "X (Twitter) (Coming Soon)",
+      "youtube": "YouTube (Coming Soon)"
+    },
+    "legal": {
+      "copyright": "© {{year}} Marcel. Alle Rechte vorbehalten.",
+      "imprint": "Impressum",
+      "privacy": "Datenschutz",
+      "accessibility": "Barrierefreiheit"
+    }
   }
 }

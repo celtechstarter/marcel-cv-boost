@@ -68,7 +68,7 @@ const ProcessSection = () => {
               </div>
               <div className="mt-6 p-4 bg-accent/10 rounded-lg">
                 <p className="text-sm">
-                  <strong>Wichtig:</strong> {t('process.requirements.important')}
+                  <strong>{t('common.important')}:</strong> {t('process.requirements.important')}
                 </p>
               </div>
               
