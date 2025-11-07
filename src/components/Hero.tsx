@@ -1,10 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { Heart, Users, FileText } from "lucide-react";
 import { useI18n } from "@/hooks/useI18n";
+import { useState, useEffect } from "react";
 import logoImage from "@/assets/bewerbungsmensch-logo.png";
+import { transparentizeWhite } from "@/utils/transparentizeWhite";
 
 const Hero = () => {
   const { t } = useI18n();
+  const [logoSrc, setLogoSrc] = useState(logoImage);
+  
+  useEffect(() => {
+    const cacheKey = 'logoTransparent:bewerbungsmensch-logo.png';
+    
+    transparentizeWhite(logoImage, 245, cacheKey).then((transparentUrl) => {
+      if (transparentUrl) {
+        setLogoSrc(transparentUrl);
+      }
+    });
+  }, []);
   
   return (
     <section id="home" className="min-h-screen flex items-center bg-gradient-to-br from-background to-secondary/30">
@@ -73,7 +86,7 @@ const Hero = () => {
           <div className="relative animate-scale-in">
             <div className="relative z-10 flex items-center justify-center">
               <img
-                src={logoImage}
+                src={logoSrc}
                 alt="Bewerbungsmensch - Professionelle Bewerbungshilfe"
                 className="w-full h-auto max-w-md drop-shadow-2xl"
                 loading="eager"
