@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Heart, Users, FileText } from "lucide-react";
 import { useI18n } from "@/hooks/useI18n";
-// Using uploaded portrait directly
+import logoImage from "@/assets/bewerbungsmensch-logo.png";
 
 const Hero = () => {
   const { t } = useI18n();
@@ -73,8 +73,8 @@ const Hero = () => {
           <div className="relative animate-scale-in">
             <div className="relative z-10">
               <img
-                src="/lovable-uploads/a25282f1-20be-4502-9307-ed450363e944.png"
-                alt="Porträt von Marcel, Bewerbungshelfer"
+                src={logoImage}
+                alt="Bewerbungsmensch - Professionelle Bewerbungshilfe"
                 className="rounded-2xl shadow-large w-full h-auto"
                 loading="eager"
               />
