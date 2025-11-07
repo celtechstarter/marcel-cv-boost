@@ -9,6 +9,15 @@ import { useToast } from "@/hooks/use-toast";
 import { callEdge } from "@/utils/callEdge";
 import { CvDropzone } from "@/components/CvDropzone";
 import Layout from "@/components/Layout";
+import { z } from "zod";
+
+const requestSchema = z.object({
+  name: z.string().trim().min(1, 'Name ist erforderlich').max(100, 'Name darf maximal 100 Zeichen lang sein'),
+  email: z.string().trim().email('Ungültige E-Mail-Adresse').max(255, 'E-Mail darf maximal 255 Zeichen lang sein'),
+  discord_name: z.string().trim().max(50, 'Telefon darf maximal 50 Zeichen lang sein').optional(),
+  message: z.string().trim().min(10, 'Nachricht muss mindestens 10 Zeichen lang sein').max(2000, 'Nachricht darf maximal 2000 Zeichen lang sein'),
+  cv_path: z.string().max(500, 'Dateipfad zu lang').nullable().optional()
+});
 
 const Bewerbungshilfe = () => {
   useEffect(() => {
@@ -71,7 +80,10 @@ const Bewerbungshilfe = () => {
         cv_path: cvPath || null,
       };
       
-      const res = await callEdge('/requests/create', { body: JSON.stringify(requestData) });
+      // Validate input data
+      const validated = requestSchema.parse(requestData);
+      
+      const res = await callEdge('/requests/create', { body: JSON.stringify(validated) });
       
       toast({
         title: "Nachricht gesendet! 📨",
@@ -90,11 +102,20 @@ const Bewerbungshilfe = () => {
       (e.target as HTMLFormElement).reset();
       setCvPath('');
     } catch (error) {
-      toast({
-        title: "Fehler beim Senden",
-        description: "Bitte versuche es später erneut oder schreibe direkt an marcel.welk@bewerbungsmensch.de",
-        variant: "destructive",
-      });
+      // Handle validation errors
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Eingabefehler",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Fehler beim Senden",
+          description: "Bitte versuche es später erneut oder schreibe direkt an marcel.welk@bewerbungsmensch.de",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsSubmittingContact(false);
     }

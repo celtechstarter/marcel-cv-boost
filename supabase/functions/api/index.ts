@@ -296,8 +296,45 @@ const handler = async (req: Request): Promise<Response> => {
     try {
       const { name, email, discord_name, message, cv_path } = await req.json();
       
+      // Comprehensive input validation
       if (!name?.trim() || !email?.trim() || !message?.trim()) {
         return new Response(JSON.stringify({ error: 'Name, E-Mail und Nachricht sind erforderlich' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      
+      if (name.trim().length > 100) {
+        return new Response(JSON.stringify({ error: 'Name darf maximal 100 Zeichen lang sein' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email.trim()) || email.trim().length > 255) {
+        return new Response(JSON.stringify({ error: 'Ungültige E-Mail-Adresse' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      
+      if (message.trim().length < 10 || message.trim().length > 2000) {
+        return new Response(JSON.stringify({ error: 'Nachricht muss zwischen 10 und 2000 Zeichen lang sein' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      
+      if (discord_name && discord_name.trim().length > 50) {
+        return new Response(JSON.stringify({ error: 'Telefon/Discord darf maximal 50 Zeichen lang sein' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      
+      if (cv_path && cv_path.length > 500) {
+        return new Response(JSON.stringify({ error: 'Dateipfad zu lang' }), {
           status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });

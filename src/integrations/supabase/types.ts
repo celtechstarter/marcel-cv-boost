@@ -162,10 +162,7 @@ export type Database = {
           name: string
         }[]
       }
-      cleanup_expired_uploads: {
-        Args: Record<PropertyKey, never>
-        Returns: number
-      }
+      cleanup_expired_uploads: { Args: never; Returns: number }
       log_audit_event: {
         Args: {
           p_actor_email?: string
