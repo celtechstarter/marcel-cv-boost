@@ -71,12 +71,13 @@ const Hero = () => {
 
           {/* Image */}
           <div className="relative animate-scale-in">
-            <div className="relative z-10">
+            <div className="relative z-10 flex items-center justify-center">
               <img
                 src={logoImage}
                 alt="Bewerbungsmensch - Professionelle Bewerbungshilfe"
-                className="rounded-2xl shadow-large w-full h-auto"
+                className="w-full h-auto max-w-md drop-shadow-2xl"
                 loading="eager"
+                style={{ mixBlendMode: 'normal' }}
               />
             </div>
             {/* Decorative elements */}
